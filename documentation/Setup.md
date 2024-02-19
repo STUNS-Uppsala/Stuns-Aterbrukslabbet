@@ -4,7 +4,7 @@
 
 Run the following command in the CLI to clone down the repository
 ```bash
-git clone https://github.com/NTIG-Uppsala/Stuns-Aterbrukslabben.git
+git clone https://github.com/NTIG-Uppsala/Stuns-Aterbrukslabbet.git
 ```
 
 ## Download Node.js and necessary packages
