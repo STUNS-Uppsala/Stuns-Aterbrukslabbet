@@ -1,9 +1,7 @@
 import Link from "next/link";
-import { Prompt } from "next/font/google";
 
 import { cn } from "@/lib/utils";
-
-const prompt = Prompt({ subsets: ["latin"], weight: ["600"] });
+import { prompt } from "@/app/fonts";
 
 export default function Logo() {
   return (

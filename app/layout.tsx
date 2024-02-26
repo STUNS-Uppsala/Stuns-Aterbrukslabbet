@@ -1,12 +1,9 @@
-import { Inter } from "next/font/google";
-
-import { cn } from "@/lib/utils";
-
 import type { Metadata } from "next";
 
-import "./globals.css";
+import { cn } from "@/lib/utils";
+import { inter } from "@/app/fonts";
 
-const inter = Inter({ subsets: ["latin"] });
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Återbrukslabbet",
