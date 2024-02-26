@@ -7,10 +7,10 @@ export default function Intro() {
   return (
     <div>
       <div className="md:pt-16 pt-4 bg-secondary w-full">
-        <div className="flex flex-col max-w-screen-md mx-auto">
+        <div className="flex flex-col md:max-w-screen-sm max-w-80 mx-auto items-center">
           <div
             className={cn(
-              "flex mx-auto md:text-5xl text-2xl md:pb-4 pb-2 font-semibold justify-center text-center",
+              "md:text-5xl text-2xl font-semibold md:pb-4 pb-2",
               source_sans_3.className
             )}
           >
@@ -18,7 +18,7 @@ export default function Intro() {
           </div>
           <div
             className={cn(
-              "flex md:px-12 px-6 md:py-8 py-4 text-3xl md:text-6xl font-medium mx-auto bg-primary bg-opacity-25 rounded-lg justify-center text-center",
+              "md:px-12 px-6 md:py-8 py-4 md:text-6xl text-3xl font-medium bg-primary bg-opacity-25 rounded-lg",
               prompt.className
             )}
           >
@@ -26,7 +26,7 @@ export default function Intro() {
           </div>
           <div
             className={cn(
-              "flex flex-col md:w-8/12 w-10/12 md:text-3xl md:pt-8 pt-4 text-sm font-light text-center items-center mx-auto text-balance",
+              "md:px-16 px-4 md:pt-8 pt-4 md:text-3xl text-sm font-light text-center text-balance",
               source_sans_3.className
             )}
           >
@@ -42,7 +42,12 @@ export default function Intro() {
           </div>
         </div>
       </div>
-      <Image src={IntroSectionDivider} className="select-none" alt="" style={{width:"100%", zIndex: "-1"}}/>
+      <Image
+        src={IntroSectionDivider}
+        className="select-none"
+        alt=""
+        style={{ width: "100%", zIndex: "-1" }}
+      />
     </div>
   );
 }
