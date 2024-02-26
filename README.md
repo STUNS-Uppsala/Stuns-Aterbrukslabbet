@@ -2,6 +2,10 @@
 
 This is a [Next.js](https://nextjs.org/) project for Återbrukslabbet.
 
+## Licenses
+
+Link to [licenses](documentation/licenses.md)
+
 ## Development Environment
 
 Link to [development environment](documentation/EnvironmentsLanguages.md)
