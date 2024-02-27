@@ -1,7 +1,8 @@
-import { source_sans_3, prompt } from "@/app/fonts";
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+
+import { cn } from "@/lib/utils";
 import IntroSectionDivider from "@/public/images/intro-section-divider.svg";
+import { source_sans_3, prompt } from "@/app/fonts";
 
 export default function Intro() {
   return (
