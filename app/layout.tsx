@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("bg-background h-full", inter.className)}>{children}</body>
+      <body className={cn("bg-background", inter.className)}>{children}</body>
     </html>
   );
 }
