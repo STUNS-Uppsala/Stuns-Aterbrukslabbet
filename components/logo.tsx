@@ -6,7 +6,7 @@ import { prompt } from "@/app/fonts";
 export default function Logo() {
   return (
     <Link href="/">
-      <div className={cn("text-2xl font-medium", prompt.className)}>Återbrukslabbet</div>
+      <div className={cn("text-2xl", prompt.className)}>Återbrukslabbet</div>
     </Link>
   );
 }
