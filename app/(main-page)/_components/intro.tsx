@@ -47,6 +47,7 @@ export default function Intro() {
         src={IntroSectionDivider}
         className="select-none"
         alt=""
+        draggable="false"
         style={{ width: "100%", zIndex: "-1" }}
       />
     </div>
