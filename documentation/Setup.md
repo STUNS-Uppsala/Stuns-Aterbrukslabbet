@@ -34,7 +34,7 @@ npm install
 
 - Go to the [clerk website]("https://clerk.com/") and create an account and a clerk application if you do not already have one.
 
-- When creating a clerk application you will need to enable Google, LinkedIn and email as sign in options. This can also be changed later in the User & Authentication tab in the clerk dashboard.
+- When creating a clerk application you will need to enable the social connections you wish to use. This project uses google, linkedin and email. Other connections won't be tested and aren't guaranteed to work. This option can be changed later in the User & Authentication tab in the clerk dashboard.
 
 ![Image of social connections in clerk](clerk-social-connections.png)
 
