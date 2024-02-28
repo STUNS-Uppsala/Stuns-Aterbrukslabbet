@@ -1,4 +1,4 @@
-import { sourceSans3 } from "@/app/fonts";
+import { source_sans_3 } from "@/app/fonts";
 import Logo from "@/components/logo";
 import { cn } from "@/lib/utils";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
@@ -12,7 +12,7 @@ export default function Navbar() {
         <section className="flex space-x-4 items-center justify-between w-auto">
           <SignedOut>
             <Link
-              className={cn("font-semibold text-xl", sourceSans3.className)}
+              className={cn("font-semibold text-xl", source_sans_3.className)}
               href={"/sign-in"}
             >
               Logga in
