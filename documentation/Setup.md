@@ -3,6 +3,7 @@
 ## Clone Github Repository
 
 Run the following command in the CLI to clone down the repository
+
 ```bash
 git clone https://github.com/NTIG-Uppsala/Stuns-Aterbrukslabbet.git
 ```
@@ -17,6 +18,7 @@ Run the following command in the CLI to get the necessary packages from the node
 
 ```bash
 npm install
+```
 
 ## Set up Clerk authentication
 
@@ -41,5 +43,3 @@ npm install
 - You will then need to create a `.env` file in the root folder of your project. Paste the API Keys in there and following clerk code. Make sure your `.env` file looks like this.
 
 ![Image of environment file](environment-file.png)
-
-### How to create an admin account
