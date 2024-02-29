@@ -1,5 +1,5 @@
-import { Roles } from "@/types/globals";
 import { auth } from "@clerk/nextjs";
+import { Roles } from "@/types/globals";
 
 export const checkRole = (role: Roles) => {
   const { sessionClaims } = auth();

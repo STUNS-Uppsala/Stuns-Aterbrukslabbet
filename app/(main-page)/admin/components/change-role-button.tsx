@@ -1,8 +1,8 @@
 "use client";
 
-import { useAction } from "@/hooks/use-action";
-
+import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,8 +14,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useRouter } from "next/navigation";
 import { changeRole } from "@/actions/change-role";
+import { useAction } from "@/hooks/use-action";
 
 interface ChangeRoleButtonProps {
   id: string;
