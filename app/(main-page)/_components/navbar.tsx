@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { LockKeyhole } from "lucide-react";
 
+import { checkRole } from "@/utils/roles";
 import { cn } from "@/lib/utils";
 import Logo from "@/components/logo";
 import { source_sans_3 } from "@/app/fonts";
