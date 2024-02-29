@@ -20,7 +20,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
       publicMetadata: { role: role },
     });
   } catch (err) {
-    return { error: "Failed to delete" };
+    return { error: "Failed to change role" };
   }
   return { data: email };
 };
