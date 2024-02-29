@@ -28,6 +28,8 @@ const config = {
         primary: "#d9d9d9",
         secondary: "#ffffff",
         navbarStart: "#ECECEC",
+        offerColor: "#10b981",
+        requestColor: "#2563eb",
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
