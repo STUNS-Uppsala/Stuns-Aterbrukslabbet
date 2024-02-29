@@ -1,7 +1,9 @@
 import { source_sans_3 } from "@/app/fonts";
 import Logo from "@/components/logo";
 import { cn } from "@/lib/utils";
+import { checkRole } from "@/utils/roles";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { LockKeyhole } from "lucide-react";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -19,6 +21,19 @@ export default function Navbar() {
             </Link>
           </SignedOut>
           <SignedIn>
+            {(checkRole("admin") || checkRole("moderator")) && (
+              <Link href="/admin">
+                <LockKeyhole className="md:hidden block" />
+                <p
+                  className={cn(
+                    "text-xl font-medium pt-1 md:block hidden",
+                    source_sans_3.className
+                  )}
+                >
+                  Admin Panel
+                </p>
+              </Link>
+            )}
             <UserButton
               afterSignOutUrl="/"
               appearance={{
