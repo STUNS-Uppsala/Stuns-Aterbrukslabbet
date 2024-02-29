@@ -12,7 +12,7 @@ export default function Navbar() {
     <header className="flex top-0 w-full h-20 px-4 bg-gradient-to-b from-navbarStart to-secondary">
       <div className="flex max-w-[1920px] mx-auto items-center w-full justify-between">
         <Logo />
-        <section className="w-auto">
+        <section className="flex space-x-4 justify-between w-auto">
           <SignedOut>
             <Link
               className={cn("font-semibold text-xl", source_sans_3.className)}
