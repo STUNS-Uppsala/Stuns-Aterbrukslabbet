@@ -43,3 +43,17 @@ npm install
 - You will then need to create a `.env` file in the root folder of your project. Paste the API Keys in there and following clerk code. Make sure your `.env` file looks like this.
 
 ![Image of environment file](environment-file.png)
+
+### How to create an admin account
+
+On the website there exists a admin dashboard that is only accessible to certain users with the admin role. The admin can in the admin dashboard give other users moderator access and delete specific users. Moderator users can also delete specific users.
+
+- Go to the users tab in the clerk dashboard and click on the user you would like to set as admin.
+
+- Scroll down to the metadata settings and edit the public metadata of the user you want to set as admin.
+
+![Metadata settings](metadata-settings.png)
+
+- Give the user the role admin as seen in the image below and click on save. That user should now be able to access the admin dashboard on the website.
+
+![Public metadata](public-metadata.png)
