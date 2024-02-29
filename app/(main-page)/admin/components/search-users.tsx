@@ -1,8 +1,9 @@
 "use client";
 
-import { source_sans_3 } from "@/app/fonts";
-import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
+
+import { cn } from "@/lib/utils";
+import { source_sans_3 } from "@/app/fonts";
 
 export function SearchUsers() {
   const router = useRouter();
