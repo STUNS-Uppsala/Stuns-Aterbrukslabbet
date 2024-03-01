@@ -33,6 +33,7 @@ npm run build
 ```bash
 npm run start
 ```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to view the website.
 
 ## How to lint
@@ -43,4 +44,4 @@ npm run lint
 
 ## Fonts
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load fonts from Google Font.
