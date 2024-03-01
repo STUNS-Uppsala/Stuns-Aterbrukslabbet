@@ -1,6 +1,3 @@
-import Image from "next/image";
-
-import Bookmark from "@/public/images/bookmark.svg";
 import { cn } from "@/lib/utils";
 
 interface PostProps {
