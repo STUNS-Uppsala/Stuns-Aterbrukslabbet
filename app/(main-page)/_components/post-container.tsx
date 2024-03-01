@@ -14,9 +14,9 @@ export default function PostContainer() {
         expirationDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
       />
       <Post
-        title={"GlasKolvar 12 st"}
+        title={"Glaskolvar"}
         description={
-          "12 glaskolvar i utmärkt skick efterfrågas för ny kemilabb på Stunsta Universitet"
+          "Glaskolvar i utmärkt skick efterfrågas för ny kemilabb på Stunsta Universitet"
         }
         postType={"Efterfrågas"}
         location={"Stunsta Universitet. Stenhagen"}

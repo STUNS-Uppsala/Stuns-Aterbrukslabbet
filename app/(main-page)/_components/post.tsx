@@ -63,10 +63,10 @@ export default function Post({
   }
 
   return (
-    <div className="group flex md:py-4 md:pr-4 py-2 pr-2 bg-secondary w-full rounded-xl">
+    <div className="flex md:py-4 md:pr-4 py-2 pr-2 bg-secondary w-full rounded-xl">
       <div
         className={cn(
-          "md:group-hover:min-w-3 md:group-hover:mr-1 md:mr-2 md:min-w-2 min-w-1 mr-1 rounded-e-md",
+          "md:mr-2 md:min-w-2 min-w-1 mr-1 rounded-e-md",
           postTypeColor
         )}
       />
