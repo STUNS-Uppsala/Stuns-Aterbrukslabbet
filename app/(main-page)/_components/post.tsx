@@ -75,11 +75,11 @@ export default function Post({
           )}
         ></div>
         <div className="flex">
-          <section className="basis-2/5">
+          <section className="basis-4/12">
             {/* Post image should replace the div below */}
             <div className="aspect-[4/3] w-full bg-primary rounded-md"></div>
           </section>
-          <section className="flex flex-col basis-2/5 md:pl-4 pl-2">
+          <section className="flex flex-col basis-5/12 md:pl-4 pl-2">
             <div className="grow">
               <h3 className="md:text-2xl text-sm line-clamp-1 pb-1">{title}</h3>
               <p className="md:text-base text-[10px] md:line-clamp-3 line-clamp-2">
@@ -99,7 +99,7 @@ export default function Post({
               <p className="md:text-sm text-[8px] line-clamp-1">{location}</p>
             </div>
           </section>
-          <section className="flex md:flex-col flex-col-reverse basis-1/5">
+          <section className="flex md:flex-col flex-col-reverse basis-3/12">
             <div className="flex md:flex-col flex-col-reverse md:grow">
               <p className="md:text-base text-[8px] text-end md:pb-2 pt-1">
                 {creationDateString}
