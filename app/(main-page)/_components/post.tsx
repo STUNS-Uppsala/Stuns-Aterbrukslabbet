@@ -101,10 +101,10 @@ export default function Post({
           </section>
           <section className="flex md:flex-col flex-col-reverse basis-3/12">
             <div className="flex md:flex-col flex-col-reverse md:grow">
-              <p className="md:text-base text-[8px] text-end md:pb-2 pt-1">
+              <p className="md:text-base text-[9px] text-end md:pb-2 pt-1">
                 {creationDateString}
               </p>
-              <div className="md:text-base text-[8px] text-end text-red-500">
+              <div className="md:text-base text-[9px] text-end text-red-500">
                 {expirationDateElement}
               </div>
             </div>
