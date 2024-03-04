@@ -3,22 +3,21 @@ import { redirect } from "next/navigation";
 import { checkRole } from "@/utils/roles";
 import { clerkClient } from "@clerk/nextjs";
 import DeleteUserButton from "@/components/delete-user-button";
+import Pagination from "@/components/pagination";
 
 import ChangeRoleButton from "./components/change-role-button";
 import { SearchUsers } from "./components/search-users";
 
 export default async function AdminDashboard(params: {
-  searchParams: { search?: string };
+  searchParams: { search?: string; page?: string };
 }) {
   if (!checkRole("admin") && !checkRole("moderator")) {
     redirect("/");
   }
 
   const query = params.searchParams.search;
+  const page = params.searchParams.page;
 
-  const users = query
-    ? await clerkClient.users.getUserList({ query })
-    : await clerkClient.users.getUserList({ limit: 10 });
 
   return (
     <>
@@ -127,6 +126,7 @@ export default async function AdminDashboard(params: {
           }
         })}
       </div>
+      <Pagination pages={pages} />
     </>
   );
 }

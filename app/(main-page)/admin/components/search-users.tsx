@@ -1,17 +1,24 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { source_sans_3 } from "@/app/fonts";
 
-export function SearchUsers() {
-  const router = useRouter();
+export default function SearchUsers() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     const search = e.target.value;
-    router.push(pathname + "?search=" + search);
+    const params = new URLSearchParams(searchParams);
+    if (search) {
+      params.set("search", search);
+    } else {
+      params.delete("search");
+    }
+    replace(`${pathname}?${params.toString()}`);
   }
 
   return (
@@ -33,11 +40,9 @@ export function SearchUsers() {
         </label>
         <input
           className="rounded-md bg-primary w-full h-12 p-3 mt-3"
-          id="search"
-          name="search"
-          type="text"
           placeholder="Sök..."
           onChange={handleSearchChange}
+          defaultValue={searchParams.get("search")?.toString()}
         />
       </form>
     </div>
