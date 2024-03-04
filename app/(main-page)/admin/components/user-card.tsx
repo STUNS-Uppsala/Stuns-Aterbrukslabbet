@@ -14,7 +14,7 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
   let adminActionsDiv;
 
   if (usersRole === "admin") {
-    adminActionsDiv = "admin";
+    adminActionsDiv = "Admin";
   } else if (usersRole === "moderator") {
     adminActionsDiv = (
       <div className="flex flex-col items-end ">
@@ -73,7 +73,7 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
       {usersRole === "unknown" ? (
         <div className="flex flex-col items-end">
           <p>
-            Unknown Role <q>{user.publicMetadata.role as string}</q>
+            Unknown role <q>{user.publicMetadata.role as string}</q>
           </p>
           <DeleteUserButton
             id={user.id}
@@ -89,7 +89,7 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
           {checkRole("admin") ? (
             <div>{adminActionsDiv}</div>
           ) : (
-            <div>{usersRole}</div>
+            <div className="capitalize">{usersRole}</div>
           )}
           {usersRole === "member" && (
             <DeleteUserButton
