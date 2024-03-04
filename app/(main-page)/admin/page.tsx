@@ -1,12 +1,11 @@
 import { redirect } from "next/navigation";
 
 import { checkRole } from "@/utils/roles";
-import { clerkClient } from "@clerk/nextjs";
-import DeleteUserButton from "@/components/delete-user-button";
 import Pagination from "@/components/pagination";
 
-import ChangeRoleButton from "./components/change-role-button";
-import { SearchUsers } from "./components/search-users";
+import getUsers from "./utils/get-users";
+import SearchUsers from "./components/search-users";
+import UserCard from "./components/user-card";
 
 export default async function AdminDashboard(params: {
   searchParams: { search?: string; page?: string };
@@ -18,6 +17,9 @@ export default async function AdminDashboard(params: {
   const query = params.searchParams.search;
   const page = params.searchParams.page;
 
+  const usersPerPage = 10;
+
+  const { users, pages } = await getUsers({ page, query, usersPerPage });
 
   return (
     <>
@@ -28,101 +30,13 @@ export default async function AdminDashboard(params: {
             !user.publicMetadata.role ||
             user.publicMetadata.role === "member"
           ) {
-            return (
-              <div
-                key={user.id}
-                className="flex justify-between p-3 m-2 bg-secondary w-full rounded-md"
-              >
-                <div className="flex flex-col">
-                  <div>
-                    {user.firstName} {user.lastName}
-                  </div>
-                  <div>
-                    {
-                      user.emailAddresses.find(
-                        (email) => email.id === user.primaryEmailAddressId
-                      )?.emailAddress
-                    }
-                  </div>
-                </div>
-                <div className="flex flex-col text-end">
-                  {checkRole("admin") ? (
-                    <div>
-                      <ChangeRoleButton
-                        id={user.id}
-                        email={
-                          user.emailAddresses.find(
-                            (email) => email.id === user.primaryEmailAddressId
-                          )?.emailAddress as string
-                        }
-                        role={"moderator"}
-                      />
-                    </div>
-                  ) : (
-                    <div>Member</div>
-                  )}
-
-                  <div>
-                    <DeleteUserButton
-                      id={user.id}
-                      email={
-                        user.emailAddresses.find(
-                          (email) => email.id === user.primaryEmailAddressId
-                        )?.emailAddress as string
-                      }
-                    />
-                  </div>
-                </div>
-              </div>
-            );
+            return <UserCard key={user.id} user={user} usersRole="member" />;
           } else if (user.publicMetadata.role === "moderator") {
-            return (
-              <div
-                key={user.id}
-                className="flex justify-between p-3 m-2 bg-secondary w-full rounded-md"
-              >
-                <div className="flex flex-col">
-                  <div>
-                    {user.firstName} {user.lastName}
-                  </div>
-                  <div>
-                    {
-                      user.emailAddresses.find(
-                        (email) => email.id === user.primaryEmailAddressId
-                      )?.emailAddress
-                    }
-                  </div>
-                </div>
-
-                {checkRole("admin") ? (
-                  <div className="flex flex-col text-end">
-                    <div>
-                      <ChangeRoleButton
-                        id={user.id}
-                        email={
-                          user.emailAddresses.find(
-                            (email) => email.id === user.primaryEmailAddressId
-                          )?.emailAddress as string
-                        }
-                        role={"member"}
-                      />
-                    </div>
-                    <div>
-                      <DeleteUserButton
-                        id={user.id}
-                        email={
-                          user.emailAddresses.find(
-                            (email) => email.id === user.primaryEmailAddressId
-                          )?.emailAddress as string
-                        }
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div>Moderator</div>
-                )}
-              </div>
-            );
+            return <UserCard key={user.id} user={user} usersRole="moderator" />;
+          } else if (user.publicMetadata.role === "admin") {
+            return <UserCard key={user.id} user={user} usersRole="admin" />;
+          } else {
+            return <UserCard key={user.id} user={user} usersRole="unknown" />;
           }
         })}
       </div>
