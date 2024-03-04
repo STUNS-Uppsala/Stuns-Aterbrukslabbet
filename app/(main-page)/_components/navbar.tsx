@@ -12,7 +12,7 @@ export default function Navbar() {
     <header className="flex top-0 w-full h-20 px-4 bg-gradient-to-b from-navbarStart to-secondary">
       <div className="flex max-w-[1920px] mx-auto items-center w-full justify-between">
         <Logo />
-        <section className="flex space-x-4 justify-between w-auto">
+        <section className="flex space-x-4 justify-between w-auto items-center">
           <SignedOut>
             <Link
               className={cn("font-semibold text-xl", source_sans_3.className)}
@@ -27,7 +27,7 @@ export default function Navbar() {
                 <LockKeyhole className="md:hidden block" />
                 <p
                   className={cn(
-                    "text-xl font-medium pt-1 md:block hidden",
+                    "text-xl font-medium md:block hidden",
                     source_sans_3.className
                   )}
                 >
