@@ -4,6 +4,7 @@ import { Roles } from "@/types/globals";
 import { User } from "@clerk/nextjs/server";
 
 import ChangeRoleButton from "./change-role-button";
+import GetUserEmail from "@/utils/get-user-email";
 
 interface UserCardProps {
   user: User;
@@ -20,21 +21,10 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
       <div className="flex flex-col items-end ">
         <ChangeRoleButton
           id={user.id}
-          email={
-            user.emailAddresses.find(
-              (email) => email.id === user.primaryEmailAddressId
-            )?.emailAddress as string
-          }
+          email={GetUserEmail({ user })}
           role={"member"}
         />
-        <DeleteUserButton
-          id={user.id}
-          email={
-            user.emailAddresses.find(
-              (email) => email.id === user.primaryEmailAddressId
-            )?.emailAddress as string
-          }
-        />
+        <DeleteUserButton id={user.id} email={GetUserEmail({ user })} />
       </div>
     );
   } else if (usersRole === "member") {
@@ -42,11 +32,7 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
       <div>
         <ChangeRoleButton
           id={user.id}
-          email={
-            user.emailAddresses.find(
-              (email) => email.id === user.primaryEmailAddressId
-            )?.emailAddress as string
-          }
+          email={GetUserEmail({ user })}
           role={"moderator"}
         />
       </div>
@@ -62,27 +48,14 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
         <div>
           {user.firstName} {user.lastName}
         </div>
-        <div>
-          {
-            user.emailAddresses.find(
-              (email) => email.id === user.primaryEmailAddressId
-            )?.emailAddress
-          }
-        </div>
+        <div>{GetUserEmail({ user })}</div>
       </div>
       {usersRole === "unknown" ? (
         <div className="flex flex-col items-end">
           <p>
             Unknown role <q>{user.publicMetadata.role as string}</q>
           </p>
-          <DeleteUserButton
-            id={user.id}
-            email={
-              user.emailAddresses.find(
-                (email) => email.id === user.primaryEmailAddressId
-              )?.emailAddress as string
-            }
-          />
+          <DeleteUserButton id={user.id} email={GetUserEmail({ user })} />
         </div>
       ) : (
         <div className="flex flex-col text-end">
@@ -92,14 +65,7 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
             <div className="capitalize">{usersRole}</div>
           )}
           {usersRole === "member" && (
-            <DeleteUserButton
-              id={user.id}
-              email={
-                user.emailAddresses.find(
-                  (email) => email.id === user.primaryEmailAddressId
-                )?.emailAddress as string
-              }
-            />
+            <DeleteUserButton id={user.id} email={GetUserEmail({ user })} />
           )}
         </div>
       )}
