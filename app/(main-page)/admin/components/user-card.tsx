@@ -11,12 +11,12 @@ interface UserCardProps {
 }
 
 export default function UserCard({ user, usersRole }: UserCardProps) {
-  let adminActionsDiv;
+  let adminOnlyContent;
 
   if (usersRole === "admin") {
-    adminActionsDiv = "Admin";
+    adminOnlyContent = "Admin";
   } else if (usersRole === "moderator") {
-    adminActionsDiv = (
+    adminOnlyContent = (
       <div className="flex flex-col items-end ">
         <ChangeRoleButton
           id={user.id}
@@ -38,7 +38,7 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
       </div>
     );
   } else if (usersRole === "member") {
-    adminActionsDiv = (
+    adminOnlyContent = (
       <div>
         <ChangeRoleButton
           id={user.id}
@@ -87,7 +87,7 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
       ) : (
         <div className="flex flex-col text-end">
           {checkRole("admin") ? (
-            <div>{adminActionsDiv}</div>
+            <div>{adminOnlyContent}</div>
           ) : (
             <div className="capitalize">{usersRole}</div>
           )}
