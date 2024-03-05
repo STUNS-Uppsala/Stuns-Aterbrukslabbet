@@ -49,9 +49,8 @@ export default function DeleteUserButton({ id, email }: DeleteUserFormProps) {
           <AlertDialogTitle>Är du säker?</AlertDialogTitle>
           <AlertDialogDescription>
             Detta kommer
-            <span className="font-bold text-black"> permanent</span> ta bort
-            användaren
-            <span className="font-semibold text-black"> {email}</span>
+            <span className="font-bold"> permanent</span> ta bort användaren
+            <p className="font-semibold break-all">{email}</p>
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

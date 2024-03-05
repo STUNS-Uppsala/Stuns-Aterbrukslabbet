@@ -55,7 +55,10 @@ export default function ChangeRoleButton({
             <AlertDialogTitle>Är du säker?</AlertDialogTitle>
             <AlertDialogDescription>
               Detta kommer ta bort moderator rollen från
-              <span className="font-semibold text-black"> {email}</span>
+              <span className="font-semibold text-black break-all">
+                {" "}
+                {email}
+              </span>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -78,9 +81,9 @@ export default function ChangeRoleButton({
             <AlertDialogTitle>Är du säker?</AlertDialogTitle>
             <AlertDialogDescription>
               Detta kommer att göra{" "}
-              <span className="font-semibold text-black">{email}</span> till
-              moderator. Moderatorer har tillgång till fler funktioner så som
-              att ta bort inlägg och användare.
+              <span className="font-semibold break-all">{email}</span> till
+              moderator. <br /> Moderatorer har tillgång till fler funktioner så
+              som att ta bort inlägg och användare.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
