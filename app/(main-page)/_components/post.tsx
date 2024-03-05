@@ -79,8 +79,10 @@ export default function Post({
         </section>
         <section className="flex flex-col basis-5/12 md:pl-4 pl-2">
           <div className="grow">
-            <h3 className="md:text-2xl text-sm line-clamp-1 pb-1">{title}</h3>
-            <p className="md:text-base text-[10px] md:line-clamp-3 line-clamp-2">
+            <h3 className="md:text-2xl text-sm line-clamp-1 pb-1 break-all">
+              {title}
+            </h3>
+            <p className="md:text-base text-[10px] md:line-clamp-3 line-clamp-2 break-all">
               {description}
             </p>
           </div>
@@ -94,7 +96,9 @@ export default function Post({
               ></div>
               <p className="md:text-sm text-[9px]">{postType}</p>
             </div>
-            <p className="md:text-sm text-[8px] line-clamp-1">{location}</p>
+            <p className="md:text-sm text-[8px] line-clamp-1 break-all">
+              {location}
+            </p>
           </div>
         </section>
         <section className="flex md:flex-col flex-col-reverse basis-3/12">
