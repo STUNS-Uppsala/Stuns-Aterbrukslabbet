@@ -38,7 +38,7 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
       className="flex justify-between p-3 md:gap-x-20 gap-x-10 bg-secondary w-full rounded-md"
     >
       <div className="flex flex-col">
-        <div>
+        <div className="line-clamp-1">
           {user.firstName} {user.lastName}
         </div>
         <div className="break-all line-clamp-1">{userEmail}</div>

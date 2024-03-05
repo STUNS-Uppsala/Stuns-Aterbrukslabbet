@@ -31,12 +31,15 @@ export default function SearchUsers() {
       >
         <label
           htmlFor="search"
-          className={cn("text-4xl font-normal", source_sans_3.className)}
+          className={cn(
+            "md:text-4xl text-2xl font-normal",
+            source_sans_3.className
+          )}
         >
           Sök bland användare
         </label>
         <input
-          className="rounded-md bg-primary h-12 p-3 mt-3"
+          className="rounded-md bg-primary h-12 p-3 md:mt-3"
           placeholder="Sök..."
           onChange={handleSearchChange}
           defaultValue={searchParams.get("search")?.toString()}
