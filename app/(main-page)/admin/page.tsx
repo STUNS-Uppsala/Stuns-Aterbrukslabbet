@@ -22,7 +22,7 @@ export default async function AdminDashboard(params: {
   const { users, pages } = await getUsers({ page, query, usersPerPage });
 
   return (
-    <div className="max-w-screen-md mx-auto p-3">
+    <div className="max-w-screen-md mx-auto p-3 pt-10">
       <SearchUsers />
       <div className="flex flex-col items-center mx-auto gap-y-3 pt-6">
         {users.map((user) => {

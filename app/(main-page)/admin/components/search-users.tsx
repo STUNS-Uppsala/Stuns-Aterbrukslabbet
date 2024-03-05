@@ -22,7 +22,7 @@ export default function SearchUsers() {
   }
 
   return (
-    <div className="flex items-center justify-center pt-10">
+    <div className="flex items-center justify-center">
       <form
         onSubmit={async (e) => {
           e.preventDefault();
