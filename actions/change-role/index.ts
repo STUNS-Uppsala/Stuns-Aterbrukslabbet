@@ -8,10 +8,6 @@ import { ChangeRole } from "./schema";
 import { InputType, ReturnType } from "./types";
 
 const handler = async (data: InputType): Promise<ReturnType> => {
-  if (!checkRole("admin")) {
-    return { error: "Not Authorized" };
-  }
-
   const { id, email, role } = data;
   let user;
 
