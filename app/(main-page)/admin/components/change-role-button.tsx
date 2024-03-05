@@ -63,8 +63,8 @@ export default function ChangeRoleButton({
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Avbryt</AlertDialogCancel>
-            <AlertDialogAction variant="destructive">
-              <button onClick={onChangeRole}>Ta bort moderator</button>
+            <AlertDialogAction variant="destructive" onClick={onChangeRole}>
+              <div>Ta bort moderator</div>
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
@@ -88,8 +88,8 @@ export default function ChangeRoleButton({
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Avbryt</AlertDialogCancel>
-            <AlertDialogAction>
-              <button onClick={onChangeRole}>Gör moderator</button>
+            <AlertDialogAction onClick={onChangeRole}>
+              <div>Gör moderator</div>
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
