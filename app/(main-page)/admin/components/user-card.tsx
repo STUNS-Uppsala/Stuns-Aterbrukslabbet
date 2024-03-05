@@ -1,10 +1,10 @@
 import { checkRole } from "@/utils/roles";
 import DeleteUserButton from "@/components/delete-user-button";
+import GetUserEmail from "@/utils/get-user-email";
 import { Roles } from "@/types/globals";
 import { User } from "@clerk/nextjs/server";
 
 import ChangeRoleButton from "./change-role-button";
-import GetUserEmail from "@/utils/get-user-email";
 
 interface UserCardProps {
   user: User;
