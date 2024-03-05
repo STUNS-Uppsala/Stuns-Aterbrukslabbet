@@ -22,24 +22,21 @@ export default function SearchUsers() {
   }
 
   return (
-    <div className="flex items-center justify-center w-full h-auto pt-10">
+    <div className="flex items-center justify-center pt-10">
       <form
         onSubmit={async (e) => {
           e.preventDefault();
         }}
-        className="lg:w-1/3"
+        className="flex flex-col w-full"
       >
         <label
           htmlFor="search"
-          className={cn(
-            "text-4xl font-normal flex flex-col",
-            source_sans_3.className
-          )}
+          className={cn("text-4xl font-normal", source_sans_3.className)}
         >
           Sök bland användare
         </label>
         <input
-          className="rounded-md bg-primary w-full h-12 p-3 mt-3"
+          className="rounded-md bg-primary h-12 p-3 mt-3"
           placeholder="Sök..."
           onChange={handleSearchChange}
           defaultValue={searchParams.get("search")?.toString()}

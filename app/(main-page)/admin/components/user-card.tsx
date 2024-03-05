@@ -13,28 +13,21 @@ interface UserCardProps {
 
 export default function UserCard({ user, usersRole }: UserCardProps) {
   let adminOnlyContent;
+  const userEmail = GetUserEmail({ user });
 
   if (usersRole === "admin") {
     adminOnlyContent = "Admin";
   } else if (usersRole === "moderator") {
     adminOnlyContent = (
       <div className="flex flex-col items-end ">
-        <ChangeRoleButton
-          id={user.id}
-          email={GetUserEmail({ user })}
-          role={"member"}
-        />
-        <DeleteUserButton id={user.id} email={GetUserEmail({ user })} />
+        <ChangeRoleButton id={user.id} email={userEmail} role={"member"} />
+        <DeleteUserButton id={user.id} email={userEmail} />
       </div>
     );
   } else if (usersRole === "member") {
     adminOnlyContent = (
       <div>
-        <ChangeRoleButton
-          id={user.id}
-          email={GetUserEmail({ user })}
-          role={"moderator"}
-        />
+        <ChangeRoleButton id={user.id} email={userEmail} role={"moderator"} />
       </div>
     );
   }
@@ -42,30 +35,30 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
   return (
     <div
       key={user.id}
-      className="flex justify-between p-3 m-2 bg-secondary w-full rounded-md"
+      className="flex justify-between p-3 md:gap-x-20 gap-x-10 bg-secondary w-full rounded-md"
     >
       <div className="flex flex-col">
         <div>
           {user.firstName} {user.lastName}
         </div>
-        <div>{GetUserEmail({ user })}</div>
+        <div className="break-all line-clamp-1">{userEmail}</div>
       </div>
       {usersRole === "unknown" ? (
-        <div className="flex flex-col items-end">
+        <div className="flex flex-col items-end min-w-fit">
           <p>
             Unknown role <q>{user.publicMetadata.role as string}</q>
           </p>
-          <DeleteUserButton id={user.id} email={GetUserEmail({ user })} />
+          <DeleteUserButton id={user.id} email={userEmail} />
         </div>
       ) : (
-        <div className="flex flex-col text-end">
+        <div className="flex flex-col items-end min-w-fit">
           {checkRole("admin") ? (
             <div>{adminOnlyContent}</div>
           ) : (
             <div className="capitalize">{usersRole}</div>
           )}
           {usersRole === "member" && (
-            <DeleteUserButton id={user.id} email={GetUserEmail({ user })} />
+            <DeleteUserButton id={user.id} email={userEmail} />
           )}
         </div>
       )}

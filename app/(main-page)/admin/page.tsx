@@ -22,9 +22,9 @@ export default async function AdminDashboard(params: {
   const { users, pages } = await getUsers({ page, query, usersPerPage });
 
   return (
-    <>
+    <div className="max-w-screen-md mx-auto p-3">
       <SearchUsers />
-      <div className="flex flex-col items-center mx-auto pt-4 w-1/3 min-w-fit">
+      <div className="flex flex-col items-center mx-auto gap-y-3 pt-6">
         {users.map((user) => {
           if (
             !user.publicMetadata.role ||
@@ -41,6 +41,6 @@ export default async function AdminDashboard(params: {
         })}
       </div>
       <Pagination pages={pages} />
-    </>
+    </div>
   );
 }
