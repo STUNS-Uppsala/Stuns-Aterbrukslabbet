@@ -20,14 +20,18 @@ export default function UserCard({ user, usersRole }: UserCardProps) {
   } else if (usersRole === "moderator") {
     adminOnlyContent = (
       <div className="flex flex-col items-end ">
-        <ChangeRoleButton id={user.id} email={userEmail} role={"member"} />
+        <ChangeRoleButton id={user.id} email={userEmail} newRole={"member"} />
         <DeleteUserButton id={user.id} email={userEmail} />
       </div>
     );
   } else if (usersRole === "member") {
     adminOnlyContent = (
       <div>
-        <ChangeRoleButton id={user.id} email={userEmail} role={"moderator"} />
+        <ChangeRoleButton
+          id={user.id}
+          email={userEmail}
+          newRole={"moderator"}
+        />
       </div>
     );
   }

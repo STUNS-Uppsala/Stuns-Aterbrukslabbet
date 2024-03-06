@@ -20,18 +20,18 @@ import changeRole from "../utils/change-role";
 interface ChangeRoleButtonProps {
   id: string;
   email: string;
-  role: string;
+  newRole: string;
 }
 
 export default function ChangeRoleButton({
   id,
   email,
-  role,
+  newRole,
 }: ChangeRoleButtonProps) {
   const router = useRouter();
 
   const onChangeRole = async () => {
-    const result = await changeRole({ id, email, role });
+    const result = await changeRole({ id, email, newRole });
     if (result && result.error) {
       toast.error(result.error);
     } else if (result && result.data) {
@@ -42,7 +42,7 @@ export default function ChangeRoleButton({
     }
   };
 
-  if (role === "member") {
+  if (newRole === "member") {
     return (
       <AlertDialog>
         <AlertDialogTrigger className="font-medium hover:line-through hover:opacity-80">

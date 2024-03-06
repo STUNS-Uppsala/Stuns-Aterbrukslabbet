@@ -6,10 +6,14 @@ import { clerkClient } from "@clerk/nextjs/server";
 interface ChangeRoleProps {
   id: string;
   email: string;
-  role: string;
+  newRole: string;
 }
 
-export default async function changeRole({ id, email, role }: ChangeRoleProps) {
+export default async function changeRole({
+  id,
+  email,
+  newRole,
+}: ChangeRoleProps) {
   if (!checkRole("admin")) {
     return { error: "Not Authorized" };
   }
@@ -18,7 +22,7 @@ export default async function changeRole({ id, email, role }: ChangeRoleProps) {
 
   try {
     user = await clerkClient.users.updateUser(id, {
-      publicMetadata: { role: role },
+      publicMetadata: { role: newRole },
     });
   } catch (err) {
     return { error: "Failed to change role" };
