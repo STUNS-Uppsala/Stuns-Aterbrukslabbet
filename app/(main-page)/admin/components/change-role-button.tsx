@@ -68,7 +68,7 @@ export default function ChangeRoleButton({
         </AlertDialogContent>
       </AlertDialog>
     );
-  } else {
+  } else if (newRole === "moderator") {
     return (
       <AlertDialog>
         <AlertDialogTrigger className="font-medium hover:opacity-80">
@@ -93,5 +93,7 @@ export default function ChangeRoleButton({
         </AlertDialogContent>
       </AlertDialog>
     );
+  } else {
+    return <p>Error loading button</p>;
   }
 }
