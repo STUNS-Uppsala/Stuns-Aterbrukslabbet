@@ -25,7 +25,7 @@ export default function DeleteUserButton({ id, email }: DeleteUserFormProps) {
   const router = useRouter();
 
   const onDelete = async () => {
-    const result = await deleteUser({ id, email });
+    const result = await deleteUser({ id });
     if (result && result.error) {
       toast.error(result.error);
     } else if (result && result.data) {

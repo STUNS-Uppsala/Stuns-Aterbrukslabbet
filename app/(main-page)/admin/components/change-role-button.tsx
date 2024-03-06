@@ -31,7 +31,7 @@ export default function ChangeRoleButton({
   const router = useRouter();
 
   const onChangeRole = async () => {
-    const result = await changeRole({ id, email, newRole });
+    const result = await changeRole({ id, newRole });
     if (result && result.error) {
       toast.error(result.error);
     } else if (result && result.data) {

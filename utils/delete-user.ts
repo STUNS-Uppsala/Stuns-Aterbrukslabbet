@@ -3,20 +3,24 @@
 import { checkRole } from "@/utils/roles";
 import { clerkClient } from "@clerk/nextjs";
 
+import GetUserEmail from "./get-user-email";
+
 interface DeleteUserPops {
   id: string;
-  email: string;
 }
 
-export default async function deleteUser({ id, email }: DeleteUserPops) {
+export default async function deleteUser({ id }: DeleteUserPops) {
   if (!checkRole("admin") && !checkRole("moderator")) {
     return { error: "Not Authorized" };
   }
 
+  let user;
+
   try {
-    await clerkClient.users.deleteUser(id);
+    user = await clerkClient.users.deleteUser(id);
   } catch (err) {
     return { error: "Failed to delete" };
   }
-  return { data: email };
+
+  return { data: GetUserEmail({ user }) };
 }
