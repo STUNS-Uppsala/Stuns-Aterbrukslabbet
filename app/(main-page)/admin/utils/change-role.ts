@@ -17,7 +17,7 @@ export default async function changeRole({ id, newRole }: ChangeRoleProps) {
     user.publicMetadata.role === "admin" ||
     newRole === "admin"
   ) {
-    return { error: "Not Authorized" };
+    return { error: "Oberhörig" };
   }
 
   let affectedUser;
@@ -27,7 +27,7 @@ export default async function changeRole({ id, newRole }: ChangeRoleProps) {
       publicMetadata: { role: newRole },
     });
   } catch (err) {
-    return { error: "Failed to change role" };
+    return { error: "Kunde inte ändra roll" };
   }
   return { data: GetUserEmail({ user: affectedUser }) };
 }
