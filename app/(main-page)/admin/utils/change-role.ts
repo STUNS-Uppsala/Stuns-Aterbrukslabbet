@@ -10,18 +10,24 @@ interface ChangeRoleProps {
 }
 
 export default async function changeRole({ id, newRole }: ChangeRoleProps) {
-  if (!checkRole("admin")) {
+  const user = await clerkClient.users.getUser(id);
+
+  if (
+    !checkRole("admin") ||
+    user.publicMetadata.role === "admin" ||
+    newRole === "admin"
+  ) {
     return { error: "Not Authorized" };
   }
 
-  let user;
+  let affectedUser;
 
   try {
-    user = await clerkClient.users.updateUser(id, {
+    affectedUser = await clerkClient.users.updateUser(id, {
       publicMetadata: { role: newRole },
     });
   } catch (err) {
     return { error: "Failed to change role" };
   }
-  return { data: GetUserEmail({ user }) };
+  return { data: GetUserEmail({ user: affectedUser }) };
 }

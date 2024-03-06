@@ -10,17 +10,23 @@ interface DeleteUserPops {
 }
 
 export default async function deleteUser({ id }: DeleteUserPops) {
-  if (!checkRole("admin") && !checkRole("moderator")) {
+  const user = await clerkClient.users.getUser(id);
+
+  if (
+    (!checkRole("admin") && !checkRole("moderator")) ||
+    user.publicMetadata.role === "admin" ||
+    (user.publicMetadata.role === "moderator" && checkRole("moderator"))
+  ) {
     return { error: "Not Authorized" };
   }
 
-  let user;
+  let affectedUser;
 
   try {
-    user = await clerkClient.users.deleteUser(id);
+    affectedUser = await clerkClient.users.deleteUser(id);
   } catch (err) {
     return { error: "Failed to delete" };
   }
 
-  return { data: GetUserEmail({ user }) };
+  return { data: GetUserEmail({ user: affectedUser }) };
 }
