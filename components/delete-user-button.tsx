@@ -1,6 +1,8 @@
 "use client";
 
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,7 +14,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useRouter } from "next/navigation";
 import deleteUser from "@/utils/delete-user";
 
 interface DeleteUserFormProps {
