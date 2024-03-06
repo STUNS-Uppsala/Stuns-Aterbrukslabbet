@@ -62,6 +62,8 @@ export default function Pagination({ pages }: PaginationProps) {
       generatePageButtons(1, 5);
     } else if (currentPage >= pages - 2) {
       generatePageButtons(pages - 4, pages);
+    } else {
+      return "Error generating page buttons.";
     }
   } else {
     generatePageButtons(1, pages);
