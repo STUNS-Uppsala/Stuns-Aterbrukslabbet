@@ -17,7 +17,7 @@ export default async function changeRole({ id, newRole }: ChangeRoleProps) {
     user.publicMetadata.role === "admin" ||
     newRole === "admin"
   ) {
-    return { error: "Oberhörig" };
+    return { error: "Obehörig" };
   }
 
   let affectedUser;

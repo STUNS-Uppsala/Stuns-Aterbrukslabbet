@@ -17,7 +17,7 @@ export default async function deleteUser({ id }: DeleteUserPops) {
     user.publicMetadata.role === "admin" ||
     (user.publicMetadata.role === "moderator" && checkRole("moderator"))
   ) {
-    return { error: "Oberhörig" };
+    return { error: "Obehörig" };
   }
 
   let affectedUser;
@@ -25,7 +25,7 @@ export default async function deleteUser({ id }: DeleteUserPops) {
   try {
     affectedUser = await clerkClient.users.deleteUser(id);
   } catch (err) {
-    return { error: "Kunde inte ta bort" };
+    return { error: "Kunde inte ta bort användare" };
   }
 
   return { data: GetUserEmail({ user: affectedUser }) };
