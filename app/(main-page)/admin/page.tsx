@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-import { checkRole } from "@/utils/roles";
+import { checkRole } from "@/utils/check-role";
 import Pagination from "@/components/pagination";
 
 import getUsers from "./utils/get-users";

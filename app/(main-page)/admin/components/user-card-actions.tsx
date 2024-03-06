@@ -1,4 +1,4 @@
-import { checkRole } from "@/utils/roles";
+import { checkRole } from "@/utils/check-role";
 import DeleteUserButton from "@/components/delete-user-button";
 import GetUserEmail from "@/utils/get-user-email";
 import { User } from "@clerk/nextjs/server";

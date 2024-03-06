@@ -1,6 +1,6 @@
 "use server";
 
-import { checkRole } from "@/utils/roles";
+import { checkRole } from "@/utils/check-role";
 import { clerkClient } from "@clerk/nextjs";
 
 import GetUserEmail from "./get-user-email";
