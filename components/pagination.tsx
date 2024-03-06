@@ -6,8 +6,8 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ReactElement } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface PaginationProps {
   pages: number;
