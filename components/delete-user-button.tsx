@@ -53,7 +53,7 @@ export default function DeleteUserButton({ id, email }: DeleteUserFormProps) {
         <AlertDialogFooter>
           <AlertDialogCancel>Avbryt</AlertDialogCancel>
           <AlertDialogAction variant="destructive" onClick={onDelete}>
-            <div>Ta bort</div>
+            Ta bort
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
