@@ -7,15 +7,19 @@ import getUsers from "./utils/get-users";
 import SearchUsers from "./components/search-users";
 import UserCard from "./components/user-card";
 
-export default async function AdminDashboard(params: {
+interface AdminDashboardProps {
   searchParams: { search?: string; page?: string };
-}) {
+}
+
+export default async function AdminDashboard({
+  searchParams,
+}: AdminDashboardProps) {
   if (!checkRole("admin") && !checkRole("moderator")) {
     redirect("/");
   }
 
-  const query = params.searchParams.search;
-  const page = params.searchParams.page;
+  const query = searchParams.search;
+  const page = searchParams.page;
 
   const usersPerPage = 10;
 
