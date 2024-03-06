@@ -28,5 +28,5 @@ export default async function deleteUser({ id }: DeleteUserPops) {
     return { error: "Kunde inte ta bort användare" };
   }
 
-  return { data: GetUserEmail({ user: affectedUser }) };
+  return { data: GetUserEmail({ user }) };
 }
