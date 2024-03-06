@@ -47,3 +47,17 @@ NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 Your `.env` file should now look like this.
 
 ![Image of environment file](environment-file.png)
+
+### How to create an admin account
+
+On the website there exists an admin dashboard that is only accessible to users with the admin or moderator role. Admins can, through the admin dashboard, delete and change the roles of non admin users. Moderators do not have the ability to effect the roles of other users but are able to delete accounts belonging to users who don't have the admin or the moderator role.
+
+- Go to the users tab in the clerk dashboard and click on the user you would like to set as admin.
+
+- Scroll down to the metadata settings and edit the public metadata of the user you want to set as admin.
+
+![Metadata settings](metadata-settings.png)
+
+- Give the user the role admin as seen in the image below and click on save. That user should now be able to access the admin dashboard on the website.
+
+![Public metadata](public-metadata.png)

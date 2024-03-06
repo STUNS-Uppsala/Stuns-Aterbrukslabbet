@@ -11,6 +11,5 @@ export const prompt = Prompt({
 
 export const source_sans_3 = Source_Sans_3({
   subsets: ["latin"],
-  weight: ["300", "600"],
+  weight: ["300", "400", "500", "600"],
 });
-

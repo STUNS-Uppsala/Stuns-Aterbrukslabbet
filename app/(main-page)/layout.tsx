@@ -1,3 +1,5 @@
+import { Toaster } from "sonner";
+
 import Navbar from "./_components/navbar";
 
 export default function MainPageLayout({
@@ -9,6 +11,7 @@ export default function MainPageLayout({
     <>
       <Navbar />
       <div>{children}</div>
+      <Toaster richColors />
     </>
   );
 }
