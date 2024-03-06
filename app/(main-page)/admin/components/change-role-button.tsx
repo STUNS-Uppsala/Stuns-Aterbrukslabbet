@@ -37,6 +37,8 @@ export default function ChangeRoleButton({
     } else if (result && result.data) {
       router.refresh();
       toast.success("Roll ändrad för " + result.data);
+    } else {
+      toast.error("Något gick fel");
     }
   };
 

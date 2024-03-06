@@ -31,6 +31,8 @@ export default function DeleteUserButton({ id, email }: DeleteUserFormProps) {
     } else if (result && result.data) {
       router.refresh();
       toast.success(result.data + " Borttagen");
+    } else {
+      toast.error("Något gick fel");
     }
   };
 
