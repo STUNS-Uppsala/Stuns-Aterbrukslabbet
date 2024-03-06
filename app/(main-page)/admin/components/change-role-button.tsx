@@ -94,6 +94,6 @@ export default function ChangeRoleButton({
       </AlertDialog>
     );
   } else {
-    return <p>Error loading button</p>;
+    return <p>Kunde inte rendera knappen</p>;
   }
 }

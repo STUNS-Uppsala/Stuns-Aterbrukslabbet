@@ -52,7 +52,7 @@ export default function UserCardActions({ user }: UserCardActionsProps) {
     return (
       <>
         <p>
-          Unknown role&nbsp;<q>{user.publicMetadata.role as string}</q>
+          Okänd roll<q>{user.publicMetadata.role as string}</q>
         </p>
         <DeleteUserButton id={user.id} email={userEmail} />
       </>
