@@ -13,10 +13,8 @@ export default async function deleteUser({ id, email }: DeleteUserPops) {
     return { error: "Not Authorized" };
   }
 
-  let user;
-
   try {
-    user = await clerkClient.users.deleteUser(id);
+    await clerkClient.users.deleteUser(id);
   } catch (err) {
     return { error: "Failed to delete" };
   }

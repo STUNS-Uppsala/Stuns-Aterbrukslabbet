@@ -18,10 +18,8 @@ export default async function changeRole({
     return { error: "Not Authorized" };
   }
 
-  let user;
-
   try {
-    user = await clerkClient.users.updateUser(id, {
+    await clerkClient.users.updateUser(id, {
       publicMetadata: { role: newRole },
     });
   } catch (err) {
