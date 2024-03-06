@@ -43,7 +43,7 @@ export default function UserCardActions({ user }: UserCardActionsProps) {
     } else {
       return (
         <>
-          Member
+          Medlem
           <DeleteUserButton id={user.id} email={userEmail} />
         </>
       );
