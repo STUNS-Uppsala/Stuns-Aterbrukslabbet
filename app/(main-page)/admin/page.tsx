@@ -26,18 +26,7 @@ export default async function AdminDashboard(params: {
       <SearchUsers />
       <div className="flex flex-col items-center mx-auto gap-y-3 pt-6">
         {users.map((user) => {
-          if (
-            !user.publicMetadata.role ||
-            user.publicMetadata.role === "member"
-          ) {
-            return <UserCard key={user.id} user={user} usersRole="member" />;
-          } else if (user.publicMetadata.role === "moderator") {
-            return <UserCard key={user.id} user={user} usersRole="moderator" />;
-          } else if (user.publicMetadata.role === "admin") {
-            return <UserCard key={user.id} user={user} usersRole="admin" />;
-          } else {
-            return <UserCard key={user.id} user={user} usersRole="unknown" />;
-          }
+          return <UserCard key={user.id} user={user} />;
         })}
       </div>
       <Pagination pages={pages} />
