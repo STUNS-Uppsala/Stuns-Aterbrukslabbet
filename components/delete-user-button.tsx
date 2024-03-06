@@ -1,9 +1,6 @@
 "use client";
 
-import { useAction } from "@/hooks/use-action";
-
 import { toast } from "sonner";
-import { deleteUser } from "@/actions/delete-user";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,6 +13,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useRouter } from "next/navigation";
+import deleteUser from "@/utils/delete-user";
 
 interface DeleteUserFormProps {
   id: string;
@@ -25,18 +23,14 @@ interface DeleteUserFormProps {
 export default function DeleteUserButton({ id, email }: DeleteUserFormProps) {
   const router = useRouter();
 
-  const { execute } = useAction(deleteUser, {
-    onSuccess(data) {
+  const onDelete = async () => {
+    const result = await deleteUser({ id, email });
+    if (result && result.error) {
+      toast.error(result.error);
+    } else if (result && result.data) {
       router.refresh();
-      toast.success(data + " Borttagen");
-    },
-    onError(error) {
-      toast.error(error);
-    },
-  });
-
-  const onDelete = () => {
-    execute({ id, email });
+      toast.success(result.data + " Borttagen");
+    }
   };
 
   return (

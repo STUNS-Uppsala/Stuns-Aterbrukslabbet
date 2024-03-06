@@ -14,8 +14,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { changeRole } from "@/actions/change-role";
-import { useAction } from "@/hooks/use-action";
+import changeRole from "../utils/change-role";
 
 interface ChangeRoleButtonProps {
   id: string;
@@ -30,18 +29,14 @@ export default function ChangeRoleButton({
 }: ChangeRoleButtonProps) {
   const router = useRouter();
 
-  const { execute } = useAction(changeRole, {
-    onSuccess(data) {
+  const onChangeRole = async () => {
+    const result = await changeRole({ id, email, role });
+    if (result && result.error) {
+      toast.error(result.error);
+    } else if (result && result.data) {
       router.refresh();
-      toast.success("Roll ändrad för " + data);
-    },
-    onError(error) {
-      toast.error(error);
-    },
-  });
-
-  const onChangeRole = () => {
-    execute({ id, email, role });
+      toast.success("Roll ändrad för " + result.data);
+    }
   };
 
   if (role === "member") {

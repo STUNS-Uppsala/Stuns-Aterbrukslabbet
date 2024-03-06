@@ -2,17 +2,18 @@
 
 import { checkRole } from "@/utils/roles";
 import { clerkClient } from "@clerk/nextjs/server";
-import { createSafeAction } from "@/lib/create-safe-action";
 
-import { ChangeRole } from "./schema";
-import { InputType, ReturnType } from "./types";
+interface ChangeRoleProps {
+  id: string;
+  email: string;
+  role: string;
+}
 
-const handler = async (data: InputType): Promise<ReturnType> => {
+export default async function changeRole({ id, email, role }: ChangeRoleProps) {
   if (!checkRole("admin")) {
     return { error: "Not Authorized" };
   }
 
-  const { id, email, role } = data;
   let user;
 
   try {
@@ -23,6 +24,4 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     return { error: "Failed to change role" };
   }
   return { data: email };
-};
-
-export const changeRole = createSafeAction(ChangeRole, handler);
+}
