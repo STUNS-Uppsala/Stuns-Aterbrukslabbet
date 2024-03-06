@@ -46,7 +46,7 @@ npm install
 
 ### How to create an admin account
 
-On the website there exists a admin dashboard that is only accessible to certain users with the admin role. The admin can in the admin dashboard give other users moderator access and delete specific users. Moderator users can also delete specific users.
+On the website there exists an admin dashboard that is only accessible to users with the admin or moderator role. Admins can, through the admin dashboard, delete and change the roles of non admin users. Moderators do not have the ability to effect the roles of other users but are able to delete accounts belonging to users who don't have the admin or the moderator role.
 
 - Go to the users tab in the clerk dashboard and click on the user you would like to set as admin.
 
