@@ -8,11 +8,11 @@ Link to [licenses](documentation/licenses.md)
 
 ## Development Environment
 
-Link to [development environment](documentation/EnvironmentsLanguages.md)
+Link to [development environment](documentation/environments-languages.md)
 
 ## Setup
 
-Link to [setup documentation](documentation/Setup.md)
+Link to [setup documentation](documentation/setup-documentation.md)
 
 ## Run server
 
