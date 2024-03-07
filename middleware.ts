@@ -1,11 +1,16 @@
-import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
+import { NextResponse } from "next/server";
+
+import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
   // Routes that can be accessed while signed out
   publicRoutes: ["/"],
   afterAuth(auth, req) {
     if (!auth.userId && !auth.isPublicRoute) {
-      return redirectToSignIn({ returnBackUrl: req.url });
+      const path = new URL(req.url).pathname;
+      return NextResponse.redirect(
+        new URL("/sign-in?redirect_url=" + path, req.url)
+      );
     }
   },
 });
