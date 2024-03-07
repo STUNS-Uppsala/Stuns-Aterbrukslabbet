@@ -1,6 +1,6 @@
-"use client";
-
 import { cn } from "@/lib/utils";
+
+import CreationDateToString from "../utils/creation-date-to-string";
 
 interface PostProps {
   title: string;
@@ -9,31 +9,6 @@ interface PostProps {
   location: string;
   expirationDate: Date | null;
   creationDate: Date;
-}
-
-function CreationDateToString(creationDate: Date): string {
-  const todayDate = new Date();
-  const yesterdayDate = new Date(Date.now() - 24 * 60 * 60 * 1000);
-  let creationDateString: string;
-
-  if (creationDate.toDateString() === todayDate.toDateString()) {
-    creationDateString =
-      "Idag " +
-      creationDate.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-  } else if (creationDate.toDateString() === yesterdayDate.toDateString()) {
-    creationDateString =
-      "Igår " +
-      creationDate.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-  } else {
-    creationDateString = creationDate.toLocaleDateString();
-  }
-  return creationDateString;
 }
 
 export default function Post({
@@ -52,7 +27,7 @@ export default function Post({
     expirationDateElement = (
       <>
         <p>Hämta senast </p>
-        <p>{expirationDate.toLocaleDateString()}</p>
+        <p>{expirationDate.toLocaleDateString("sv-SE")}</p>
       </>
     );
   }
