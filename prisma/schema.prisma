@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  directUrl         = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Post {
+  id                  Int        @id @default(autoincrement())
+  userId              String
+  title               String     @db.VarChar(40)
+  description         String?    @db.Text
+  postType            String
+  category            String
+  location            String
+  imageThumbUrl       String?    @db.Text
+  imageFullUrl        String?    @db.Text
+  createdAt           DateTime   @default(now())
+  expiresAt           DateTime   @default(dbgenerated("NOW() + interval '6 months'"))
+  isCustomExpireDate  Boolean
+}
