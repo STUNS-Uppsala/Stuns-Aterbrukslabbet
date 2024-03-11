@@ -8,7 +8,6 @@ export default async function PostContainer() {
     type: undefined,
     category: undefined,
     sort: "desc",
-    searchParams: "aasjkdh",
   });
   return (
     <div className="flex flex-col md:gap-y-5 gap-y-3 my-16 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
