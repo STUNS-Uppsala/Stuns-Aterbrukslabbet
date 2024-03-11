@@ -7,6 +7,11 @@
 - Google Chrome - (Version 121.0.6167.185)
 - Node JS - (Version 20.11.0)
 
+## Database environment
+
+- Supabase
+- Prisma Studio - (Version 10.2.4)
+
 ## Coding Standard
 
 - This project uses ESLint for linting

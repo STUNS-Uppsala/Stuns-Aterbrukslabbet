@@ -65,18 +65,29 @@ On the website there exists an admin dashboard that is only accessible to users 
 ## Set up database with prisma
 
 - Create a PostgreSQL database of your choosing and get the database url and the direct url from that database.  
-[Help on how to get the database connection strings](https://www.prisma.io/docs/orm/overview/databases/postgresql#connection-details)
+[Documentation on database connection strings](https://www.prisma.io/docs/orm/overview/databases/postgresql#connection-details)
 
-- Paste the database url and the direct url into the `.env` file in the root of your project. Your `.env` file should look like this.
+> If you use Supabase as your database the transaction url is equivalent to the database url and the session url is equivalent to the direct url
+
+- Paste the database url and the direct url into the `.env` file in the root of your project. Your `.env` file should now look like this.
 
 ![Image of environment file with database and direct url](database-environment-file.png)
 
-- Run this command to generate the PostgreSQL database
+- Run this command to generate the database in prisma
 ```bash
 npx prisma generate
 ```
 
-If you make changes to the `schema.prisma` file in the prisma folder in the root of the project, run the following command to migrate the database changes.
+- Run this command to push the database you generated in prisma to your PostgreSQL database
+```bash
+npx prisma db push
+```
+
+If you make changes to the `schema.prisma` file in the prisma folder in the root of the project, run the following commands to migrate the database changes.
+
+```bash
+npx prisma generate
+```
 
 ```bash
 npx prisma migrate dev
