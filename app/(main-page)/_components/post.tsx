@@ -23,20 +23,30 @@ export default function Post({
   let postTypeColor;
   let creationDateString = CreationDateToString(creationDate);
 
-  if (expirationDate) {
-    expirationDateElement = (
-      <>
-        <p>Hämta senast </p>
-        <p>{expirationDate.toLocaleDateString("sv-SE")}</p>
-      </>
-    );
-  }
-
   if (postType === "Erbjuds") {
     postTypeColor = "bg-offerColor";
+
+    if (expirationDate) {
+      expirationDateElement = (
+        <>
+          <p>Hämta senast</p>
+          <p>{expirationDate.toLocaleDateString("sv-SE")}</p>
+        </>
+      );
+    }
   }
+
   if (postType === "Efterfrågas") {
     postTypeColor = "bg-requestColor";
+
+    if (expirationDate) {
+      expirationDateElement = (
+        <>
+          <p>Vill ha senast</p>
+          <p>{expirationDate.toLocaleDateString("sv-SE")}</p>
+        </>
+      );
+    }
   }
 
   return (
