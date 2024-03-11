@@ -4,8 +4,8 @@ import { checkRole } from "@/utils/check-role";
 import Pagination from "@/components/pagination";
 
 import getUsers from "./utils/get-users";
-import SearchUsers from "./components/search-users";
-import UserCard from "./components/user-card";
+import SearchUsers from "./_components/search-users";
+import UserCard from "./_components/user-card";
 
 interface AdminDashboardProps {
   searchParams: { search?: string; page?: string };
