@@ -7,17 +7,19 @@ interface PostProps {
   description: string | null;
   postType: string;
   location: string;
-  expirationDate: Date | null;
+  expirationDate?: Date;
   creationDate: Date;
+  hasCustomExpirationDate: boolean;
 }
 
-export default function Post({
+export default function PostCard({
   title,
   description,
   postType,
   location,
   expirationDate,
   creationDate,
+  hasCustomExpirationDate,
 }: PostProps) {
   let expirationDateElement;
   let postTypeColor;
@@ -91,9 +93,11 @@ export default function Post({
             <p className="md:text-base text-[9px] text-end md:pb-2 pt-1">
               {creationDateString}
             </p>
-            <div className="md:text-base text-[9px] text-end text-red-500">
-              {expirationDateElement}
-            </div>
+            {hasCustomExpirationDate && (
+              <div className="md:text-base text-[9px] text-end text-red-500">
+                {expirationDateElement}
+              </div>
+            )}
           </div>
         </section>
       </div>

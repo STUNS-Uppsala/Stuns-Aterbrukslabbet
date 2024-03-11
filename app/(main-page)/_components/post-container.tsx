@@ -1,28 +1,38 @@
-import Post from "./post";
+import { Post } from "@prisma/client";
 
-export default function PostContainer() {
+import getPostFromDb from "../utils/get-post-from-db";
+import PostCard from "./post";
+
+export default async function PostContainer() {
+  const posts: Post[] = await getPostFromDb({
+    type: undefined,
+    category: undefined,
+    sort: "desc",
+  });
   return (
     <div className="flex flex-col md:gap-y-5 gap-y-3 my-16 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
-      <Post
-        title={"Filterpapper 100 st"}
-        description={
-          "En stor låda med 100 filterpapper av papper skänkes. De är i gått skick och helt oanvända."
-        }
-        postType={"Erbjuds"}
-        location={"Science Industries, Stenhagen"}
-        creationDate={new Date(Date.now() - 20 * 24 * 60 * 60 * 1000)}
-        expirationDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
-      />
-      <Post
-        title={"Glaskolvar"}
-        description={
-          "Glaskolvar i utmärkt skick efterfrågas för ny kemilabb på Stunsta Universitet"
-        }
-        postType={"Efterfrågas"}
-        location={"Stunsta Universitet. Stenhagen"}
-        creationDate={new Date(Date.now() - 1 * 24 * 60 * 60 * 1000)}
-        expirationDate={new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)}
-      />
+      {posts.length > 0 ? (
+        posts.map((post) => {
+          return (
+            <PostCard
+              key={post.id}
+              title={post.title}
+              description={post.description}
+              postType={post.postType}
+              location={post.location}
+              creationDate={post.createdAt}
+              expirationDate={post.expiresAt}
+              hasCustomExpirationDate={post.hasCustomExpirationDate}
+            />
+          );
+        })
+      ) : (
+        <div className="flex justify-center">
+          <p className="text-center bg-secondary text-xl w-1/3 p-4 rounded-lg">
+            Inga inlägg hittades
+          </p>
+        </div>
+      )}
     </div>
   );
 }
