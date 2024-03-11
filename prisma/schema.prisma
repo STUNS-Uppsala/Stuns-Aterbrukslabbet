@@ -23,5 +23,5 @@ model Post {
   imageFullUrl        String?    @db.Text
   createdAt           DateTime   @default(now())
   expiresAt           DateTime   @default(dbgenerated("NOW() + interval '6 months'"))
-  isCustomExpireDate  Boolean
+  hasCustomExpirationDate  Boolean @default(false)
 }
