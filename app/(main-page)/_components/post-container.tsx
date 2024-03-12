@@ -1,13 +1,20 @@
-import { Post } from "@prisma/client";
+import Pagination from "@/components/pagination";
 
-import getPostFromDb from "../utils/get-post-from-db";
+import getPostAndPages from "../utils/get-posts-and-pages";
 import PostCard from "./post";
 
-export default async function PostContainer() {
-  const posts: Post[] = await getPostFromDb({
+interface PostContainerProps {
+  page?: number;
+}
+
+export default async function PostContainer({ page }: PostContainerProps) {
+  const postsPerPage = 10;
+  const { posts, pages } = await getPostAndPages({
     type: undefined,
     category: undefined,
     sort: "desc",
+    postsPerPage: postsPerPage,
+    page: page,
   });
   return (
     <div className="flex flex-col md:gap-y-5 gap-y-3 my-16 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
@@ -33,6 +40,7 @@ export default async function PostContainer() {
           </p>
         </div>
       )}
+      <Pagination pages={pages} />
     </div>
   );
 }

@@ -17,6 +17,7 @@ export default function Pagination({ pages }: PaginationProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+
   const currentPage = Number(searchParams.get("page")) || 1;
 
   function handlePageChange(pageIndex: number) {
