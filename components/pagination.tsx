@@ -10,10 +10,21 @@ import { ReactElement } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface PaginationProps {
-  pages: number;
+  itemCount?: number;
+  itemsPerPage: number;
 }
 
-export default function Pagination({ pages }: PaginationProps) {
+export default function Pagination({
+  itemCount,
+  itemsPerPage,
+}: PaginationProps) {
+  let pages: number;
+  if (itemCount) {
+    pages = Math.ceil(itemCount / itemsPerPage);
+  } else {
+    pages = 1;
+  }
+
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();

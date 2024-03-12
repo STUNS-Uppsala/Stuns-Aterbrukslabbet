@@ -3,10 +3,10 @@ import { redirect } from "next/navigation";
 import { checkRole } from "@/utils/check-role";
 import { cn } from "@/lib/utils";
 import Pagination from "@/components/pagination";
-import SearchUsers from "@/components/search-bar";
+import SearchBar from "@/components/search-bar";
 import { source_sans_3 } from "@/app/fonts";
 
-import getUsers from "./utils/get-users";
+import getUserData from "./utils/get-user-data";
 import UserCard from "./_components/user-card";
 
 interface AdminDashboardProps {
@@ -25,7 +25,7 @@ export default async function AdminDashboard({
 
   const usersPerPage = 10;
 
-  const { users, pages } = await getUsers({ page, query, usersPerPage });
+  const { users, userCount } = await getUserData({ page, query, usersPerPage });
 
   return (
     <div className="max-w-screen-md mx-auto p-3 pt-10">
@@ -38,13 +38,13 @@ export default async function AdminDashboard({
       >
         Sök bland användare
       </label>
-      <SearchUsers />
+      <SearchBar />
       <div className="flex flex-col items-center mx-auto gap-y-3 pt-6">
         {users.map((user) => {
           return <UserCard key={user.id} user={user} />;
         })}
       </div>
-      <Pagination pages={pages} />
+      <Pagination itemCount={userCount} itemsPerPage={usersPerPage} />
     </div>
   );
 }

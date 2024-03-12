@@ -1,8 +1,7 @@
 import { db } from "@/lib/db";
 import { PostCategory, PostType } from "@/types/globals";
-import { Post } from "@prisma/client";
 
-interface getPostFromDbProps {
+interface GetPostDataFromDbProps {
   category: PostCategory;
   page?: number;
   postsPerPage: number;
@@ -11,18 +10,18 @@ interface getPostFromDbProps {
   type: PostType;
 }
 
-export default async function getPostFromDb({
+export default async function GetPostDataFromDb({
   type,
   category,
   searchParams,
   page,
   sort,
   postsPerPage,
-}: getPostFromDbProps) {
-  let returnedPosts, returnedPages;
+}: GetPostDataFromDbProps) {
+  let posts, postCount;
 
   try {
-    returnedPosts = await db.post.findMany({
+    posts = await db.post.findMany({
       skip: page ? (page - 1) * postsPerPage : 0,
       take: postsPerPage,
       where: {
@@ -44,7 +43,7 @@ export default async function getPostFromDb({
   }
 
   try {
-    const postCount = await db.post.count({
+    postCount = await db.post.count({
       where: {
         postType: type,
         title: {
@@ -56,13 +55,10 @@ export default async function getPostFromDb({
         },
       },
     });
-    returnedPages = Math.ceil(postCount / postsPerPage);
   } catch (error) {
     console.error(error);
   }
 
-  const posts = returnedPosts ? returnedPosts : [];
-  const pages = returnedPages ? returnedPages : 1;
 
-  return { posts, pages };
+  return { posts, postCount };
 }

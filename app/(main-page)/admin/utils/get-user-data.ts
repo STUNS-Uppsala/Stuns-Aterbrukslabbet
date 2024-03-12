@@ -1,21 +1,19 @@
 import { clerkClient } from "@clerk/nextjs";
 
-interface GetUsersParams {
+interface GetUserDataParams {
   page?: string;
   query?: string;
   usersPerPage: number;
 }
 
-export default async function getUsers({
+export default async function GetUserData({
   page,
   query,
   usersPerPage,
-}: GetUsersParams) {
+}: GetUserDataParams) {
   const userCount = query
     ? await clerkClient.users.getCount({ query })
     : await clerkClient.users.getCount();
-
-  const pages = Math.ceil(userCount / usersPerPage);
 
   const users = query
     ? await clerkClient.users.getUserList({
@@ -30,6 +28,6 @@ export default async function getUsers({
 
   return {
     users,
-    pages,
+    userCount,
   };
 }
