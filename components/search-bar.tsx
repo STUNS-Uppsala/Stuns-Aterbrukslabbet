@@ -2,9 +2,6 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { cn } from "@/lib/utils";
-import { source_sans_3 } from "@/app/fonts";
-
 export default function SearchUsers() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -13,7 +10,11 @@ export default function SearchUsers() {
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     const search = e.target.value;
     const params = new URLSearchParams(searchParams);
+    const page = params.get("page");
     if (search) {
+      if (page) {
+        params.delete("page", page);
+      }
       params.set("search", search);
     } else {
       params.delete("search");
@@ -29,15 +30,6 @@ export default function SearchUsers() {
         }}
         className="flex flex-col w-full"
       >
-        <label
-          htmlFor="search"
-          className={cn(
-            "md:text-4xl text-2xl font-normal",
-            source_sans_3.className
-          )}
-        >
-          Sök bland användare
-        </label>
         <input
           className="rounded-md bg-primary h-12 p-3 md:mt-3"
           placeholder="Sök..."

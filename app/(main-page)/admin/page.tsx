@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
 
 import { checkRole } from "@/utils/check-role";
+import { cn } from "@/lib/utils";
 import Pagination from "@/components/pagination";
+import SearchUsers from "@/components/search-bar";
+import { source_sans_3 } from "@/app/fonts";
 
 import getUsers from "./utils/get-users";
-import SearchUsers from "./_components/search-users";
 import UserCard from "./_components/user-card";
 
 interface AdminDashboardProps {
@@ -27,6 +29,15 @@ export default async function AdminDashboard({
 
   return (
     <div className="max-w-screen-md mx-auto p-3 pt-10">
+      <label
+        htmlFor="search"
+        className={cn(
+          "md:text-4xl text-2xl font-normal",
+          source_sans_3.className
+        )}
+      >
+        Sök bland användare
+      </label>
       <SearchUsers />
       <div className="flex flex-col items-center mx-auto gap-y-3 pt-6">
         {users.map((user) => {
