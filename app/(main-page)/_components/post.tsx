@@ -1,13 +1,14 @@
 import { cn } from "@/lib/utils";
 
 import CreationDateToString from "../utils/creation-date-to-string";
+import GetExpirationDateAndPostType from "../utils/get-expiration-date-and-post-type";
 
 interface PostProps {
   title: string;
   description: string | null;
   postType: string;
   location: string;
-  expirationDate?: Date;
+  expirationDate: Date;
   creationDate: Date;
   hasCustomExpirationDate: boolean;
 }
@@ -21,35 +22,8 @@ export default function PostCard({
   creationDate,
   hasCustomExpirationDate,
 }: PostProps) {
-  let expirationDateElement;
-  let postTypeColor;
   let creationDateString = CreationDateToString(creationDate);
-
-  if (postType === "Erbjuds") {
-    postTypeColor = "bg-offerColor";
-
-    if (expirationDate) {
-      expirationDateElement = (
-        <>
-          <p>Hämta senast</p>
-          <p>{expirationDate.toLocaleDateString("sv-SE")}</p>
-        </>
-      );
-    }
-  }
-
-  if (postType === "Efterfrågas") {
-    postTypeColor = "bg-requestColor";
-
-    if (expirationDate) {
-      expirationDateElement = (
-        <>
-          <p>Vill ha senast</p>
-          <p>{expirationDate.toLocaleDateString("sv-SE")}</p>
-        </>
-      );
-    }
-  }
+  const { postTypeColor, expirationDateElement } = GetExpirationDateAndPostType({postType: postType, expirationDate: expirationDate, hasCustomExpirationDate: hasCustomExpirationDate})
 
   return (
     <div className="flex md:py-4 md:pr-4 py-2 pr-2 bg-secondary w-full rounded-xl">
