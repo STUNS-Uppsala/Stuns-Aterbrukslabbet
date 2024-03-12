@@ -88,7 +88,7 @@ export default function PostCard({
             </p>
           </div>
         </section>
-        <section className="flex md:flex-col flex-col-reverse col-span-3">
+        <section className="flex md:flex-col pl-2 flex-col-reverse col-span-3">
           <div className="flex md:flex-col flex-col-reverse md:grow">
             <p className="md:text-base text-[9px] text-end md:pb-2 pt-1">
               {creationDateString}
