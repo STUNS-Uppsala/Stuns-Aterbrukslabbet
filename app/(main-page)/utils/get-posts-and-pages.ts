@@ -44,7 +44,7 @@ export default async function getPostFromDb({
   }
 
   try {
-    const result = await db.post.count({
+    const postCount = await db.post.count({
       where: {
         postType: type,
         title: {
@@ -56,7 +56,7 @@ export default async function getPostFromDb({
         },
       },
     });
-    returnedPages = Math.ceil(result / postsPerPage);
+    returnedPages = Math.ceil(postCount / postsPerPage);
   } catch (error) {
     console.error(error);
   }
