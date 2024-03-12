@@ -59,17 +59,17 @@ export default function PostCard({
           postTypeColor
         )}
       />
-      <div className="flex w-full">
-        <section className="basis-4/12">
+      <div className="grid grid-cols-12 w-full">
+        <section className="col-span-4">
           {/* Post image should replace the div below */}
           <div className="aspect-[4/3] w-full bg-primary rounded-md" />
         </section>
-        <section className="flex flex-col basis-5/12 md:pl-4 pl-2">
+        <section className="flex flex-col col-span-5 md:pl-4 pl-2">
           <div className="grow">
             <h3 className="md:text-2xl text-sm line-clamp-1 pb-1 break-all">
               {title}
             </h3>
-            <p className="md:text-base text-[10px] md:line-clamp-3 line-clamp-2 break-all">
+            <p className="md:text-base text-[10px] md:line-clamp-3 line-clamp-2 break-words">
               {description}
             </p>
           </div>
@@ -88,7 +88,7 @@ export default function PostCard({
             </p>
           </div>
         </section>
-        <section className="flex md:flex-col flex-col-reverse basis-3/12">
+        <section className="flex md:flex-col flex-col-reverse col-span-3">
           <div className="flex md:flex-col flex-col-reverse md:grow">
             <p className="md:text-base text-[9px] text-end md:pb-2 pt-1">
               {creationDateString}
