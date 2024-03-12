@@ -1,6 +1,6 @@
 import Pagination from "@/components/pagination";
 
-import getPostFromDb from "../utils/get-posts-and-pages";
+import getPostAndPages from "../utils/get-posts-and-pages";
 import PostCard from "./post";
 
 interface PostContainerProps {
@@ -9,7 +9,7 @@ interface PostContainerProps {
 
 export default async function PostContainer({ page }: PostContainerProps) {
   const postsPerPage = 10;
-  const { posts, pages } = await getPostFromDb({
+  const { posts, pages } = await getPostAndPages({
     type: undefined,
     category: undefined,
     sort: "desc",
