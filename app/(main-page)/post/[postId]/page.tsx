@@ -1,6 +1,6 @@
 import { ArrowLeft, Bookmark, MapPin, User } from "lucide-react";
 import getPostData from "../../utils/get-post-data";
-import GetExpirationDateAndPostType from "../../utils/get-expiration-date-and-post-type";
+import GetPostColorAndExpirationText from "../../utils/get-post-color-and-expiration-text";
 import { cn } from "@/lib/utils";
 import CreationDateToString from "../../utils/creation-date-to-string";
 import getUserNameFromUserId from "../../utils/get-user-name-from-user-id";
@@ -15,13 +15,12 @@ export default async function PostIdPage({ params }: PostIdPageProps) {
   const post = await getPostData(Number(params.postId));
   if (post) {
     let creationDateString = CreationDateToString(post.createdAt);
-    let userName = getUserNameFromUserId(post.userId)
-    const { postTypeColor, expirationDateElement } =
-      GetExpirationDateAndPostType({
+    let userName = getUserNameFromUserId(post.userId);
+    const { postTypeColor, expirationDateText } = GetPostColorAndExpirationText(
+      {
         postType: post.postType,
-        expirationDate: post.expiresAt,
-        hasCustomExpirationDate: post.hasCustomExpirationDate,
-      });
+      }
+    );
     return (
       <div className="mt-5 md:mb-10 mb-6 pt-3 md:pb-10 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
         <ArrowLeft size={30} className="md:ml-7 ml-4 md:mb-0 mb-2" />
@@ -44,7 +43,12 @@ export default async function PostIdPage({ params }: PostIdPageProps) {
               />
               {post.postType}
             </div>
-            <div className="text-red-500 text-end">{expirationDateElement}</div>
+            {post.hasCustomExpirationDate && (
+              <div className="text-red-500 text-end">
+                <p>{expirationDateText}</p>
+                <p>{post.expiresAt.toLocaleDateString("sv-SE")}</p>
+              </div>
+            )}
           </div>
           <p className="md:text-3xl text-2xl">{post.title}</p>
           <p className="text-sm md:pt-2">{post.description}</p>

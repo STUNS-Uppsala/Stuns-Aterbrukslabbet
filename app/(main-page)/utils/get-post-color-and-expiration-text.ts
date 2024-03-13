@@ -1,16 +1,11 @@
 interface GetExpirationDateAndPostTypeProps {
   postType: string;
-  expirationDate: Date;
-  hasCustomExpirationDate: boolean;
 }
 
-export default function GetExpirationDateAndPostType({
+export default function GetPostColorAndExpirationText({
   postType,
-  expirationDate,
-  hasCustomExpirationDate,
 }: GetExpirationDateAndPostTypeProps) {
   let postTypeColor = "bg-primary";
-  let expirationDateElement;
   let expirationDateText = "Senast";
 
   if (postType === "Erbjuds") {
@@ -22,13 +17,5 @@ export default function GetExpirationDateAndPostType({
     expirationDateText = "Vill ha senast";
   }
 
-  if (hasCustomExpirationDate) {
-    expirationDateElement = (
-      <>
-        <p>{expirationDateText}</p>
-        <p>{expirationDate.toLocaleDateString("sv-SE")}</p>
-      </>
-    );
-  }
-  return { postTypeColor, expirationDateElement };
+  return { postTypeColor, expirationDateText };
 }
