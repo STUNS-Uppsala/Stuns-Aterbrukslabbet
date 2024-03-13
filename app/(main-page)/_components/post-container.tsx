@@ -1,7 +1,7 @@
 import Pagination from "@/components/pagination";
 
 import getPostAndPages from "../utils/get-posts-and-pages";
-import PostCard from "./post";
+import PostCard from "./post-card";
 
 interface PostContainerProps {
   page?: number;
@@ -24,6 +24,7 @@ export default async function PostContainer({ page }: PostContainerProps) {
             <PostCard
               key={post.id}
               title={post.title}
+              postId={post.id}
               description={post.description}
               postType={post.postType}
               location={post.location}

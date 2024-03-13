@@ -3,27 +3,33 @@
 import { Post } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, Bookmark, MapPin, User } from "lucide-react";
+import Link from "next/link";
 
 interface PostProps {
-    post: Post
-    creationDateString: string
-    expirationDateText: string
-    postTypeColor: string
-    userName: string
-    email: string
+  post: Post;
+  creationDateString: string;
+  expirationDateText: string;
+  postTypeColor: string;
+  userName: string;
+  email: string;
 }
 
 export default function Post({
-    post,
-    creationDateString,
-    expirationDateText,
-    postTypeColor,
-    userName,
-    email
+  post,
+  creationDateString,
+  expirationDateText,
+  postTypeColor,
+  userName,
+  email,
 }: PostProps) {
   return (
     <div className="mt-5 md:mb-10 mb-6 pt-3 md:pb-10 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
-      <ArrowLeft size={30} className="md:ml-7 ml-4 md:mb-0 mb-2" />
+      <div className="w-3 md:ml-7 ml-4 md:mb-0 mb-2">
+        <Link href="/">
+          <ArrowLeft width={30}  />
+        </Link>
+      </div>
+
       <div className="aspect-[4/3] md:mx-20 mx-6 bg-primary rounded-md" />
       <div className="flex flex-col md:mx-20 mx-6 gap-y-1">
         <div className="flex pt-4 md:text-lg text-base justify-between">
