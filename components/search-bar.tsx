@@ -2,7 +2,15 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export default function SearchBar() {
+interface SearchBarProps {
+  labelText: string;
+  itemsFoundText: string;
+}
+
+export default function SearchBar({
+  labelText,
+  itemsFoundText,
+}: SearchBarProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { replace } = useRouter();
@@ -23,15 +31,21 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="flex items-center justify-center">
+    <div>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
         }}
         className="flex flex-col w-full"
       >
+        <div className="flex justify-between px-1 pb-1">
+          <label htmlFor="search" className="text-xl font-medium">
+            {labelText}
+          </label>
+          {searchParams.get("search") && <p>{itemsFoundText}</p>}
+        </div>
         <input
-          className="rounded-md bg-primary h-12 p-3 md:mt-3"
+          className="rounded-md bg-primary h-12 p-3"
           placeholder="Sök..."
           onChange={handleSearchChange}
           defaultValue={searchParams.get("search")?.toString()}

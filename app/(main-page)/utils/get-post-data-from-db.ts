@@ -1,64 +1,47 @@
 import { db } from "@/lib/db";
 import { PostCategory, PostType } from "@/types/globals";
+import { Prisma } from "@prisma/client";
 
 interface GetPostDataFromDbProps {
-  category: PostCategory;
-  page?: number;
-  postsPerPage: number;
-  searchParams?: string;
-  sort: "asc" | "desc";
   type: PostType;
+  category: PostCategory;
+  currentPage?: number;
+  searchParams?: string;
+  postsPerPage: number;
+  sort: "asc" | "desc";
 }
 
 export default async function GetPostDataFromDb({
   type,
   category,
+  currentPage,
   searchParams,
-  page,
-  sort,
   postsPerPage,
+  sort,
 }: GetPostDataFromDbProps) {
-  let posts, postCount;
-
-  try {
-    posts = await db.post.findMany({
-      skip: page ? (page - 1) * postsPerPage : 0,
-      take: postsPerPage,
-      where: {
-        postType: type,
-        title: {
-          contains: searchParams,
-          mode: "insensitive",
-        },
-        category: {
-          equals: category,
-        },
+  const query = {
+    skip: currentPage ? (currentPage - 1) * postsPerPage : 0,
+    take: postsPerPage,
+    where: {
+      postType: type,
+      title: {
+        contains: searchParams,
+        mode: "insensitive",
       },
-      orderBy: {
-        createdAt: sort,
+      category: {
+        equals: category,
       },
-    });
-  } catch (error) {
-    console.error(error);
-  }
+    },
+    orderBy: {
+      createdAt: sort,
+    },
+  } satisfies Prisma.PostFindManyArgs;
 
-  try {
-    postCount = await db.post.count({
-      where: {
-        postType: type,
-        title: {
-          contains: searchParams,
-          mode: "insensitive",
-        },
-        category: {
-          equals: category,
-        },
-      },
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  const [posts, foundPostsCount, totalPostCount] = await db.$transaction([
+    db.post.findMany(query),
+    db.post.count({ where: query.where }),
+    db.post.count({ where: { postType: type } }),
+  ]);
 
-
-  return { posts, postCount };
+  return { posts, foundPostsCount, totalPostCount };
 }
