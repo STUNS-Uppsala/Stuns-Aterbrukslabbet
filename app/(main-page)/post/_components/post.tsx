@@ -1,39 +1,34 @@
 "use client";
-
-import { Post } from "@prisma/client";
-import { cn } from "@/lib/utils";
 import { Clock, MapPin, User } from "lucide-react";
-import Link from "next/link";
+
+import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Post } from "@prisma/client";
+import GetPostTypeSpecificData from "../../utils/get-post-color-and-expiration-text";
+import CreationDateToString from "../../utils/creation-date-to-string";
 
 interface PostProps {
   post: Post;
-  creationDateString: string;
-  expirationDateText: string;
-  postTypeColor: string;
-  disclaimerText: string;
-  userName: string;
+  name: string;
   email: string;
 }
 
-export default function Post({
-  post,
-  creationDateString,
-  expirationDateText,
-  postTypeColor,
-  disclaimerText,
-  userName,
-  email,
-}: PostProps) {
+export default function Post({ post, name, email }: PostProps) {
+  const creationDateString = CreationDateToString(post.createdAt);
+  const { postTypeColor, expirationDateText, disclaimerText } =
+    GetPostTypeSpecificData({
+      postType: post.postType,
+    });
+
   return (
     <div className="my-5 md:pt-10 pt-3 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
       {/* Post image should replace the div below */}
-      <div className="aspect-[4/3] md:mt-0 mt-2 md:mx-24 mx-6 bg-primary rounded-md"/>
+      <div className="aspect-[4/3] md:mt-0 mt-2 md:mx-24 mx-6 bg-primary rounded-md" />
       <div className="flex flex-col md:mx-16 mx-6 gap-y-1">
         <div className="flex pt-2 md:text-base text-xs justify-between">
           <div className="flex gap-x-1 items-center">
@@ -42,8 +37,8 @@ export default function Post({
             {post.location}
           </div>
           <div className="flex text-end gap-x-1 text-nowrap items-center">
-            <Clock className="md:block hidden" size={16}/>
-            <Clock className="md:hidden block" size={12}/>
+            <Clock className="md:block hidden" size={16} />
+            <Clock className="md:hidden block" size={12} />
             {creationDateString}
           </div>
         </div>
@@ -69,7 +64,7 @@ export default function Post({
         <div className="flex items-center mt-4">
           <User className="md:block hidden" size={18} />
           <User className="md:hidden block" size={12} />
-          <p className="md:text-xl text-xs pl-1">{userName}</p>
+          <p className="md:text-xl text-xs pl-1">{name}</p>
         </div>
         <div className="flex justify-between items-center">
           <Dialog>
@@ -80,7 +75,7 @@ export default function Post({
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <p className="flex justify-center text-base">{userName}</p>
+                <p className="flex justify-center text-base">{name}</p>
                 <a
                   className="flex justify-center hover:underline text-blue-600"
                   href={`mailto:${email}`}
@@ -93,7 +88,6 @@ export default function Post({
               </DialogHeader>
             </DialogContent>
           </Dialog>
-          
         </div>
       </div>
     </div>

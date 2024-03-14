@@ -1,6 +1,6 @@
 import { db } from "@/lib/db";
 
-export default async function getPostData(postId: number) {
+export default async function GetPostData(postId: number) {
   try {
     const result = await db.post.findFirst({
       where: {

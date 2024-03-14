@@ -1,10 +1,8 @@
-import getPostData from "../../utils/get-post-data";
-import GetPostColorAndExpirationText from "../../utils/get-post-color-and-expiration-text";
-
-import CreationDateToString from "../../utils/creation-date-to-string";
-import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
-import Post from "../_components/post";
 import Link from "next/link";
+
+import GetPostData from "../../utils/get-post-data";
+import GetNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
+import Post from "../_components/post";
 
 interface PostIdPageProps {
   params: {
@@ -13,30 +11,11 @@ interface PostIdPageProps {
 }
 
 export default async function PostIdPage({ params }: PostIdPageProps) {
-  const post = await getPostData(Number(params.postId));
+  const post = await GetPostData(Number(params.postId));
   if (post) {
-    let creationDateString = CreationDateToString(post.createdAt);
-    const { fullName, email } = await getNameAndEmailFromUserId(post.userId);
-    const { postTypeColor, expirationDateText } = GetPostColorAndExpirationText(
-      {
-        postType: post.postType,
-      }
-    );
-    const disclaimerText =
-      post.postType === "Erbjuds"
-        ? "Kontakt med människor sker på egen risk. Vi ansvarar inte för att människor agerar lagligt och inte lurar dig. Vi kan inte garantera produktens skick därför bör du verifiera med leverantören vad varan använts till innan."
-        : "Kontakt med människor sker på egen risk. Vi ansvarar inte för att människor agerar lagligt och inte lurar dig.";
-    return (
-      <Post
-        post={post}
-        creationDateString={creationDateString}
-        expirationDateText={expirationDateText}
-        disclaimerText={disclaimerText}
-        postTypeColor={postTypeColor}
-        userName={fullName}
-        email={email}
-      />
-    );
+    const { fullName, email } = await GetNameAndEmailFromUserId(post.userId);
+
+    return <Post post={post} name={fullName} email={email} />;
   } else {
     return (
       <div className="flex w-full h-[52vh] items-end justify-center text-center">
