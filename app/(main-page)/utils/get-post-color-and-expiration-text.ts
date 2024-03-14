@@ -12,7 +12,7 @@ export default function GetPostColorAndExpirationText({
     postTypeColor = "bg-offerColor";
     expirationDateText = "Hämta senast";
   }
-  if (postType === "Efterfrågas") {
+  else if (postType === "Efterfrågas") {
     postTypeColor = "bg-requestColor";
     expirationDateText = "Vill ha senast";
   }

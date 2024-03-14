@@ -2,7 +2,7 @@
 
 import { Post } from "@prisma/client";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, Bookmark, MapPin, User } from "lucide-react";
+import { ArrowLeft, Clock, MapPin, User } from "lucide-react";
 import Link from "next/link";
 import {
   Dialog,
@@ -16,7 +16,7 @@ interface PostProps {
   creationDateString: string;
   expirationDateText: string;
   postTypeColor: string;
-  disclaimerText: string
+  disclaimerText: string;
   userName: string;
   email: string;
 }
@@ -31,25 +31,34 @@ export default function Post({
   email,
 }: PostProps) {
   return (
-    <div className="mt-5 md:mb-10 mb-6 pt-3 md:pb-10 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
-      <div className="w-3 md:ml-7 ml-4 md:mb-0 mb-2">
+    <div className="my-5 pt-3 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
+      <div className="w-3 md:ml-10 ml-4">
         <Link href="/">
           <ArrowLeft width={30} />
         </Link>
       </div>
-      <div className="aspect-[4/3] md:mx-20 mx-6 bg-primary rounded-md" />
-      <div className="flex flex-col md:mx-20 mx-6 gap-y-1">
-        <div className="flex pt-4 md:text-lg text-base justify-between">
-          <div className="flex gap-x-2">
-            <MapPin size={20} />
+      {/* Post image should replace the div below */}
+      <div className="aspect-[4/3] md:mt-0 mt-2 md:mx-24 mx-6 bg-primary rounded-md"/>
+      <div className="flex flex-col md:mx-16 mx-6 gap-y-1">
+        <div className="flex pt-2 md:text-base text-xs justify-between">
+          <div className="flex gap-x-1 items-center">
+            <MapPin className="md:block hidden shrink-0" size={16} />
+            <MapPin className="md:hidden block shrink-0" size={12} />
             {post.location}
           </div>
-          <div className="text-end text-nowrap">{creationDateString}</div>
+          <div className="flex text-end gap-x-1 text-nowrap items-center">
+            <Clock className="md:block hidden" size={16}/>
+            <Clock className="md:hidden block" size={12}/>
+            {creationDateString}
+          </div>
         </div>
-        <div className="flex md:text-lg text-base h-14 justify-between">
-          <div className="flex gap-x-2">
+        <div className="flex md:text-base text-xs md:h-14 h-10 justify-between">
+          <div className="flex gap-x-1 h-1/2 items-center">
             <div
-              className={cn("h-5 w-5 rounded-[50%] bg-primary", postTypeColor)}
+              className={cn(
+                "md:h-4 md:w-4 h-3 w-3 rounded-[50%]",
+                postTypeColor
+              )}
             />
             {post.postType}
           </div>
@@ -61,12 +70,13 @@ export default function Post({
           )}
         </div>
         <h1 className="md:text-3xl text-2xl">{post.title}</h1>
-        <p className="text-sm md:pt-2">{post.description}</p>
+        <p className="md:text-base text-xs md:pt-2">{post.description}</p>
         <div className="flex items-center mt-4">
-          <User size={20} />
-          <p className="text-lg">{userName}</p>
+          <User className="md:block hidden" size={18} />
+          <User className="md:hidden block" size={12} />
+          <p className="md:text-xl text-xs pl-1">{userName}</p>
         </div>
-        <div className="flex pt-1 justify-between items-center">
+        <div className="flex justify-between items-center">
           <Dialog>
             <DialogTrigger>
               <div className="flex md:h-10 md:w-40 h-8 w-32 md:text-xl text-base rounded-lg bg-primary justify-center items-center">
@@ -75,28 +85,20 @@ export default function Post({
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <div className="flex justify-center items-center">
-                  <User size={20} />
-                  <p className="text-lg">{userName}</p>
-                </div>
-                <p className="flex justify-center">
-                  <span>
-                    Email:{" "}
-                    <a
-                      className="hover:underline text-blue-600"
-                      href={`mailto:${email}`}
-                    >
-                      {email}
-                    </a>
-                  </span>
-                </p>
+                <p className="flex justify-center text-base">{userName}</p>
+                <a
+                  className="flex justify-center hover:underline text-blue-600"
+                  href={`mailto:${email}`}
+                >
+                  {email}
+                </a>
                 <p className="pt-6 text-center font-semibold">
                   {disclaimerText}
                 </p>
               </DialogHeader>
             </DialogContent>
           </Dialog>
-          <Bookmark size={30} />
+          
         </div>
       </div>
     </div>
