@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface SearchBarProps {
   labelText: string;
-  itemsFoundText: string;
+  itemsFoundText?: string;
 }
 
 export default function SearchBar({
@@ -42,7 +42,9 @@ export default function SearchBar({
           <label htmlFor="search" className="text-xl font-medium">
             {labelText}
           </label>
-          {searchParams.get("search") && <p>{itemsFoundText}</p>}
+          {searchParams.get("search") && itemsFoundText && (
+            <p>{itemsFoundText}</p>
+          )}
         </div>
         <input
           className="rounded-md bg-primary h-12 p-3"
