@@ -18,17 +18,11 @@ export default function Pagination({
   itemCount,
   itemsPerPage,
 }: PaginationProps) {
-  let pages: number;
-  if (itemCount) {
-    pages = Math.ceil(itemCount / itemsPerPage);
-  } else {
-    pages = 1;
-  }
-
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
+  const pages = itemCount ? Math.ceil(itemCount / itemsPerPage) : 1;
   const currentPage = Number(searchParams.get("page")) || 1;
 
   function handlePageChange(pageIndex: number) {
