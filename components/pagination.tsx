@@ -10,14 +10,19 @@ import { ReactElement } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface PaginationProps {
-  pages: number;
+  itemCount?: number;
+  itemsPerPage: number;
 }
 
-export default function Pagination({ pages }: PaginationProps) {
+export default function Pagination({
+  itemCount,
+  itemsPerPage,
+}: PaginationProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
+  const pages = itemCount ? Math.ceil(itemCount / itemsPerPage) : 1;
   const currentPage = Number(searchParams.get("page")) || 1;
 
   function handlePageChange(pageIndex: number) {
