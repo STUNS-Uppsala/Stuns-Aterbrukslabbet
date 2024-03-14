@@ -2,7 +2,7 @@
 
 import { Post } from "@prisma/client";
 import { cn } from "@/lib/utils";
-import { ArrowLeft, Clock, MapPin, User } from "lucide-react";
+import { Clock, MapPin, User } from "lucide-react";
 import Link from "next/link";
 import {
   Dialog,
@@ -31,12 +31,7 @@ export default function Post({
   email,
 }: PostProps) {
   return (
-    <div className="my-5 pt-3 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
-      <div className="w-3 md:ml-10 ml-4">
-        <Link href="/">
-          <ArrowLeft width={30} />
-        </Link>
-      </div>
+    <div className="my-5 md:pt-10 pt-3 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
       {/* Post image should replace the div below */}
       <div className="aspect-[4/3] md:mt-0 mt-2 md:mx-24 mx-6 bg-primary rounded-md"/>
       <div className="flex flex-col md:mx-16 mx-6 gap-y-1">
