@@ -11,13 +11,11 @@ export default async function GetUserData({
   query,
   usersPerPage,
 }: GetUserDataParams) {
-
-  const totalUserCount =
-  await clerkClient.users.getCount();
+  const totalUserCount = await clerkClient.users.getCount();
 
   const userCount = query
     ? await clerkClient.users.getCount({ query })
-    : totalUserCount
+    : totalUserCount;
 
   const users = query
     ? await clerkClient.users.getUserList({
@@ -29,8 +27,6 @@ export default async function GetUserData({
         limit: usersPerPage,
         offset: (Number(page) - 1) * usersPerPage,
       });
-
-  
 
   return {
     users,
