@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import GetPostData from "../../utils/get-post-data";
-import GetNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
+import getPostData from "../../utils/get-post-data";
+import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
 import Post from "../_components/post";
 
 interface PostIdPageProps {
@@ -11,9 +11,9 @@ interface PostIdPageProps {
 }
 
 export default async function PostIdPage({ params }: PostIdPageProps) {
-  const post = await GetPostData(Number(params.postId));
+  const post = await getPostData(Number(params.postId));
   if (post) {
-    const { fullName, email } = await GetNameAndEmailFromUserId(post.userId);
+    const { fullName, email } = await getNameAndEmailFromUserId(post.userId);
 
     return <Post post={post} name={fullName} email={email} />;
   } else {

@@ -1,6 +1,6 @@
 import { checkRole } from "@/utils/check-role";
 import DeleteUserButton from "@/components/delete-user-button";
-import GetUserEmail from "@/utils/get-user-email";
+import getUserEmail from "@/utils/get-user-email";
 import { User } from "@clerk/nextjs/server";
 
 import ChangeRoleButton from "./change-role-button";
@@ -10,7 +10,7 @@ interface UserCardActionsProps {
 }
 
 export default function UserCardActions({ user }: UserCardActionsProps) {
-  const userEmail = GetUserEmail({ user });
+  const userEmail = getUserEmail({ user });
 
   if (user.publicMetadata.role === "admin") {
     return "Admin";

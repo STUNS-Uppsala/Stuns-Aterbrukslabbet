@@ -1,7 +1,7 @@
 import { clerkClient } from "@clerk/nextjs";
-import GetUserEmail from "@/utils/get-user-email";
+import getUserEmail from "@/utils/get-user-email";
 
-export default async function GetNameAndEmailFromUserId(userId: string) {
+export default async function getNameAndEmailFromUserId(userId: string) {
   let returnedUser;
   try {
     returnedUser = await clerkClient.users.getUser(userId);
@@ -14,7 +14,7 @@ export default async function GetNameAndEmailFromUserId(userId: string) {
     : "Kunde inte hitta namn";
 
   const email = returnedUser
-    ? GetUserEmail({ user: returnedUser })
+    ? getUserEmail({ user: returnedUser })
     : "Kunde inte hitta email";
 
   return { fullName, email };

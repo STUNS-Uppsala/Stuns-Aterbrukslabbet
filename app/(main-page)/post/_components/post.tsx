@@ -9,8 +9,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Post } from "@prisma/client";
-import GetPostTypeSpecificData from "../../utils/get-post-color-and-expiration-text";
-import CreationDateToString from "../../utils/creation-date-to-string";
+import getPostTypeSpecificData from "../../utils/get-post-color-and-expiration-text";
+import creationDateToString from "../../utils/creation-date-to-string";
 
 interface PostProps {
   post: Post;
@@ -19,9 +19,9 @@ interface PostProps {
 }
 
 export default function Post({ post, name, email }: PostProps) {
-  const creationDateString = CreationDateToString(post.createdAt);
+  const creationDateString = creationDateToString(post.createdAt);
   const { postTypeColor, expirationDateText, disclaimerText } =
-    GetPostTypeSpecificData({
+    getPostTypeSpecificData({
       postType: post.postType,
     });
 

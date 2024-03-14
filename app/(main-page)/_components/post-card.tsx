@@ -1,12 +1,12 @@
 import { cn } from "@/lib/utils";
 
-import CreationDateToString from "../utils/creation-date-to-string";
-import GetPostColorAndExpirationText from "../utils/get-post-color-and-expiration-text";
+import creationDateToString from "../utils/creation-date-to-string";
+import getPostColorAndExpirationText from "../utils/get-post-color-and-expiration-text";
 import Link from "next/link";
 
 interface PostProps {
   title: string;
-  postId: number
+  postId: number;
   description: string | null;
   postType: string;
   location: string;
@@ -25,15 +25,13 @@ export default function PostCard({
   creationDate,
   hasCustomExpirationDate,
 }: PostProps) {
-  let creationDateString = CreationDateToString(creationDate);
-  const { postTypeColor, expirationDateText } = GetPostColorAndExpirationText({
+  let creationDateString = creationDateToString(creationDate);
+  const { postTypeColor, expirationDateText } = getPostColorAndExpirationText({
     postType,
   });
 
   return (
-    <Link
-      href={`/post/${postId}`}
-    >
+    <Link href={`/post/${postId}`}>
       <div className="flex md:py-4 md:pr-4 py-2 pr-2 bg-secondary w-full rounded-xl">
         <div
           className={cn(

@@ -2,7 +2,7 @@ interface GetExpirationDateAndPostTypeProps {
   postType: string;
 }
 
-export default function GetPostTypeSpecificData({
+export default function getPostTypeSpecificData({
   postType,
 }: GetExpirationDateAndPostTypeProps) {
   let postTypeColor, expirationDateText;
