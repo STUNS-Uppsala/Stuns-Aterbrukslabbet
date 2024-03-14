@@ -4,16 +4,17 @@ import FilterContainer from "./_components/filter-container";
 import getPostDataFromDb from "./utils/get-post-data-from-db";
 import Intro from "./_components/intro";
 import PostContainer from "./_components/post-container";
+import { PostType } from "@/types/globals";
 
 interface PageProps {
-  searchParams: { page?: string; search?: string };
+  searchParams: { type?: PostType; page?: string; search?: string };
 }
 
 export default async function MainPage({ searchParams }: PageProps) {
-  const postsPerPage = 10;
+  const postsPerPage = 2;
   const { postsList, queriedPostsCount, totalPostCount } =
     await getPostDataFromDb({
-      type: undefined,
+      type: searchParams.type,
       category: undefined,
       sort: "desc",
       postsPerPage: postsPerPage,
