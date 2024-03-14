@@ -37,11 +37,11 @@ export default async function GetPostDataFromDb({
     },
   } satisfies Prisma.PostFindManyArgs;
 
-  const [posts, foundPostsCount, totalPostCount] = await db.$transaction([
+  const [postsList, queriedPostsCount, totalPostCount] = await db.$transaction([
     db.post.findMany(query),
     db.post.count({ where: query.where }),
     db.post.count({ where: { postType: type } }),
   ]);
 
-  return { posts, foundPostsCount, totalPostCount };
+  return { postsList, queriedPostsCount, totalPostCount };
 }

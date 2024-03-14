@@ -11,23 +11,24 @@ interface PageProps {
 
 export default async function MainPage({ searchParams }: PageProps) {
   const postsPerPage = 10;
-  const { posts, foundPostsCount, totalPostCount } = await getPostDataFromDb({
-    type: undefined,
-    category: undefined,
-    sort: "desc",
-    postsPerPage: postsPerPage,
-    currentPage: Number(searchParams.page),
-    searchParams: searchParams.search,
-  });
+  const { postsList, queriedPostsCount, totalPostCount } =
+    await getPostDataFromDb({
+      type: undefined,
+      category: undefined,
+      sort: "desc",
+      postsPerPage: postsPerPage,
+      currentPage: Number(searchParams.page),
+      searchParams: searchParams.search,
+    });
   return (
     <div>
       {!searchParams.page && <Intro />}
       <FilterContainer
         totalPostCount={totalPostCount}
-        postCount={foundPostsCount}
+        postCount={queriedPostsCount}
       />
-      <PostContainer posts={posts} />
-      <Pagination itemCount={foundPostsCount} itemsPerPage={postsPerPage} />
+      <PostContainer posts={postsList} />
+      <Pagination itemCount={queriedPostsCount} itemsPerPage={postsPerPage} />
     </div>
   );
 }
