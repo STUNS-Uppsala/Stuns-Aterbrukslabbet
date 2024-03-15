@@ -21,11 +21,11 @@ export default function PostTypeButtons() {
 
   return (
     <div className="flex gap-x-3 mt-3 rounded-md">
-      <div className="bg-primary rounded-md bg-opacity-40 text-xs">
+      <div className="bg-primary rounded-md bg-opacity-40 md:text-base text-xs">
         <button
           onClick={() => handlePostTypeChange(undefined)}
           className={clsx(
-            "bg-primary hover:bg-opacity-100 bg-opacity-0 rounded-s-md md:px-4 md:py-2 px-2 py-[6px]",
+            "bg-primary hover:bg-opacity-100 bg-opacity-0 rounded-s-md md:px-3 md:py-2 px-2 py-[6px]",
             !searchParams.get("type") && "bg-opacity-100"
           )}
         >
@@ -34,7 +34,7 @@ export default function PostTypeButtons() {
         <button
           onClick={() => handlePostTypeChange("Erbjuds")}
           className={clsx(
-            "bg-primary hover:bg-opacity-100 bg-opacity-0 md:px-4 md:py-2 px-2 py-[6px]",
+            "bg-primary hover:bg-opacity-100 bg-opacity-0 md:px-3 md:py-2 px-2 py-[6px]",
             searchParams.get("type") === "Erbjuds" && "bg-opacity-100"
           )}
         >
@@ -43,7 +43,7 @@ export default function PostTypeButtons() {
         <button
           onClick={() => handlePostTypeChange("Efterfrågas")}
           className={clsx(
-            "bg-primary hover:bg-opacity-100 bg-opacity-0 rounded-e-md md:px-4 md:py-2 px-2 py-[6px]",
+            "bg-primary hover:bg-opacity-100 bg-opacity-0 rounded-e-md md:px-3 md:py-2 px-2 py-[6px]",
             searchParams.get("type") === "Efterfrågas" && "bg-opacity-100"
           )}
         >
