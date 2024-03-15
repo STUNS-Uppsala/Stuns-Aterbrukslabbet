@@ -8,7 +8,7 @@ interface PostContainerProps {
 
 export default async function PostContainer({ posts }: PostContainerProps) {
   return (
-    <div className="flex flex-col md:gap-y-5 gap-y-3 my-16 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
+    <div className="flex flex-col md:gap-y-5 gap-y-3 md:my-10 my-3 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
       {posts && posts.length > 0 ? (
         posts.map((post) => {
           return (

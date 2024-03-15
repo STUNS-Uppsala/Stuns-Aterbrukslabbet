@@ -4,12 +4,12 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface SearchBarProps {
   labelText: string;
-  itemsFoundText?: string;
+  itemsFoundCount?: number;
 }
 
 export default function SearchBar({
   labelText,
-  itemsFoundText,
+  itemsFoundCount,
 }: SearchBarProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -36,16 +36,18 @@ export default function SearchBar({
         }}
         className="flex flex-col w-full"
       >
-        <div className="flex justify-between px-1 pb-1">
-          <label htmlFor="search" className="text-xl font-medium">
+        <div className="flex items-end justify-between px-1 pb-1">
+          <label htmlFor="search" className="md:text-lg text-sm font-medium">
             {labelText}
           </label>
-          {searchParams.get("search") && itemsFoundText && (
-            <p>{itemsFoundText}</p>
+          {searchParams.get("search") && (
+            <p className="md:text-base text-xs">
+              {`${itemsFoundCount} resultat`}
+            </p>
           )}
         </div>
         <input
-          className="rounded-md bg-primary h-12 p-3"
+          className="rounded-md bg-primary md:h-12 h-9 md:px-3 px-2 md:text-lg text-sm"
           placeholder="Sök..."
           onChange={handleSearchChange}
           defaultValue={searchParams.get("search")?.toString()}

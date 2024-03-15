@@ -12,10 +12,10 @@ export default function FilterContainer({
   postCount,
 }: FilterContainerProps) {
   const labelText = `Sök bland ${totalPostCount} annonser`;
-  const itemsFoundText = `${postCount} inlägg hittades`;
+
   return (
-    <div className="flex flex-col md:gap-y-3 gap-y-2 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
-      <SearchBar labelText={labelText} itemsFoundText={itemsFoundText} />
+    <div className="flex flex-col md:gap-y-3 gap-y-2 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px] mt-4">
+      <SearchBar labelText={labelText} itemsFoundCount={postCount} />
       <PostTypeButtons />
     </div>
   );
