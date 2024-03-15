@@ -1,6 +1,6 @@
 import { Post } from "@prisma/client";
 
-import PostCard from "./post";
+import PostCard from "./post-card";
 
 interface PostContainerProps {
   posts?: Post[];
@@ -15,6 +15,7 @@ export default async function PostContainer({ posts }: PostContainerProps) {
             <PostCard
               key={post.id}
               title={post.title}
+              postId={post.id}
               description={post.description}
               postType={post.postType}
               location={post.location}

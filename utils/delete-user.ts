@@ -3,7 +3,7 @@
 import { checkRole } from "@/utils/check-role";
 import { clerkClient } from "@clerk/nextjs";
 
-import GetUserEmail from "./get-user-email";
+import getUserEmail from "./get-user-email";
 
 interface DeleteUserPops {
   id: string;
@@ -28,5 +28,5 @@ export default async function deleteUser({ id }: DeleteUserPops) {
     return { error: "Kunde inte ta bort användare" };
   }
 
-  return { data: GetUserEmail({ user }) };
+  return { data: getUserEmail({ user }) };
 }
