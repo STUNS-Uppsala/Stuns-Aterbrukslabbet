@@ -12,9 +12,8 @@ export default function PostTypeButtons() {
 
   function handlePostTypeChange(postType: PostType) {
     const params = new URLSearchParams(searchParams);
-    if (params.get("page")) {
-      params.delete("page");
-    }
+
+    params.get("page") && params.delete("page");
     postType ? params.set("type", postType) : params.delete("type");
 
     replace(`${pathname}?${params.toString()}`);
