@@ -1,5 +1,7 @@
 import SearchBar from "@/components/search-bar";
 
+import PostTypeButtons from "./post-type-buttons";
+
 interface FilterContainerProps {
   totalPostCount: number;
   postCount: number;
@@ -12,8 +14,9 @@ export default function FilterContainer({
   const labelText = `Sök bland ${totalPostCount} annonser`;
   const itemsFoundText = `${postCount} inlägg hittades`;
   return (
-    <div className="md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
+    <div className="flex flex-col md:gap-y-3 gap-y-2 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
       <SearchBar labelText={labelText} itemsFoundText={itemsFoundText} />
+      <PostTypeButtons />
     </div>
   );
 }
