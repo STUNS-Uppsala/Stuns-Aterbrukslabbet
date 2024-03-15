@@ -2,7 +2,7 @@
 
 import { checkRole } from "@/utils/check-role";
 import { clerkClient } from "@clerk/nextjs/server";
-import GetUserEmail from "@/utils/get-user-email";
+import getUserEmail from "@/utils/get-user-email";
 
 interface ChangeRoleProps {
   id: string;
@@ -29,5 +29,5 @@ export default async function changeRole({ id, newRole }: ChangeRoleProps) {
   } catch (err) {
     return { error: "Kunde inte ändra roll" };
   }
-  return { data: GetUserEmail({ user: affectedUser }) };
+  return { data: getUserEmail({ user: affectedUser }) };
 }
