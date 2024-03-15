@@ -1,24 +1,16 @@
-import Pagination from "@/components/pagination";
+import { Post } from "@prisma/client";
 
 import getPostAndPages from "../utils/get-posts-and-pages";
 import PostCard from "./post-card";
 
 interface PostContainerProps {
-  page?: number;
+  posts?: Post[];
 }
 
-export default async function PostContainer({ page }: PostContainerProps) {
-  const postsPerPage = 10;
-  const { posts, pages } = await getPostAndPages({
-    type: undefined,
-    category: undefined,
-    sort: "desc",
-    postsPerPage: postsPerPage,
-    page: page,
-  });
+export default async function PostContainer({ posts }: PostContainerProps) {
   return (
     <div className="flex flex-col md:gap-y-5 gap-y-3 my-16 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
-      {posts.length > 0 ? (
+      {posts && posts.length > 0 ? (
         posts.map((post) => {
           return (
             <PostCard
@@ -41,7 +33,6 @@ export default async function PostContainer({ page }: PostContainerProps) {
           </p>
         </div>
       )}
-      <Pagination pages={pages} />
     </div>
   );
 }
