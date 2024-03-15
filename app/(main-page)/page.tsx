@@ -1,17 +1,17 @@
 import Pagination from "@/components/pagination";
+import { PostType } from "@/types/globals";
 
 import FilterContainer from "./_components/filter-container";
 import getPostDataFromDb from "./utils/get-post-data-from-db";
 import Intro from "./_components/intro";
 import PostContainer from "./_components/post-container";
-import { PostType } from "@/types/globals";
 
 interface PageProps {
   searchParams: { type?: PostType; page?: string; search?: string };
 }
 
 export default async function MainPage({ searchParams }: PageProps) {
-  const postsPerPage = 2;
+  const postsPerPage = 10;
   const { postsList, queriedPostsCount, totalPostCount } =
     await getPostDataFromDb({
       type: searchParams.type,
