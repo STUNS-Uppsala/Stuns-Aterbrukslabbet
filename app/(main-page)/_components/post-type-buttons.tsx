@@ -20,7 +20,7 @@ export default function PostTypeButtons() {
   }
 
   return (
-    <div className="flex gap-x-3 mt-3 rounded-md">
+    <div className="flex gap-x-3 rounded-md">
       <div className="bg-primary rounded-md bg-opacity-40 md:text-lg text-xs">
         <button
           onClick={() => handlePostTypeChange(undefined)}
