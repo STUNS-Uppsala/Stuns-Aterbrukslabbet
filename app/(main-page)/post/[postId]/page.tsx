@@ -14,7 +14,6 @@ export default async function PostIdPage({ params }: PostIdPageProps) {
   const post = await getPostData(Number(params.postId));
   if (post) {
     const { fullName, email } = await getNameAndEmailFromUserId(post.userId);
-
     return <Post post={post} name={fullName} email={email} />;
   } else {
     return (

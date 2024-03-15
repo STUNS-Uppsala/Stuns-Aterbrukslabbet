@@ -1,6 +1,5 @@
 import { Post } from "@prisma/client";
 
-import getPostAndPages from "../utils/get-posts-and-pages";
 import PostCard from "./post-card";
 
 interface PostContainerProps {
