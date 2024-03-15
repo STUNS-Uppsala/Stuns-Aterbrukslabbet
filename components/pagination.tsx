@@ -83,21 +83,23 @@ export default function Pagination({
         <div className="flex items-center">
           {pages > 6 && (
             <button onClick={() => handlePageChange(1)}>
-              <ChevronFirst className="h-6 w-6" />
+              <ChevronFirst className="md:h-6 md:w-6 h-4 w-4" />
             </button>
           )}
           <button onClick={() => handlePageChange(currentPage - 1)}>
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="md:h-6 md:w-6 h-4 w-4" />
           </button>
         </div>
-        <div className="flex justify-center gap-x-4 text-xl">{pageButtons}</div>
+        <div className="flex justify-center gap-x-4 md:text-xl text-base">
+          {pageButtons}
+        </div>
         <div className="flex items-center">
           <button onClick={() => handlePageChange(currentPage + 1)}>
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="md:h-6 md:w-6 h-4 w-4" />
           </button>
           {pages > 6 && (
             <button onClick={() => handlePageChange(pages)}>
-              <ChevronLast className="h-6 w-6" />
+              <ChevronLast className="md:h-6 md:w-6 h-4 w-4" />
             </button>
           )}
         </div>
