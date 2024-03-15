@@ -29,11 +29,10 @@ export default async function AdminDashboard({
   });
 
   const labelText = `Sök bland ${totalUserCount} användare`;
-  const itemsFoundText = `${queriedUserCount} användare hittades`;
 
   return (
     <div className="max-w-screen-md mx-auto p-3 pt-10">
-      <SearchBar labelText={labelText} itemsFoundText={itemsFoundText} />
+      <SearchBar labelText={labelText} itemsFoundCount={queriedUserCount} />
       <div className="flex flex-col items-center mx-auto gap-y-3 pt-6">
         {usersList.map((user) => {
           return <UserCard key={user.id} user={user} />;
