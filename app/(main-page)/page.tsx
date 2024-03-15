@@ -6,20 +6,20 @@ import getPostDataFromDb from "./utils/get-post-data-from-db";
 import Intro from "./_components/intro";
 import PostContainer from "./_components/post-container";
 
-interface PageProps {
+interface MainPageProps {
   searchParams: { type?: PostType; page?: string; search?: string };
 }
 
-export default async function MainPage({ searchParams }: PageProps) {
+export default async function MainPage({ searchParams }: MainPageProps) {
   const postsPerPage = 10;
   const { postsList, queriedPostsCount, totalPostCount } =
     await getPostDataFromDb({
       type: searchParams.type,
       category: undefined,
-      sort: "desc",
-      postsPerPage: postsPerPage,
       currentPage: Number(searchParams.page),
       searchParams: searchParams.search,
+      postsPerPage: postsPerPage,
+      sort: "desc",
     });
   return (
     <div>
