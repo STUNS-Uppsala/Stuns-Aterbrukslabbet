@@ -26,7 +26,7 @@ export default async function PostContainer({ posts }: PostContainerProps) {
         })
       ) : (
         <div className="flex justify-center">
-          <p className="text-center bg-secondary text-xl w-1/3 p-4 rounded-lg">
+          <p className="text-center bg-secondary md:text-xl text-md md:w-1/3 w-3/5 md:p-4 py-3 rounded-lg">
             Inga inlägg hittades
           </p>
         </div>
