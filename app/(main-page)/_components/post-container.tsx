@@ -1,6 +1,6 @@
 import { Post } from "@prisma/client";
 
-import PostCard from "./post";
+import PostCard from "./post-card";
 
 interface PostContainerProps {
   posts?: Post[];
@@ -15,6 +15,7 @@ export default async function PostContainer({ posts }: PostContainerProps) {
             <PostCard
               key={post.id}
               title={post.title}
+              postId={post.id}
               description={post.description}
               postType={post.postType}
               location={post.location}
@@ -26,7 +27,7 @@ export default async function PostContainer({ posts }: PostContainerProps) {
         })
       ) : (
         <div className="flex justify-center">
-          <p className="text-center bg-secondary text-xl w-1/3 p-4 rounded-lg">
+          <p className="text-center bg-secondary md:text-xl text-md md:w-1/3 w-3/5 md:p-4 py-3 rounded-lg">
             Inga inlägg hittades
           </p>
         </div>

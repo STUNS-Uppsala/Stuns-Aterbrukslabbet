@@ -1,4 +1,4 @@
-import GetUserEmail from "@/utils/get-user-email";
+import getUserEmail from "@/utils/get-user-email";
 import { User } from "@clerk/nextjs/server";
 
 import UserCardActions from "./user-card-actions";
@@ -17,7 +17,7 @@ export default function UserCard({ user }: UserCardProps) {
         <div className="line-clamp-1">
           {user.firstName} {user.lastName}
         </div>
-        <div className="break-all line-clamp-1">{GetUserEmail({ user })}</div>
+        <div className="break-all line-clamp-1">{getUserEmail({ user })}</div>
       </div>
       <div className="flex flex-col gap-y-2 items-end min-w-fit">
         <UserCardActions user={user} />
