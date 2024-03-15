@@ -1,8 +1,9 @@
 "use client";
 
-import { PostType } from "@/types/globals";
 import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
+import { PostType } from "@/types/globals";
 
 export default function PostTypeButtons() {
   const pathname = usePathname();
