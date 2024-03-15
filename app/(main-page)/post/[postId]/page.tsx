@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import getPostData from "../../utils/get-post-data";
 import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
+import getPostData from "../../utils/get-post-data";
 import Post from "../_components/post";
 
 interface PostIdPageProps {
