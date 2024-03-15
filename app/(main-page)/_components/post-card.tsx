@@ -3,7 +3,7 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 import creationDateToString from "../utils/creation-date-to-string";
-import getPostColorAndExpirationText from "../utils/get-post-color-and-expiration-text";
+import getPostColorAndExpirationText from "../utils/get-post-type-specific-data";
 
 interface PostProps {
   title: string;

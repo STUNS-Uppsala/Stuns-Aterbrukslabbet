@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Post } from "@prisma/client";
 
-import getPostTypeSpecificData from "../../utils/get-post-color-and-expiration-text";
+import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
 import creationDateToString from "../../utils/creation-date-to-string";
 
 interface PostProps {
