@@ -45,8 +45,13 @@ export async function POST(req: Request) {
     });
   }
 
-  if (event.type == "user.created") {
-    console.log(payload);
+  if (event.type === "user.created") {
+    try {
+      payload.user.publicMetadata.role = "member";
+      console.log("worked");
+    } catch (err) {
+      console.error(err);
+    }
   }
   return new Response("", { status: 200 });
 }
