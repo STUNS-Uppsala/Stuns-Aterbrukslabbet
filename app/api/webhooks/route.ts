@@ -1,6 +1,7 @@
 import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
+import changeRoleToMember from "@/utils/change-role-to-member";
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
@@ -47,7 +48,7 @@ export async function POST(req: Request) {
 
   if (event.type === "user.created") {
     try {
-      payload.user.publicMetadata.role = "member";
+      changeRoleToMember(payload.data.id);
       console.log("worked");
     } catch (err) {
       console.error(err);
