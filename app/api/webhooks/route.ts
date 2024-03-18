@@ -59,14 +59,13 @@ export async function POST(req: NextRequest) {
   }
 
   if (event.type === "session.created") {
-    if (!(await checkIfRoleIsCorrect({ id: payload.data.user.id }))) {
+    if (!(await checkIfRoleIsCorrect({ id: payload.data.user_id }))) {
       try {
-        await changeRoleToMember({ id: payload.data.user.id });
+        await changeRoleToMember({ id: payload.data.user_id });
       } catch (err) {
         console.error(err);
       }
     }
   }
-
   return new Response("", { status: 200 });
 }
