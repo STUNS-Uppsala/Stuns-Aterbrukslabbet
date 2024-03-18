@@ -23,7 +23,7 @@ export default function PostCategoryButtons() {
 
   return (
     <div className="flex gap-x-3 rounded-md">
-      <div className="bg-primary bg-opacity-40 rounded-md md:text-base text-[9px]">
+      <div className="flex items-center bg-primary bg-opacity-40 rounded-md md:text-base text-[9px]">
         <button
           onClick={() => handlePostCategoryChange(undefined)}
           className={clsx(
@@ -33,6 +33,7 @@ export default function PostCategoryButtons() {
         >
           Alla
         </button>
+        <div className="md:hidden w-[1px] h-5/6 bg-black bg-opacity-20"></div>
         <button
           onClick={() => handlePostCategoryChange("Förbrukningsvara")}
           className={clsx(
@@ -43,6 +44,7 @@ export default function PostCategoryButtons() {
         >
           Förbrukningsvara
         </button>
+        <div className="md:hidden w-[1px] h-5/6 bg-black bg-opacity-20"></div>
         <button
           onClick={() => handlePostCategoryChange("Instrument/Maskin")}
           className={clsx(
@@ -53,6 +55,7 @@ export default function PostCategoryButtons() {
         >
           Instrument/Maskin
         </button>
+        <div className="md:hidden w-[1px] h-5/6 bg-black bg-opacity-20"></div>
         <button
           onClick={() => handlePostCategoryChange("Inventarie")}
           className={clsx(
