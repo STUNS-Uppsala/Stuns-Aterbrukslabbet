@@ -1,7 +1,7 @@
 import SearchBar from "@/components/search-bar";
 
-import PostTypeButtons from "./post-type-buttons";
 import PostCategoryButtons from "./post-category-buttons";
+import PostTypeButtons from "./post-type-buttons";
 
 interface FilterContainerProps {
   totalPostCount: number;
