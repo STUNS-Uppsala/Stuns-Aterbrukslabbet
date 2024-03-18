@@ -79,7 +79,7 @@ export default function Pagination({
     return;
   } else {
     return (
-      <div className="flex justify-center items-center pt-4 gap-x-4">
+      <div className="flex justify-center items-center mt-4 gap-x-4">
         <div className="flex items-center">
           {pages > 6 && (
             <button onClick={() => handlePageChange(1)}>

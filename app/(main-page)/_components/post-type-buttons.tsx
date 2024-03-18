@@ -21,7 +21,7 @@ export default function PostTypeButtons() {
 
   return (
     <div className="flex gap-x-3 rounded-md">
-      <div className="bg-primary bg-opacity-40 rounded-md md:text-lg text-xs">
+      <div className="flex items-center bg-primary bg-opacity-40 rounded-md md:text-lg text-xs">
         <button
           onClick={() => handlePostTypeChange(undefined)}
           className={clsx(
@@ -31,6 +31,7 @@ export default function PostTypeButtons() {
         >
           Alla
         </button>
+        <div className="md:hidden w-[1px] h-5/6 bg-black bg-opacity-20"></div>
         <button
           onClick={() => handlePostTypeChange("Erbjuds")}
           className={clsx(
@@ -40,6 +41,7 @@ export default function PostTypeButtons() {
         >
           Erbjuds
         </button>
+        <div className="md:hidden w-[1px] h-5/6 bg-black bg-opacity-20"></div>
         <button
           onClick={() => handlePostTypeChange("Efterfrågas")}
           className={clsx(
