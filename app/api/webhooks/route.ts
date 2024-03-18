@@ -1,9 +1,13 @@
-import { Webhook } from "svix";
 import { headers } from "next/headers";
-import { WebhookEvent } from "@clerk/nextjs/server";
-import changeRoleToMember from "@/utils/change-role-to-member";
+import { NextRequest } from "next/server";
+import { Webhook } from "svix";
 
-export async function POST(req: Request) {
+import { WebhookEvent } from "@clerk/nextjs/server";
+
+import changeRoleToMember from "../_utils/change-role-to-member";
+import checkIfRoleIsCorrect from "../_utils/check-if-role-is-correct";
+
+export async function POST(req: NextRequest) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
@@ -48,11 +52,21 @@ export async function POST(req: Request) {
 
   if (event.type === "user.created") {
     try {
-      changeRoleToMember(payload.data.id);
-      console.log("worked");
+      await changeRoleToMember({ id: payload.data.id });
     } catch (err) {
       console.error(err);
     }
   }
+
+  if (event.type === "session.created") {
+    if (!(await checkIfRoleIsCorrect({ id: payload.data.user.id }))) {
+      try {
+        await changeRoleToMember({ id: payload.data.user.id });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+
   return new Response("", { status: 200 });
 }
