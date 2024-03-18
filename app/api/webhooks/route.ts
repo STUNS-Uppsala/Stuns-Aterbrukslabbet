@@ -50,22 +50,21 @@ export async function POST(req: NextRequest) {
     });
   }
 
-  if (event.type === "user.created") {
-    try {
-      await changeRoleToMember({ id: payload.data.id });
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
-  if (event.type === "session.created") {
-    if (!(await checkIfRoleIsCorrect({ id: payload.data.user_id }))) {
+  switch (event.type) {
+    case "user.created":
       try {
-        await changeRoleToMember({ id: payload.data.user_id });
+        await changeRoleToMember({ id: payload.data.id });
       } catch (err) {
-        console.error(err);
+        return { error: err as string };
       }
-    }
+
+    case "session.created":
+      if (!(await checkIfRoleIsCorrect({ id: payload.data.user_id }))) {
+        try {
+          await changeRoleToMember({ id: payload.data.user_id });
+        } catch (err) {
+          return { error: err as string };
+        }
+      }
   }
-  return new Response("", { status: 200 });
 }
