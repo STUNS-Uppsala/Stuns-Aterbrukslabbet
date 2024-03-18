@@ -13,20 +13,22 @@ import { Post } from "@prisma/client";
 
 import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
 import creationDateToString from "../../utils/creation-date-to-string";
+import DeleteUserButton from "@/components/delete-user-button";
+import DeletePostButton from "@/components/delete-post-button";
 
 interface PostProps {
   post: Post;
   name: string;
   email: string;
+  isAdmin: boolean;
 }
 
-export default function Post({ post, name, email }: PostProps) {
+export default function Post({ post, name, email, isAdmin }: PostProps) {
   const creationDateString = creationDateToString(post.createdAt);
   const { postTypeColor, expirationDateText, disclaimerText } =
     getPostTypeSpecificData({
       postType: post.postType,
     });
-
   return (
     <article className="mt-5 md:pt-10 pt-3 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
       {/* Post image should replace the div below */}
@@ -90,6 +92,12 @@ export default function Post({ post, name, email }: PostProps) {
               </DialogHeader>
             </DialogContent>
           </Dialog>
+          {isAdmin && (
+            <>
+              <DeletePostButton id={post.id} postTitle={post.title} />
+              <DeleteUserButton id={post.userId} email={email} redirectPath={"/"} />
+            </>
+          )}
         </div>
       </div>
     </article>

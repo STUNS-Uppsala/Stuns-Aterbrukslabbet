@@ -3,6 +3,7 @@ import Link from "next/link";
 import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
 import getPostData from "../../utils/get-post-data";
 import Post from "../_components/post";
+import { checkRole } from "@/utils/check-role";
 
 interface PostIdPageProps {
   params: {
@@ -14,8 +15,12 @@ export default async function PostIdPage({ params }: PostIdPageProps) {
   const post = await getPostData(Number(params.postId));
   if (post) {
     const { fullName, email } = await getNameAndEmailFromUserId(post.userId);
-    return <Post post={post} name={fullName} email={email} />;
-  } else {
+    let admin = false;
+    if(checkRole("admin") || checkRole("moderator")){
+      admin = true
+    }
+    return <Post post={post} name={fullName} email={email} isAdmin={admin} />;
+  } else { 
     return (
       <div className="flex w-full h-[52vh] items-end justify-center text-center">
         <div className="flex flex-col max-w-screen-sm gap-y-2 px-3">
