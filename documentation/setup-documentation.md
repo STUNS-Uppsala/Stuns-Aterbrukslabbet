@@ -65,7 +65,7 @@ On the website there exists an admin dashboard that is only accessible to users 
 ## Set up database with prisma
 
 - Create a PostgreSQL database of your choosing and get the database url and the direct url from that database.
-- [Documentation on database connection strings](https://www.prisma.io/docs/orm/overview/databases/postgresql#connection-details)
+  [Documentation on database connection strings](https://www.prisma.io/docs/orm/overview/databases/postgresql#connection-details)
 
 > If you use Supabase as your database the transaction url is equivalent to the database url and the session url is equivalent to the direct url
 
@@ -101,7 +101,7 @@ This application uses webhooks to assign the member role on account creation.
 
 ### Set up endpoint
 
-- Go to webhooks on you clerk dashboard, then press add Endpoint.
+- Go to webhooks on your clerk dashboard, then press add Endpoint.
 
 - The endpoint URL should be your url + /api/webhooks for example https://stuns.ntig.dev/api/webhooks.
 
