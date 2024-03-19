@@ -1,5 +1,4 @@
 import { headers } from "next/headers";
-import { NextRequest } from "next/server";
 import { NextRequest, NextResponse } from "next/server";
 import { Webhook } from "svix";
 
@@ -12,13 +11,9 @@ export async function POST(req: NextRequest) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
-    throw new Error(
-      "Please add WEBHOOK_SECRET from Clerk Dashboard to .env.local"
-    );
     throw new Error("Please add WEBHOOK_SECRET from Clerk Dashboard to .env");
   }
 
-  // Gets the headers
   const headerPayload = headers();
   const svix_id = headerPayload.get("svix-id");
   const svix_timestamp = headerPayload.get("svix-timestamp");
@@ -31,13 +26,9 @@ export async function POST(req: NextRequest) {
   }
 
   const payload = await req.json();
-
-  // Creates a new Svix instance
   const webhook = new Webhook(WEBHOOK_SECRET);
-
   let event: WebhookEvent;
 
-  // Verifies the payload with the headers
   try {
     const payloadString = JSON.stringify(payload);
     event = webhook.verify(payloadString, {
