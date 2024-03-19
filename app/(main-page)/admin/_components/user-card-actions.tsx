@@ -25,10 +25,7 @@ export default function UserCardActions({ user }: UserCardActionsProps) {
     } else {
       return "Moderator";
     }
-  } else if (
-    user.publicMetadata.role === "member" ||
-    !user.publicMetadata.role
-  ) {
+  } else if (user.publicMetadata.role === "member") {
     if (checkRole("admin")) {
       return (
         <>
