@@ -20,7 +20,7 @@ export default async function checkIfRoleIsCorrect({
     } else {
       return false;
     }
-  } catch (err) {
-    return { error: "Kunde inte ändra roll" };
+  } catch {
+    return { error: "Failed to change role" };
   }
 }

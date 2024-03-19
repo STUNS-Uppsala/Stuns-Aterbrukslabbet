@@ -47,16 +47,16 @@ export async function POST(req: NextRequest) {
     case "user.created":
       try {
         await changeRoleToMember({ id: payload.data.id });
-      } catch (err) {
-        return { error: err as string };
+      } catch (error) {
+        return { error: error };
       }
 
     case "session.created":
       if (!(await checkIfRoleIsCorrect({ id: payload.data.user_id }))) {
         try {
           await changeRoleToMember({ id: payload.data.user_id });
-        } catch (err) {
-          return { error: err as string };
+        } catch (error) {
+          return { error: error };
         }
       }
   }

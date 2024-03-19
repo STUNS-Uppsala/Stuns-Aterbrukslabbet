@@ -13,8 +13,8 @@ export default async function changeRoleToMember({
     await clerkClient.users.updateUser(id, {
       publicMetadata: { role: "member" },
     });
-  } catch (err) {
-    return { error: "Kunde inte ändra roll" };
+  } catch {
+    return { error: "Failed to change role" };
   }
   return { Response: 200 };
 }
