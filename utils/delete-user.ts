@@ -1,10 +1,8 @@
-"use server";
-
 import { checkRole } from "@/utils/check-role";
 import { clerkClient } from "@clerk/nextjs";
+import { db } from "@/lib/db";
 
 import getUserEmail from "./get-user-email";
-import deletePostsByUser from "./delete-posts-by-user";
 
 interface DeleteUserPops {
   id: string;
@@ -15,8 +13,8 @@ export default async function deleteUser({ id }: DeleteUserPops) {
   try {
     user = await clerkClient.users.getUser(id);
   } catch {
-    return { error: "Kunde inte hämta användare"};
-  }  
+    return { error: "Kunde inte hämta användare" };
+  }
 
   if (
     (!checkRole("admin") && !checkRole("moderator")) ||
@@ -26,11 +24,15 @@ export default async function deleteUser({ id }: DeleteUserPops) {
     return { error: "Obehörig" };
   }
 
-  let deletedPostResult;
+  let deletedPosts;
   try {
-    deletedPostResult = await deletePostsByUser({userId: id});
+    deletedPosts = await db.post.deleteMany({
+      where: {
+        userId: id,
+      },
+    });
   } catch {
-    return { error: "Kunde inte ta bort användarens inlägg"};
+    return { error: "Kunde inte ta bort inlägg" };
   }
 
   let affectedUser;
@@ -41,5 +43,5 @@ export default async function deleteUser({ id }: DeleteUserPops) {
     return { error: "Kunde inte ta bort användare" };
   }
 
-  return { data: getUserEmail({ user }), deletedPostCount: deletedPostResult.data };
+  return { data: getUserEmail({ user }), deletedPostCount: deletedPosts.count };
 }

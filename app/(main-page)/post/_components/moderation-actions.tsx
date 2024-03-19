@@ -1,8 +1,6 @@
-"use server";
-
 import { checkRole } from "@/utils/check-role";
-import DeleteUserButton from "@/components/delete-user-button";
 import DeletePostButton from "@/components/delete-post-button";
+import DeleteUserButton from "@/components/delete-user-button";
 
 interface ModerationActionsProps {
   postUserId: string;
@@ -17,7 +15,7 @@ export default async function ModerationActions({
   postId,
   postTitle,
   email,
-  postUserRole
+  postUserRole,
 }: ModerationActionsProps) {
   let moderationActions;
   if (postUserRole) {
@@ -33,10 +31,7 @@ export default async function ModerationActions({
             <p>Admin</p>
           </>
         );
-      } else if (
-        postUserRole === "moderator" &&
-        checkRole("admin")
-      ) {
+      } else if (postUserRole === "moderator" && checkRole("admin")) {
         moderationActions = (
           <>
             <DeletePostButton
@@ -47,10 +42,7 @@ export default async function ModerationActions({
             <DeleteUserButton id={postUserId} email={email} redirectPath="/" />
           </>
         );
-      } else if (
-        postUserRole === "moderator" &&
-        checkRole("moderator")
-      ) {
+      } else if (postUserRole === "moderator" && checkRole("moderator")) {
         moderationActions = (
           <>
             <DeletePostButton
@@ -61,7 +53,7 @@ export default async function ModerationActions({
             <p>Moderator</p>
           </>
         );
-      } else{
+      } else {
         moderationActions = (
           <>
             <DeletePostButton
@@ -71,7 +63,7 @@ export default async function ModerationActions({
             />
             <DeleteUserButton id={postUserId} email={email} redirectPath="/" />
           </>
-        )
+        );
       }
     } else {
       moderationActions = <></>;

@@ -1,11 +1,9 @@
-"use server";
-
 import Link from "next/link";
 
 import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
 import getPostData from "../../utils/get-post-data";
+import getUserRoleFromUserId from "../../utils/get-user-role-from-user-id";
 import Post from "../_components/post";
-import GetUserFromUserId from "../../utils/get-user-from-user-id";
 
 interface PostIdPageProps {
   params: {
@@ -17,7 +15,7 @@ export default async function PostIdPage({ params }: PostIdPageProps) {
   const post = await getPostData(Number(params.postId));
   if (post) {
     const { fullName, email } = await getNameAndEmailFromUserId(post.userId);
-    const postUserRole = await GetUserFromUserId({ userId: post.userId });
+    const postUserRole = await getUserRoleFromUserId({ userId: post.userId });
     if (postUserRole) {
       return (
         <Post

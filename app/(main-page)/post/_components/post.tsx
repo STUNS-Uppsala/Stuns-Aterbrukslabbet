@@ -1,18 +1,11 @@
-"use server";
-
 import { Clock, MapPin, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Post } from "@prisma/client";
 
-import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
 import creationDateToString from "../../utils/creation-date-to-string";
+import ContactMeDialog from "./contact-me-dialog";
+import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
 import ModerationActions from "./moderation-actions";
 
 interface PostProps {
@@ -22,7 +15,12 @@ interface PostProps {
   postUserRole: string;
 }
 
-export default async function Post({ post, name, email, postUserRole }: PostProps) {
+export default async function Post({
+  post,
+  name,
+  email,
+  postUserRole,
+}: PostProps) {
   const creationDateString = creationDateToString(post.createdAt);
   const { postTypeColor, expirationDateText, disclaimerText } =
     getPostTypeSpecificData({
@@ -70,27 +68,11 @@ export default async function Post({ post, name, email, postUserRole }: PostProp
           <p className="md:text-xl text-sm pl-1">{name}</p>
         </section>
         <div className="flex justify-between items-center">
-          <Dialog>
-            <DialogTrigger>
-              <div className="flex md:h-10 md:w-40 h-8 w-32 md:text-xl text-base rounded-lg bg-primary justify-center items-center">
-                Kontakta mig
-              </div>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <p className="flex justify-center text-base">{name}</p>
-                <a
-                  className="flex justify-center hover:underline text-blue-600"
-                  href={`mailto:${email}`}
-                >
-                  {email}
-                </a>
-                <p className="pt-6 text-center font-semibold">
-                  {disclaimerText}
-                </p>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
+          <ContactMeDialog
+            name={name}
+            email={email}
+            disclaimerText={disclaimerText}
+          />
           <ModerationActions
             postUserId={post.userId}
             postId={post.id}

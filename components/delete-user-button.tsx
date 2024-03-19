@@ -55,9 +55,9 @@ export default function DeleteUserButton({
           <AlertDialogTitle>Är du säker?</AlertDialogTitle>
           <AlertDialogDescription>
             Detta kommer
-            <span className="font-bold"> permanent</span> ta bort användaren 
+            <span className="font-bold"> permanent</span> ta bort användaren
             <p className="font-semibold break-all">{email}</p>
-            och 
+            och
             <span className="font-bold"> alla</span> deras inlägg.
           </AlertDialogDescription>
         </AlertDialogHeader>
