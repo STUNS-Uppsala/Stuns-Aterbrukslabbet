@@ -1,4 +1,4 @@
-"use client";
+"use server";
 
 import { Clock, MapPin, User } from "lucide-react";
 
@@ -13,17 +13,16 @@ import { Post } from "@prisma/client";
 
 import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
 import creationDateToString from "../../utils/creation-date-to-string";
-import DeleteUserButton from "@/components/delete-user-button";
-import DeletePostButton from "@/components/delete-post-button";
+import ModerationActions from "./moderation-actions";
 
 interface PostProps {
   post: Post;
   name: string;
   email: string;
-  isAdmin: boolean;
+  postUserRole: string;
 }
 
-export default function Post({ post, name, email, isAdmin }: PostProps) {
+export default async function Post({ post, name, email, postUserRole }: PostProps) {
   const creationDateString = creationDateToString(post.createdAt);
   const { postTypeColor, expirationDateText, disclaimerText } =
     getPostTypeSpecificData({
@@ -92,12 +91,13 @@ export default function Post({ post, name, email, isAdmin }: PostProps) {
               </DialogHeader>
             </DialogContent>
           </Dialog>
-          {isAdmin && (
-            <>
-              <DeletePostButton id={post.id} postTitle={post.title} />
-              <DeleteUserButton id={post.userId} email={email} redirectPath={"/"} />
-            </>
-          )}
+          <ModerationActions
+            postUserId={post.userId}
+            postId={post.id}
+            postTitle={post.title}
+            email={email}
+            postUserRole={postUserRole}
+          />
         </div>
       </div>
     </article>

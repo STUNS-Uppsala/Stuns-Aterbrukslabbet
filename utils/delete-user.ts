@@ -14,15 +14,9 @@ export default async function deleteUser({ id }: DeleteUserPops) {
   let user;
   try {
     user = await clerkClient.users.getUser(id);
-  } catch (err) {
-    return { error: err as string};
-  }
-
-  try {
-    deletePostsByUser({userId: id});
   } catch {
-    return { error: "Kunde inte ta bort användarens inlägg"};
-  }
+    return { error: "Kunde inte hämta användare"};
+  }  
 
   if (
     (!checkRole("admin") && !checkRole("moderator")) ||
@@ -30,6 +24,13 @@ export default async function deleteUser({ id }: DeleteUserPops) {
     (user.publicMetadata.role === "moderator" && checkRole("moderator"))
   ) {
     return { error: "Obehörig" };
+  }
+
+  let deletedPostResult;
+  try {
+    deletedPostResult = await deletePostsByUser({userId: id});
+  } catch {
+    return { error: "Kunde inte ta bort användarens inlägg"};
   }
 
   let affectedUser;
@@ -40,5 +41,5 @@ export default async function deleteUser({ id }: DeleteUserPops) {
     return { error: "Kunde inte ta bort användare" };
   }
 
-  return { data: getUserEmail({ user }) };
+  return { data: getUserEmail({ user }), deletedPostCount: deletedPostResult.data };
 }

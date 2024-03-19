@@ -15,14 +15,15 @@ export default async function deletePostsByUser({
     return { error: "Obehörig" };
   }
 
+  let deletedPostCount;
   try {
-    await db.post.deleteMany({
+    deletedPostCount = await db.post.deleteMany({
       where: {
         userId: userId,
       },
     });
-  } catch (err) {
+  } catch {
     return { error: "Kunde inte ta bort inlägg" };
   }
-  return ;
+  return { data: deletedPostCount.count };
 }

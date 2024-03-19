@@ -19,9 +19,10 @@ import deletePost from "@/utils/delete-post";
 interface DeletePostButtonProps {
   id: number;
   postTitle: string
+  redirectPath?: string;
 }
 
-export default function DeletePostButton({ id, postTitle }: DeletePostButtonProps) {
+export default function DeletePostButton({ id, postTitle, redirectPath }: DeletePostButtonProps) {
   const router = useRouter();
 
   const onDelete = async () => {
@@ -31,6 +32,7 @@ export default function DeletePostButton({ id, postTitle }: DeletePostButtonProp
     } else if (result && result.data) {
       router.refresh();
       toast.success(result.data + " Borttagen");
+      redirectPath && router.push(redirectPath)
     } else {
       toast.error("Något gick fel");
     }

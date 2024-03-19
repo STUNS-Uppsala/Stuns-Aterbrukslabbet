@@ -1,7 +1,7 @@
 "use client";
 
 import { toast } from "sonner";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import {
   AlertDialog,
@@ -36,7 +36,10 @@ export default function DeleteUserButton({
     } else if (result && result.data) {
       router.refresh();
       toast.success(result.data + " Borttagen");
-      redirectPath && redirect(redirectPath);
+      if (result.deletedPostCount && result.deletedPostCount > 0) {
+        toast.success(result.deletedPostCount + " inlägg borttagna");
+      }
+      redirectPath && router.push(redirectPath);
     } else {
       toast.error("Något gick fel");
     }
@@ -52,8 +55,10 @@ export default function DeleteUserButton({
           <AlertDialogTitle>Är du säker?</AlertDialogTitle>
           <AlertDialogDescription>
             Detta kommer
-            <span className="font-bold"> permanent</span> ta bort användaren
+            <span className="font-bold"> permanent</span> ta bort användaren 
             <p className="font-semibold break-all">{email}</p>
+            och 
+            <span className="font-bold"> alla</span> deras inlägg.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
