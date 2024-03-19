@@ -64,8 +64,8 @@ On the website there exists an admin dashboard that is only accessible to users 
 
 ## Set up database with prisma
 
-- Create a PostgreSQL database of your choosing and get the database url and the direct url from that database.  
-[Documentation on database connection strings](https://www.prisma.io/docs/orm/overview/databases/postgresql#connection-details)
+- Create a PostgreSQL database of your choosing and get the database url and the direct url from that database.
+  [Documentation on database connection strings](https://www.prisma.io/docs/orm/overview/databases/postgresql#connection-details)
 
 > If you use Supabase as your database the transaction url is equivalent to the database url and the session url is equivalent to the direct url
 
@@ -74,11 +74,13 @@ On the website there exists an admin dashboard that is only accessible to users 
 ![Image of environment file with database and direct url](database-environment-file.png)
 
 - Run this command to generate the database in prisma
+
 ```bash
 npx prisma generate
 ```
 
 - Run this command to push the database you generated in prisma to your PostgreSQL database
+
 ```bash
 npx prisma db push
 ```
@@ -91,4 +93,26 @@ npx prisma generate
 
 ```bash
 npx prisma migrate dev
+```
+
+## Set up webhooks
+
+This application uses webhooks to assign the member role on account creation.
+
+### Set up endpoint
+
+- Go to webhooks on your clerk dashboard, then press add Endpoint.
+
+- The endpoint URL should be your url + /api/webhooks for example https://stuns.ntig.dev/api/webhooks.
+
+- On filter events, user.created and session.created should be picked.
+
+### Set up .env file
+
+- From your clerk endpoint copy the signing secret
+
+- In your `.env` file create a key named WEBHOOK_SECRET and paste the signing secret as its value
+
+```bash
+WEBHOOK_SECRET="Signing secret here"
 ```
