@@ -17,20 +17,20 @@ import {
 import deletePost from "@/utils/delete-post";
 
 interface DeletePostButtonProps {
-  id: number;
+  postId: number;
   postTitle: string;
   redirectPath?: string;
 }
 
 export default function DeletePostButton({
-  id,
+  postId,
   postTitle,
   redirectPath,
 }: DeletePostButtonProps) {
   const router = useRouter();
 
   const onDelete = async () => {
-    const result = await deletePost({ id });
+    const result = await deletePost({ postId });
     if (result && result.error) {
       toast.error(result.error);
     } else if (result && result.data) {

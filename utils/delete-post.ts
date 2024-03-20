@@ -1,14 +1,13 @@
 "use server";
 
 import { checkRole } from "@/utils/check-role";
-
 import { db } from "@/lib/db";
 
 interface DeletePostProps {
-  id: number;
+  postId: number;
 }
 
-export default async function deletePost({ id }: DeletePostProps) {
+export default async function deletePost({ postId }: DeletePostProps) {
   if (!checkRole("admin") && !checkRole("moderator")) {
     return { error: "Obehörig" };
   }
@@ -16,7 +15,7 @@ export default async function deletePost({ id }: DeletePostProps) {
   try {
     await db.post.delete({
       where: {
-        id: id,
+        id: postId,
       },
     });
   } catch (err) {

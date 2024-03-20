@@ -23,7 +23,7 @@ export default function ModerationActions({
         <div className="flex md:text-base text-sm pt-3 gap-x-3">
           <p className="font-semibold">Admin</p>
           <DeletePostButton
-            id={postId}
+            postId={postId}
             postTitle={postTitle}
             redirectPath="/"
           />
@@ -34,7 +34,7 @@ export default function ModerationActions({
         <div className="flex md:text-base text-xs pt-4 gap-x-3">
           <p className="font-semibold">Moderator</p>
           <DeletePostButton
-            id={postId}
+            postId={postId}
             postTitle={postTitle}
             redirectPath="/"
           />
@@ -48,7 +48,7 @@ export default function ModerationActions({
         <div className="flex md:text-base text-sm pt-3 gap-x-3">
           <p className="font-semibold">{postUserRole}</p>
           <DeletePostButton
-            id={postId}
+            postId={postId}
             postTitle={postTitle}
             redirectPath="/"
           />
