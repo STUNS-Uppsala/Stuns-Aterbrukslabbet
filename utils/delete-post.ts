@@ -18,9 +18,8 @@ export default async function deletePost({ postId }: DeletePostProps) {
         id: postId,
       },
     });
+    return { data: "borttagen" };
   } catch (err) {
     return { error: "Kunde inte ta bort inlägg" };
   }
-
-  return { data: "borttagen" };
 }
