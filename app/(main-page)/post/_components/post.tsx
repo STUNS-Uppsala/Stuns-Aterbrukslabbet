@@ -27,10 +27,10 @@ export default async function Post({
       postType: post.postType,
     });
   return (
-    <article className="mt-5 md:pt-10 pt-3 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
+    <article className="mt-5 md:pt-10 pt-3 md:px-16 px-6 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
       {/* Post image should replace the div below */}
-      <div className="aspect-[4/3] md:mt-0 mt-2 md:mx-24 mx-6 bg-primary rounded-md" />
-      <div className="flex flex-col md:mx-16 mx-6 gap-y-1">
+      <div className="aspect-[4/3] md:mt-0 mt-2 md:mx-10 bg-primary rounded-md" />
+      <div className="w-full flex flex-col gap-y-1">
         <div className="flex pt-2 md:text-base text-xs justify-between">
           <section className="flex gap-x-1 items-center">
             <MapPin className="md:block hidden shrink-0" size={16} />
@@ -60,8 +60,8 @@ export default async function Post({
             </section>
           )}
         </div>
-        <h1 className="md:text-3xl text-2xl">{post.title}</h1>
-        <p className="md:text-base text-xs md:pt-2">{post.description}</p>
+        <h1 className="w-full md:text-3xl text-2xl break-words">{post.title}</h1>
+        <p className="w-full md:text-base text-xs md:pt-2 break-words">{post.description}</p>
         <section className="flex items-center mt-4">
           <User className="md:block hidden" size={18} />
           <User className="md:hidden block" size={12} />
@@ -73,14 +73,14 @@ export default async function Post({
             email={email}
             disclaimerText={disclaimerText}
           />
-          <ModerationActions
-            postUserId={post.userId}
-            postId={post.id}
-            postTitle={post.title}
-            email={email}
-            postUserRole={postUserRole}
-          />
         </div>
+        <ModerationActions
+          postUserId={post.userId}
+          postId={post.id}
+          postTitle={post.title}
+          email={email}
+          postUserRole={postUserRole}
+        />
       </div>
     </article>
   );
