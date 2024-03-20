@@ -34,7 +34,6 @@ export default function DeleteUserButton({
     if (result && result.error) {
       toast.error(result.error);
     } else if (result && result.data) {
-      
       redirectPath && router.push(redirectPath);
       router.refresh();
       toast.success(result.data + " Borttagen");
