@@ -15,7 +15,7 @@ interface PostProps {
   postUserRole: string;
 }
 
-export default async function Post({
+export default function Post({
   post,
   name,
   email,

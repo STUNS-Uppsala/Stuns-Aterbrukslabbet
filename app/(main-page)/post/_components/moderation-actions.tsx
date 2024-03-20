@@ -10,7 +10,7 @@ interface ModerationActionsProps {
   postUserRole: string;
 }
 
-export default async function ModerationActions({
+export default function ModerationActions({
   postUserId,
   postId,
   postTitle,
