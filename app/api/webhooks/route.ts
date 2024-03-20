@@ -11,7 +11,12 @@ export async function POST(req: NextRequest) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
   if (!WEBHOOK_SECRET) {
-    throw new Error("Please add WEBHOOK_SECRET from Clerk Dashboard to .env");
+    return new NextResponse(
+      "Please add WEBHOOK_SECRET from Clerk Dashboard to .env",
+      {
+        status: 400,
+      }
+    );
   }
 
   const headerPayload = headers();
@@ -48,7 +53,9 @@ export async function POST(req: NextRequest) {
       try {
         await changeRoleToMember({ id: payload.data.id });
       } catch (error) {
-        return { error: error };
+        return new NextResponse("Failed to change role: " + error, {
+          status: 400,
+        });
       }
 
     case "session.created":
@@ -56,7 +63,9 @@ export async function POST(req: NextRequest) {
         try {
           await changeRoleToMember({ id: payload.data.user_id });
         } catch (error) {
-          return { error: error };
+          return new NextResponse("Failed to change role: " + error, {
+            status: 400,
+          });
         }
       }
   }
