@@ -18,27 +18,16 @@ export default function ModerationActions({
   postUserRole,
 }: ModerationActionsProps) {
   if (checkRole("admin") || checkRole("moderator")) {
-    if (postUserRole === "admin") {
+    if (postUserRole === "admin" || postUserRole === "moderator") {
       return (
         <div className="flex md:text-base text-sm pt-3 gap-x-3">
-          <p className="font-semibold">Admin</p>
+          <p className="font-semibold">{postUserRole}</p>
           <DeletePostButton
             postId={postId}
             postTitle={postTitle}
             redirectPath="/"
           />
-        </div>
-      );
-    } else if (postUserRole === "moderator") {
-      return (
-        <div className="flex md:text-base text-xs pt-4 gap-x-3">
-          <p className="font-semibold">Moderator</p>
-          <DeletePostButton
-            postId={postId}
-            postTitle={postTitle}
-            redirectPath="/"
-          />
-          {checkRole("admin") && (
+          {checkRole("admin") && postUserRole !== "admin" && (
             <DeleteUserButton id={postUserId} email={email} redirectPath="/" />
           )}
         </div>
