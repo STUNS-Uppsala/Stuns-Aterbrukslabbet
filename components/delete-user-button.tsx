@@ -34,13 +34,14 @@ export default function DeleteUserButton({
     if (result && result.error) {
       toast.error(result.error);
     } else if (result && result.data) {
-      toast.success(result.data + " Borttagen");
+      
       redirectPath && router.push(redirectPath);
       router.refresh();
+      toast.success(result.data + " Borttagen");
       if (result.deletedPostCount && result.deletedPostCount > 1) {
         toast.success(result.deletedPostCount + " inlägg borttagna");
       }
-      else if (result.deletedPostCount && result.deletedPostCount > 0) {
+      else if (result.deletedPostCount && result.deletedPostCount === 1) {
         toast.success(result.deletedPostCount + " inlägg borttaget");
       }
     } else {
