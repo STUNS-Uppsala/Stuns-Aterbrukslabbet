@@ -53,7 +53,9 @@ export async function POST(req: NextRequest) {
       try {
         await changeRoleToMember({ id: payload.data.id });
       } catch (error) {
-        return new NextResponse("Failed to change role", { status: 400 });
+        return new NextResponse("Failed to change role: " + error, {
+          status: 400,
+        });
       }
 
     case "session.created":
@@ -61,7 +63,9 @@ export async function POST(req: NextRequest) {
         try {
           await changeRoleToMember({ id: payload.data.user_id });
         } catch (error) {
-          return new NextResponse("Failed to change role", { status: 400 });
+          return new NextResponse("Failed to change role: " + error, {
+            status: 400,
+          });
         }
       }
   }
