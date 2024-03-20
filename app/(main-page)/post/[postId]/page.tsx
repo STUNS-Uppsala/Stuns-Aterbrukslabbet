@@ -14,18 +14,11 @@ interface PostIdPageProps {
 export default async function PostIdPage({ params }: PostIdPageProps) {
   const post = await getPostData(Number(params.postId));
   if (post) {
-    const { fullName, email } = await getNameAndEmailFromUserId(post.userId);
-    const postUserRole = await getUserRoleFromUserId({ userId: post.userId });
-    if (postUserRole) {
-      return (
-        <Post
-          post={post}
-          name={fullName}
-          email={email}
-          postUserRole={postUserRole}
-        />
-      );
-    }
+    return (
+      <Post
+        post={post}
+      />
+    );
   } else {
     return (
       <div className="flex w-full h-[52vh] items-end justify-center text-center">

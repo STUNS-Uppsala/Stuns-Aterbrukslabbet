@@ -8,10 +8,11 @@ interface GetUserRoleFromUserIdProps {
 export default async function getUserRoleFromUserId({
   userId,
 }: GetUserRoleFromUserIdProps) {
-  const user: User = await clerkClient.users.getUser(userId);
-  if (user) {
+  try {
+    const user: User = await clerkClient.users.getUser(userId);
     const userRole = user.publicMetadata.role;
     return userRole as string;
+  } catch (err) {
+    return err as string;
   }
-  return "";
 }

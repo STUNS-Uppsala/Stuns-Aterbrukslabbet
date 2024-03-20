@@ -17,58 +17,46 @@ export default function ModerationActions({
   email,
   postUserRole,
 }: ModerationActionsProps) {
-  let moderationActions;
-  if (postUserRole) {
-    if (checkRole("admin") || checkRole("moderator")) {
-      if (postUserRole === "admin") {
-        moderationActions = (
-          <div className="flex md:text-base text-sm pt-3 gap-x-3">
-            <p className="font-semibold">Admin</p>
-            <DeletePostButton
-              id={postId}
-              postTitle={postTitle}
-              redirectPath="/"
-            />
-          </div>
-        );
-      } else if (postUserRole === "moderator" && checkRole("admin")) {
-        moderationActions = (
-          <div className="flex md:text-base text-xs pt-4 gap-x-3">
-            <p className="font-semibold">Moderator</p>
-            <DeletePostButton
-              id={postId}
-              postTitle={postTitle}
-              redirectPath="/"
-            />
+  if (checkRole("admin") || checkRole("moderator")) {
+    if (postUserRole === "admin") {
+      return (
+        <div className="flex md:text-base text-sm pt-3 gap-x-3">
+          <p className="font-semibold">Admin</p>
+          <DeletePostButton
+            id={postId}
+            postTitle={postTitle}
+            redirectPath="/"
+          />
+        </div>
+      );
+    } else if (postUserRole === "moderator") {
+      return (
+        <div className="flex md:text-base text-xs pt-4 gap-x-3">
+          <p className="font-semibold">Moderator</p>
+          <DeletePostButton
+            id={postId}
+            postTitle={postTitle}
+            redirectPath="/"
+          />
+          {checkRole("admin") && (
             <DeleteUserButton id={postUserId} email={email} redirectPath="/" />
-          </div>
-        );
-      } else if (postUserRole === "moderator" && checkRole("moderator")) {
-        moderationActions = (
-          <div className="flex md:text-base text-sm pt-3 gap-x-3">
-            <p className="font-semibold">Moderator</p>
-            <DeletePostButton
-              id={postId}
-              postTitle={postTitle}
-              redirectPath="/"
-            />
-          </div>
-        );
-      } else {
-        moderationActions = (
-          <div className="flex md:text-base text-sm pt-3 gap-x-3">
-            <DeletePostButton
-              id={postId}
-              postTitle={postTitle}
-              redirectPath="/"
-            />
-            <DeleteUserButton id={postUserId} email={email} redirectPath="/" />
-          </div>
-        );
-      }
+          )}
+        </div>
+      );
     } else {
-      moderationActions = <></>;
+      return (
+        <div className="flex md:text-base text-sm pt-3 gap-x-3">
+          <p className="font-semibold">{postUserRole}</p>
+          <DeletePostButton
+            id={postId}
+            postTitle={postTitle}
+            redirectPath="/"
+          />
+          <DeleteUserButton id={postUserId} email={email} redirectPath="/" />
+        </div>
+      );
     }
-    return moderationActions;
+  } else {
+    return;
   }
 }

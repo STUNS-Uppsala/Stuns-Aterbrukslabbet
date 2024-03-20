@@ -30,13 +30,13 @@ export default function DeletePostButton({
   const router = useRouter();
 
   const onDelete = async () => {
-    const result = await deletePost({ id, postTitle });
+    const result = await deletePost({ id });
     if (result && result.error) {
       toast.error(result.error);
     } else if (result && result.data) {
       redirectPath && router.push(redirectPath);
       router.refresh();
-      toast.success(result.data + " Borttagen");
+      toast.success(postTitle + " " + result.data);
     } else {
       toast.error("Något gick fel");
     }

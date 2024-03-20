@@ -4,12 +4,11 @@ import { checkRole } from "@/utils/check-role";
 
 import { db } from "@/lib/db";
 
-interface DeleteUserPops {
+interface DeletePostProps {
   id: number;
-  postTitle: string;
 }
 
-export default async function deletePost({ id, postTitle }: DeleteUserPops) {
+export default async function deletePost({ id }: DeletePostProps) {
   if (!checkRole("admin") && !checkRole("moderator")) {
     return { error: "Obehörig" };
   }
@@ -24,5 +23,5 @@ export default async function deletePost({ id, postTitle }: DeleteUserPops) {
     return { error: "Kunde inte ta bort inlägg" };
   }
 
-  return { data: postTitle };
+  return { data: "borttagen" };
 }

@@ -6,11 +6,11 @@ import { db } from "@/lib/db";
 
 import getUserEmail from "./get-user-email";
 
-interface DeleteUserPops {
+interface DeleteUserProps {
   id: string;
 }
 
-export default async function deleteUser({ id }: DeleteUserPops) {
+export default async function deleteUser({ id }: DeleteUserProps) {
   let user;
   try {
     user = await clerkClient.users.getUser(id);
@@ -37,10 +37,8 @@ export default async function deleteUser({ id }: DeleteUserPops) {
     return { error: "Kunde inte ta bort inlägg" };
   }
 
-  let affectedUser;
-
   try {
-    affectedUser = await clerkClient.users.deleteUser(id);
+    await clerkClient.users.deleteUser(id);
   } catch (err) {
     return { error: "Kunde inte ta bort användare" };
   }

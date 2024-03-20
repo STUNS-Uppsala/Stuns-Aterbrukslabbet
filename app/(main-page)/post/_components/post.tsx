@@ -5,27 +5,23 @@ import { Post } from "@prisma/client";
 
 import creationDateToString from "../../utils/creation-date-to-string";
 import ContactMeDialog from "./contact-me-dialog";
+import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
 import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
+import getUserRoleFromUserId from "../../utils/get-user-role-from-user-id";
 import ModerationActions from "./moderation-actions";
 
 interface PostProps {
   post: Post;
-  name: string;
-  email: string;
-  postUserRole: string;
 }
 
-export default function Post({
-  post,
-  name,
-  email,
-  postUserRole,
-}: PostProps) {
+export default async function Post({ post }: PostProps) {
   const creationDateString = creationDateToString(post.createdAt);
   const { postTypeColor, expirationDateText, disclaimerText } =
     getPostTypeSpecificData({
       postType: post.postType,
     });
+  const { name, email } = await getNameAndEmailFromUserId(post.userId);
+  const postUserRole = await getUserRoleFromUserId({ userId: post.userId });
   return (
     <article className="mt-5 md:pt-10 pt-3 md:px-16 px-6 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
       {/* Post image should replace the div below */}
@@ -60,8 +56,12 @@ export default function Post({
             </section>
           )}
         </div>
-        <h1 className="w-full md:text-3xl text-2xl break-words">{post.title}</h1>
-        <p className="w-full md:text-base text-xs md:pt-2 break-words">{post.description}</p>
+        <h1 className="w-full md:text-3xl text-2xl break-words">
+          {post.title}
+        </h1>
+        <p className="w-full md:text-base text-xs md:pt-2 break-words">
+          {post.description}
+        </p>
         <section className="flex items-center mt-4">
           <User className="md:block hidden" size={18} />
           <User className="md:hidden block" size={12} />

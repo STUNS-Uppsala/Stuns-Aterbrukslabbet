@@ -9,7 +9,7 @@ export default async function getNameAndEmailFromUserId(userId: string) {
     console.error(error);
   }
 
-  const fullName = returnedUser
+  const name = returnedUser
     ? returnedUser.firstName + " " + returnedUser.lastName
     : "Kunde inte hitta namn";
 
@@ -17,5 +17,5 @@ export default async function getNameAndEmailFromUserId(userId: string) {
     ? getUserEmail({ user: returnedUser })
     : "Kunde inte hitta email";
 
-  return { fullName, email };
+  return { name, email };
 }
