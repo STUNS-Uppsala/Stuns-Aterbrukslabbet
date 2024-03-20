@@ -37,6 +37,7 @@ export default function DeletePostButton({
       router.refresh();
       toast.success(result.data + " Borttagen");
       redirectPath && router.push(redirectPath);
+      router.refresh();
     } else {
       toast.error("Något gick fel");
     }

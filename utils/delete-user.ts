@@ -1,3 +1,5 @@
+"use server";
+
 import { checkRole } from "@/utils/check-role";
 import { clerkClient } from "@clerk/nextjs";
 import { db } from "@/lib/db";

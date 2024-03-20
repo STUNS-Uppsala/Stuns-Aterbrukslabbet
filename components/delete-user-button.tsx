@@ -36,10 +36,14 @@ export default function DeleteUserButton({
     } else if (result && result.data) {
       router.refresh();
       toast.success(result.data + " Borttagen");
-      if (result.deletedPostCount && result.deletedPostCount > 0) {
+      if (result.deletedPostCount && result.deletedPostCount > 1) {
         toast.success(result.deletedPostCount + " inlägg borttagna");
       }
+      else if (result.deletedPostCount && result.deletedPostCount > 0) {
+        toast.success(result.deletedPostCount + " inlägg borttaget");
+      }
       redirectPath && router.push(redirectPath);
+      router.refresh();
     } else {
       toast.error("Något gick fel");
     }
@@ -56,7 +60,7 @@ export default function DeleteUserButton({
           <AlertDialogDescription>
             Detta kommer
             <span className="font-bold"> permanent</span> ta bort användaren
-            <p className="font-semibold break-all">{email}</p>
+            <span className="font-semibold break-all"> {email} </span>
             och
             <span className="font-bold"> alla</span> deras inlägg.
           </AlertDialogDescription>
