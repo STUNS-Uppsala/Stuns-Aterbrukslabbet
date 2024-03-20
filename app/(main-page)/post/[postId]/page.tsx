@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
 import getPostData from "../../utils/get-post-data";
-import getUserRoleFromUserId from "../../utils/get-user-role-from-user-id";
 import Post from "../_components/post";
 
 interface PostIdPageProps {
@@ -14,11 +12,7 @@ interface PostIdPageProps {
 export default async function PostIdPage({ params }: PostIdPageProps) {
   const post = await getPostData(Number(params.postId));
   if (post) {
-    return (
-      <Post
-        post={post}
-      />
-    );
+    return <Post post={post} />;
   } else {
     return (
       <div className="flex w-full h-[52vh] items-end justify-center text-center">
