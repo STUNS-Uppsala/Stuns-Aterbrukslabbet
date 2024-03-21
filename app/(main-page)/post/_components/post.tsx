@@ -20,7 +20,7 @@ export default async function Post({ post }: PostProps) {
     getPostTypeSpecificData({
       postType: post.postType,
     });
-  const { name, email } = await getNameAndEmailFromUserId(post.userId);
+  const { name, email } = await getNameAndEmailFromUserId({ userId: post.userId });
   const postUserRole = await getUserRoleFromUserId({ userId: post.userId });
   return (
     <article className="mt-5 md:pt-10 pt-3 md:px-16 px-6 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
