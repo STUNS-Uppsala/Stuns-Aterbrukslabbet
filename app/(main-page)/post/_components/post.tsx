@@ -1,37 +1,32 @@
-"use client";
-
 import { Clock, MapPin, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { Post } from "@prisma/client";
 
-import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
 import creationDateToString from "../../utils/creation-date-to-string";
+import ContactMeDialog from "./contact-me-dialog";
+import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
+import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
+import getUserRoleFromUserId from "../../utils/get-user-role-from-user-id";
+import ModerationActions from "./moderation-actions";
 
 interface PostProps {
   post: Post;
-  name: string;
-  email: string;
 }
 
-export default function Post({ post, name, email }: PostProps) {
+export default async function Post({ post }: PostProps) {
   const creationDateString = creationDateToString(post.createdAt);
   const { postTypeColor, expirationDateText, disclaimerText } =
     getPostTypeSpecificData({
       postType: post.postType,
     });
-
+  const { name, email } = await getNameAndEmailFromUserId({ userId: post.userId });
+  const postUserRole = await getUserRoleFromUserId({ userId: post.userId });
   return (
-    <article className="mt-5 md:pt-10 pt-3 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
+    <article className="mt-5 md:pt-10 pt-3 md:px-16 px-6 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
       {/* Post image should replace the div below */}
-      <div className="aspect-[4/3] md:mt-0 mt-2 md:mx-24 mx-6 bg-primary rounded-md" />
-      <div className="flex flex-col md:mx-16 mx-6 gap-y-1">
+      <div className="aspect-[4/3] md:mt-0 mt-2 md:mx-10 bg-primary rounded-md" />
+      <div className="w-full flex flex-col gap-y-1">
         <div className="flex pt-2 md:text-base text-xs justify-between">
           <section className="flex gap-x-1 items-center">
             <MapPin className="md:block hidden shrink-0" size={16} />
@@ -61,36 +56,31 @@ export default function Post({ post, name, email }: PostProps) {
             </section>
           )}
         </div>
-        <h1 className="md:text-3xl text-2xl">{post.title}</h1>
-        <p className="md:text-base text-xs md:pt-2">{post.description}</p>
+        <h1 className="w-full md:text-3xl text-2xl break-words">
+          {post.title}
+        </h1>
+        <p className="w-full md:text-base text-xs md:pt-2 break-words">
+          {post.description}
+        </p>
         <section className="flex items-center mt-4">
           <User className="md:block hidden" size={18} />
           <User className="md:hidden block" size={12} />
           <p className="md:text-xl text-sm pl-1">{name}</p>
         </section>
         <div className="flex justify-between items-center">
-          <Dialog>
-            <DialogTrigger>
-              <div className="flex md:h-10 md:w-40 h-8 w-32 md:text-xl text-base rounded-lg bg-primary justify-center items-center">
-                Kontakta mig
-              </div>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <p className="flex justify-center text-base">{name}</p>
-                <a
-                  className="flex justify-center hover:underline text-blue-600"
-                  href={`mailto:${email}`}
-                >
-                  {email}
-                </a>
-                <p className="pt-6 text-center font-semibold">
-                  {disclaimerText}
-                </p>
-              </DialogHeader>
-            </DialogContent>
-          </Dialog>
+          <ContactMeDialog
+            name={name}
+            email={email}
+            disclaimerText={disclaimerText}
+          />
         </div>
+        <ModerationActions
+          postUserId={post.userId}
+          postId={post.id}
+          postTitle={post.title}
+          email={email}
+          postUserRole={postUserRole}
+        />
       </div>
     </article>
   );
