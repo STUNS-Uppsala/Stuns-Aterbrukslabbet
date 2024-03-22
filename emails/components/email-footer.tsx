@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Link, Container, Section } from "@react-email/components";
 
 export default function EmailFooter() {

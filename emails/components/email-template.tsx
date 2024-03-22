@@ -9,8 +9,8 @@ import {
   Section,
 } from "@react-email/components";
 
-import EmailHeader from "./email-header";
 import EmailFooter from "./email-footer";
+import EmailHeader from "./email-header";
 
 interface EmailTemplateProps {
   header: string;
