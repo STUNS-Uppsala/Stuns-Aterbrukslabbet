@@ -11,7 +11,7 @@ export default async function changeRoleToMember({
 }: changeRoleToMemberProps) {
   try {
     await clerkClient.users.updateUser(id, {
-      publicMetadata: { role: "member" },
+      publicMetadata: { role: "medlem" },
     });
   } catch {
     return { error: "Failed to change role" };
