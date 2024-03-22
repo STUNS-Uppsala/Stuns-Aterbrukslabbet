@@ -9,10 +9,18 @@ export default function Logo() {
   return (
     <Link href="/" className="flex gap-x-2 items-center">
       <Image
+        className="md:block hidden"
         src={logo}
         alt="Website logo"
         width={50}
         height={50}
+      />
+      <Image
+        className="md:hidden block"
+        src={logo}
+        alt="Website logo"
+        width={40}
+        height={40}
       />
       <div className={cn("text-2xl", prompt.className)}>Återbrukslabbet</div>
     </Link>
