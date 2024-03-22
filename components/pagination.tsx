@@ -81,7 +81,7 @@ export default function Pagination({
     return (
       <div className="flex justify-center items-center mt-4 gap-x-4">
         <div className="flex items-center">
-          {pages > 6 && (
+          {pages > 5 && (
             <button onClick={() => handlePageChange(1)}>
               <ChevronFirst className="md:h-6 md:w-6 h-4 w-4" />
             </button>
@@ -97,7 +97,7 @@ export default function Pagination({
           <button onClick={() => handlePageChange(currentPage + 1)}>
             <ChevronRight className="md:h-6 md:w-6 h-4 w-4" />
           </button>
-          {pages > 6 && (
+          {pages > 5 && (
             <button onClick={() => handlePageChange(pages)}>
               <ChevronLast className="md:h-6 md:w-6 h-4 w-4" />
             </button>
