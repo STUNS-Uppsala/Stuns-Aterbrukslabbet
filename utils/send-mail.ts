@@ -20,7 +20,7 @@ export default function sendMail({
 
   resend.emails.send({
     from: `Återbrukslabbet <${sendingMail}>`,
-    to: "stunsaterbrukslabbet@gmail.com",
+    to: toMail,
     subject: subject,
     text: "",
     react: mailTemplate,

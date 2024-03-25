@@ -2,10 +2,10 @@ import React from "react";
 
 import {
   Html,
-  Body,
-  Container,
   Preview,
   Tailwind,
+  Body,
+  Container,
   Section,
 } from "@react-email/components";
 

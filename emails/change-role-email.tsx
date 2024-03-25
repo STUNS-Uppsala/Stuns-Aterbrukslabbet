@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Text } from "@react-email/components";
 import { Roles } from "@/types/globals";
+import { Text } from "@react-email/components";
 
 import EmailTemplate from "./components/email-template";
 
