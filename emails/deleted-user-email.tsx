@@ -8,9 +8,10 @@ interface DeletedUserEmailProps {
   comment: string;
 }
 
-export default function DeletedUserEmail({ comment }: DeletedUserEmailProps) {
+export default function DeleteUserEmail({ comment }: DeletedUserEmailProps) {
   return (
     <EmailTemplate
+      preview="Ditt Återbrukslabbet konto har blivit borttaget"
       header="Ditt konto har blivit borttaget"
       main={
         <>
