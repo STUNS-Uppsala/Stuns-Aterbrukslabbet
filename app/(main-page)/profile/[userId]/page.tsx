@@ -1,9 +1,10 @@
-import Pagination from "@/components/pagination";
-import getPostDataFromDb from "../../utils/get-post-data-from-db";
-import PostContainer from "../../_components/post-container";
 import { getUserId } from "@/utils/get-user-id";
+import Pagination from "@/components/pagination";
+
 import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
+import getPostDataFromDb from "../../utils/get-post-data-from-db";
 import getUserRoleFromUserId from "../../utils/get-user-role-from-user-id";
+import PostContainer from "../../_components/post-container";
 import ProfilePageModerationActions from "../_components/profile-page-moderation-actions";
 
 interface ProfilePageProps {
@@ -42,6 +43,7 @@ export default async function ProfilePage({
     sort: "desc",
     userId: params.userId,
   });
+  
   return (
     <div className="md:mt-5 mt-3 mx-auto md:max-w-screen-md max-w-[360px]">
       <div className="flex flex-col">

@@ -14,7 +14,7 @@ export default async function checkIfRoleIsCorrect({
     if (
       user.publicMetadata.role === "admin" ||
       user.publicMetadata.role === "moderator" ||
-      user.publicMetadata.role === "member"
+      user.publicMetadata.role === "medlem"
     ) {
       return true;
     } else {
