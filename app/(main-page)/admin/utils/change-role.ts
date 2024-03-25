@@ -16,6 +16,11 @@ export default async function changeRole({ id, newRole }: ChangeRoleProps) {
   const user = await clerkClient.users.getUser(id);
   const userEmail = getUserEmail({ user });
   const resend = new Resend(process.env.RESEND_API_KEY);
+  const sendingMail = process.env.RESEND_SENDING_MAIL;
+
+  if (!userEmail || !sendingMail) {
+    return { error: "Kunde inte skicka mail" };
+  }
 
   if (
     !checkRole("admin") ||
@@ -30,7 +35,7 @@ export default async function changeRole({ id, newRole }: ChangeRoleProps) {
       publicMetadata: { role: newRole },
     });
     resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: sendingMail,
       to: "stunsaterbrukslabbet@gmail.com",
       subject: "Din roll har uppdaterats",
       text: "",

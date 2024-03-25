@@ -23,6 +23,11 @@ export default async function deleteUser({ id, comment }: DeleteUserProps) {
   }
   const userEmail = getUserEmail({ user });
   const resend = new Resend(process.env.RESEND_API_KEY);
+  const sendingMail = process.env.RESEND_SENDING_MAIL;
+
+  if (!userEmail || !sendingMail) {
+    return { error: "Kunde inte skicka mail" };
+  }
 
   if (
     (!checkRole("admin") && !checkRole("moderator")) ||
@@ -46,7 +51,7 @@ export default async function deleteUser({ id, comment }: DeleteUserProps) {
   try {
     await clerkClient.users.deleteUser(id);
     resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: sendingMail,
       to: "stunsaterbrukslabbet@gmail.com",
       subject: "Ditt konto har blivit borttaget",
       text: "",
