@@ -25,13 +25,18 @@ export default async function changeRole({ id, newRole }: ChangeRoleProps) {
   }
 
   try {
-    await clerkClient.users.updateUser(id, {
-      publicMetadata: { role: newRole },
-    });
     sendMail({
       toMail: userEmail,
       subject: "Din roll har uppdaterats",
       mailTemplate: ChangeRoleEmail({ role: newRole }),
+    });
+  } catch {
+    return { error: "Kunde inte skicka e-post" };
+  }
+
+  try {
+    await clerkClient.users.updateUser(id, {
+      publicMetadata: { role: newRole },
     });
   } catch {
     return { error: "Kunde inte ändra roll" };

@@ -14,8 +14,10 @@ export default function sendMail({
   const resend = new Resend(process.env.RESEND_API_KEY);
   const sendingMail = process.env.RESEND_SENDING_MAIL;
 
-  if (!sendingMail) {
-    return { error: "Kunde inte hitta mail att skicka ifrån" };
+  if (!sendingMail || !process.env.NEXT_PUBLIC_SITE_URL) {
+    throw new Error(
+      "Check your .env file and make sure you have a sending mail and a site url"
+    );
   }
 
   resend.emails.send({

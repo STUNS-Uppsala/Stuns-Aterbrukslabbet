@@ -42,13 +42,18 @@ export default async function deleteUser({ id, comment }: DeleteUserProps) {
   }
 
   try {
-    await clerkClient.users.deleteUser(id);
     sendMail({
       toMail: userEmail,
       subject: "Ditt konto har blivit borttaget",
       mailTemplate: DeleteUserEmail({ comment: comment }),
     });
-  } catch (err) {
+  } catch {
+    return { error: "Kunde inte skicka e-post" };
+  }
+
+  try {
+    await clerkClient.users.deleteUser(id);
+  } catch {
     return { error: "Kunde inte ta bort användare" };
   }
 
