@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Text, Container, Section } from "@react-email/components";
+import { Container, Text, Section } from "@react-email/components";
 
 interface emailHeaderProps {
   header: string;
