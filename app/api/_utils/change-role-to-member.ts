@@ -2,11 +2,11 @@
 
 import { clerkClient } from "@clerk/nextjs/server";
 
-interface changeRoleToMemberProps {
+interface ChangeRoleToMemberProps {
   id: string;
 }
 
-export default async function changeRoleToMember({
+export default async function ChangeRoleToMember({
   id,
 }: changeRoleToMemberProps) {
   try {

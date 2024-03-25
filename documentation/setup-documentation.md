@@ -116,3 +116,9 @@ This application uses webhooks to assign the member role on account creation.
 ```bash
 WEBHOOK_SECRET="Signing secret here"
 ```
+
+## Set up emails
+
+This application uses resend to send emails.
+
+### Setup Resend
