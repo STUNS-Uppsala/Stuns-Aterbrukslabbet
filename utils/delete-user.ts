@@ -1,13 +1,12 @@
 "use server";
 
-import { Resend } from "resend";
-
 import { checkRole } from "@/utils/check-role";
 import { clerkClient } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 
-import DeletedUserEmail from "../emails/deleted-account-email";
+import DeleteUserEmail from "../emails/deleted-user-email";
 import getUserEmail from "./get-user-email";
+import sendMail from "./send-mail";
 
 interface DeleteUserProps {
   id: string;
@@ -22,12 +21,6 @@ export default async function deleteUser({ id, comment }: DeleteUserProps) {
     return { error: "Kunde inte hämta användare" };
   }
   const userEmail = getUserEmail({ user });
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  const sendingMail = process.env.RESEND_SENDING_MAIL;
-
-  if (!userEmail || !sendingMail) {
-    return { error: "Kunde inte skicka mail" };
-  }
 
   if (
     (!checkRole("admin") && !checkRole("moderator")) ||
@@ -50,12 +43,10 @@ export default async function deleteUser({ id, comment }: DeleteUserProps) {
 
   try {
     await clerkClient.users.deleteUser(id);
-    resend.emails.send({
-      from: sendingMail,
-      to: "stunsaterbrukslabbet@gmail.com",
+    sendMail({
+      toMail: userEmail,
       subject: "Ditt konto har blivit borttaget",
-      text: "",
-      react: DeletedUserEmail({ comment: comment }),
+      mailTemplate: DeleteUserEmail({ comment: comment }),
     });
   } catch (err) {
     return { error: "Kunde inte ta bort användare" };
