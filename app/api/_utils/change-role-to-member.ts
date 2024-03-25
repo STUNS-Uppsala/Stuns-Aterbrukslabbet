@@ -8,7 +8,7 @@ interface ChangeRoleToMemberProps {
 
 export default async function ChangeRoleToMember({
   id,
-}: changeRoleToMemberProps) {
+}: ChangeRoleToMemberProps) {
   try {
     await clerkClient.users.updateUser(id, {
       publicMetadata: { role: "medlem" },
