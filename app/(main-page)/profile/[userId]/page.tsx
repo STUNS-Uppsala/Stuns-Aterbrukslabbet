@@ -19,7 +19,7 @@ export default async function ProfilePage({
   params,
   searchParams,
 }: ProfilePageProps) {
-  const postsPerPage = 2;
+  const postsPerPage = 10;
   const currentUserId = getUserId();
   const pageUserRole = await getUserRoleFromUserId({ userId: params.userId });
   const { name, email } = await getNameAndEmailFromUserId({
@@ -27,11 +27,9 @@ export default async function ProfilePage({
   });
 
   let headerText;
-  let displayModeration;
 
   if (currentUserId === params.userId) {
     headerText = "Mina inlägg";
-    displayModeration = false;
   } else {
     headerText = name + "'s Inlägg";
   }
