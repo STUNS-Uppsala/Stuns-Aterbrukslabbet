@@ -111,8 +111,34 @@ This application uses webhooks to assign the member role on account creation.
 
 - From your clerk endpoint copy the signing secret
 
-- In your `.env` file create a key named WEBHOOK_SECRET and paste the signing secret as its value
+- In your `.env` file create a variable named WEBHOOK_SECRET and paste the signing secret as its value
 
 ```bash
-WEBHOOK_SECRET="Signing secret here"
+WEBHOOK_SECRET=YOUR KEY HERE
+```
+
+## Set up emails
+
+This application uses resend to send emails.
+
+### Set up Resend
+
+- Set up a domain and verify it. For help check out the docs https://resend.com/docs/dashboard/domains/introduction
+
+- Create a api key. Make sure to save the key as it will only be visible once.
+
+### Set up .env file
+
+- In your `.env` file create a variable named RESEND_API_KEY and write the api key as its value
+
+- Then add another variable named RESEND_SENDING_MAIL and write down the mail you want your mails to be sent from. Remember that this mail is a noreply email.
+
+- Also add a variable named NEXT_PUBLIC_SITE_URL and put the home page url as its value.
+
+- It should look like this. Note that the "example" in RESEND_SENDING_MAIL can be anything you want.
+
+```bash
+NEXT_PUBLIC_SITE_URL=YOUR URL HERE
+RESEND_API_KEY=YOUR API KEY HERE
+RESEND_SENDING_MAIL=example@yourdomain.com
 ```

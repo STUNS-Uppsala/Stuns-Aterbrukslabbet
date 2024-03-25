@@ -2,16 +2,16 @@
 
 import { clerkClient } from "@clerk/nextjs/server";
 
-interface changeRoleToMemberProps {
+interface ChangeRoleToMemberProps {
   id: string;
 }
 
-export default async function changeRoleToMember({
+export default async function ChangeRoleToMember({
   id,
-}: changeRoleToMemberProps) {
+}: ChangeRoleToMemberProps) {
   try {
     await clerkClient.users.updateUser(id, {
-      publicMetadata: { role: "member" },
+      publicMetadata: { role: "medlem" },
     });
   } catch {
     return { error: "Failed to change role" };

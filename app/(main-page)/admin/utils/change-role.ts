@@ -1,16 +1,20 @@
 "use server";
 
+import ChangeRoleEmail from "@/emails/change-role-email";
 import { checkRole } from "@/utils/check-role";
 import { clerkClient } from "@clerk/nextjs/server";
 import getUserEmail from "@/utils/get-user-email";
+import { Roles } from "@/types/globals";
+import sendMail from "@/utils/send-mail";
 
 interface ChangeRoleProps {
   id: string;
-  newRole: string;
+  newRole: Roles;
 }
 
 export default async function changeRole({ id, newRole }: ChangeRoleProps) {
   const user = await clerkClient.users.getUser(id);
+  const userEmail = getUserEmail({ user });
 
   if (
     !checkRole("admin") ||
@@ -20,14 +24,22 @@ export default async function changeRole({ id, newRole }: ChangeRoleProps) {
     return { error: "Obehörig" };
   }
 
-  let affectedUser;
+  try {
+    sendMail({
+      toMail: userEmail,
+      subject: "Din roll har uppdaterats",
+      mailTemplate: ChangeRoleEmail({ role: newRole }),
+    });
+  } catch {
+    return { error: "Kunde inte skicka e-post" };
+  }
 
   try {
-    affectedUser = await clerkClient.users.updateUser(id, {
+    await clerkClient.users.updateUser(id, {
       publicMetadata: { role: newRole },
     });
-  } catch (err) {
+  } catch {
     return { error: "Kunde inte ändra roll" };
   }
-  return { data: getUserEmail({ user: affectedUser }) };
+  return { data: userEmail };
 }
