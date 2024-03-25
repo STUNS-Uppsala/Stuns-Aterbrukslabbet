@@ -68,17 +68,25 @@ export default function DeleteUserButton({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <input
-            className="rounded-md p-2 w-full"
+            className="rounded-md p-2 w-full hidden sm:block"
             type="text"
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             onSubmit={(e) => e.preventDefault()}
-            placeholder="Kommentar"
+            placeholder="Kommentar (frivilligt)"
           />
           <AlertDialogCancel>Avbryt</AlertDialogCancel>
           <AlertDialogAction variant="destructive" onClick={onDelete}>
             Ta bort
           </AlertDialogAction>
+          <input
+            className="rounded-md p-2 w-full block sm:hidden mb-2"
+            type="text"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            onSubmit={(e) => e.preventDefault()}
+            placeholder="Kommentar (frivilligt)"
+          />
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
