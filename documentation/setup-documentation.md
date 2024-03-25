@@ -131,11 +131,11 @@ This application uses resend to send emails.
 
 - In your `.env` file create a variable named RESEND_API_KEY and write the api key as its value
 
-- Then add another variable named RESEND_SENDING_MAIL and write down the mail you want your mails to be sent from. Remember that you cant recive any mails sent to that mail.
+- Then add another variable named RESEND_SENDING_MAIL and write down the mail you want your mails to be sent from. Remember that this mail is a noreply email.
 
 - Also add a variable named NEXT_PUBLIC_SITE_URL and put the home page url as its value.
 
-- It should look like this. Note that "example" can be anything you want.
+- It should look like this. Note that the "example" in RESEND_SENDING_MAIL can be anything you want.
 
 ```bash
 NEXT_PUBLIC_SITE_URL=YOUR URL HERE
