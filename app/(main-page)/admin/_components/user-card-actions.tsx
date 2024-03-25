@@ -18,14 +18,14 @@ export default function UserCardActions({ user }: UserCardActionsProps) {
     if (checkRole("admin")) {
       return (
         <>
-          <ChangeRoleButton id={user.id} email={userEmail} newRole={"member"} />
+          <ChangeRoleButton id={user.id} email={userEmail} newRole={"medlem"} />
           <DeleteUserButton id={user.id} email={userEmail} />
         </>
       );
     } else {
       return "Moderator";
     }
-  } else if (user.publicMetadata.role === "member") {
+  } else if (user.publicMetadata.role === "medlem") {
     if (checkRole("admin")) {
       return (
         <>

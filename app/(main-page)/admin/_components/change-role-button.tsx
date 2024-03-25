@@ -14,13 +14,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Roles } from "@/types/globals";
 
 import changeRole from "../utils/change-role";
 
 interface ChangeRoleButtonProps {
   id: string;
   email: string;
-  newRole: string;
+  newRole: Roles;
 }
 
 export default function ChangeRoleButton({
@@ -42,7 +43,7 @@ export default function ChangeRoleButton({
     }
   };
 
-  if (newRole === "member") {
+  if (newRole === "medlem") {
     return (
       <AlertDialog>
         <AlertDialogTrigger className="font-medium hover:line-through hover:opacity-80">

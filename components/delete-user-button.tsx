@@ -2,6 +2,7 @@
 
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import {
   AlertDialog,
@@ -28,9 +29,11 @@ export default function DeleteUserButton({
   redirectPath,
 }: DeleteUserButtonProps) {
   const router = useRouter();
+  const [comment, setComment] = useState("");
 
   const onDelete = async () => {
-    const result = await deleteUser({ id });
+    const result = await deleteUser({ id, comment });
+    setComment("");
     if (result && result.error) {
       toast.error(result.error);
     } else if (result && result.data) {
@@ -39,8 +42,7 @@ export default function DeleteUserButton({
       toast.success(result.data + " Borttagen");
       if (result.deletedPostCount && result.deletedPostCount > 1) {
         toast.success(result.deletedPostCount + " inlägg borttagna");
-      }
-      else if (result.deletedPostCount && result.deletedPostCount === 1) {
+      } else if (result.deletedPostCount && result.deletedPostCount === 1) {
         toast.success(result.deletedPostCount + " inlägg borttaget");
       }
     } else {
@@ -65,10 +67,26 @@ export default function DeleteUserButton({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
+          <input
+            className="rounded-md p-2 w-full hidden sm:block"
+            type="text"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            onSubmit={(e) => e.preventDefault()}
+            placeholder="Kommentar (frivilligt)"
+          />
           <AlertDialogCancel>Avbryt</AlertDialogCancel>
           <AlertDialogAction variant="destructive" onClick={onDelete}>
             Ta bort
           </AlertDialogAction>
+          <input
+            className="rounded-md p-2 w-full block sm:hidden mb-2"
+            type="text"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            onSubmit={(e) => e.preventDefault()}
+            placeholder="Kommentar (frivilligt)"
+          />
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
