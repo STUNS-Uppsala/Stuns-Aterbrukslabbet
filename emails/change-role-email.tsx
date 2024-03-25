@@ -12,6 +12,7 @@ interface ChangeRoleEmailProps {
 export default function ChangeRoleEmail({ role }: ChangeRoleEmailProps) {
   return (
     <EmailTemplate
+      preview="Du har fått en ny roll på Återbrukslabbet"
       header="Din roll har uppdaterats"
       main={
         <>

@@ -13,14 +13,19 @@ import EmailFooter from "./email-footer";
 import EmailHeader from "./email-header";
 
 interface EmailTemplateProps {
+  preview: string;
   header: string;
   main: React.ReactNode;
 }
 
-export default function EmailTemplate({ header, main }: EmailTemplateProps) {
+export default function EmailTemplate({
+  preview,
+  header,
+  main,
+}: EmailTemplateProps) {
   return (
     <Html>
-      <Preview>{header}</Preview>
+      <Preview>{preview}</Preview>
       <Tailwind>
         <Body className="flex bg-white">
           <Container>
