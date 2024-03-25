@@ -2,11 +2,11 @@ import React from "react";
 
 import { Container, Text, Section } from "@react-email/components";
 
-interface emailHeaderProps {
+interface EmailHeaderProps {
   header: string;
 }
 
-export default function EmailHeader({ header }: emailHeaderProps) {
+export default function EmailHeader({ header }: EmailHeaderProps) {
   return (
     <Container>
       <Section>
