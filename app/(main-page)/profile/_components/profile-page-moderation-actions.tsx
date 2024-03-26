@@ -2,13 +2,13 @@ import { checkRole } from "@/utils/check-role";
 import DeleteUserButton from "@/components/delete-user-button";
 
 interface ProfilePageModerationActionsProps {
-  PageUserId: string;
+  pageUserId: string;
   email: string;
   pageUserRole: string;
 }
 
 export default function ProfilePageModerationActions({
-  PageUserId,
+  pageUserId,
   email,
   pageUserRole,
 }: ProfilePageModerationActionsProps) {
@@ -18,7 +18,7 @@ export default function ProfilePageModerationActions({
         <div className="flex md:text-base text-sm pt-1 gap-x-3">
           <p className="font-semibold capitalize">{pageUserRole}</p>
           {checkRole("admin") && pageUserRole !== "admin" && (
-            <DeleteUserButton id={PageUserId} email={email} redirectPath="/" />
+            <DeleteUserButton id={pageUserId} email={email} redirectPath="/" />
           )}
         </div>
       );
@@ -30,7 +30,7 @@ export default function ProfilePageModerationActions({
       return (
         <div className="flex md:text-base text-sm pt-1 gap-x-3">
           <p className="font-semibold">{unknownRoleText}<span className="capitalize">{pageUserRole}</span></p>
-          <DeleteUserButton id={PageUserId} email={email} redirectPath="/" />
+          <DeleteUserButton id={pageUserId} email={email} redirectPath="/" />
         </div>
       );
     }

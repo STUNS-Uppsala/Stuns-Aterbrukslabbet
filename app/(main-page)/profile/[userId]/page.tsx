@@ -47,7 +47,7 @@ export default async function ProfilePage({
   return (
     <div className="flex flex-col md:mt-5 mt-3 mx-auto md:max-w-screen-md max-w-[360px] md:px-5 px-2">
         <ProfilePageModerationActions
-          PageUserId={params.userId}
+          pageUserId={params.userId}
           email={email}
           pageUserRole={pageUserRole}
         />
