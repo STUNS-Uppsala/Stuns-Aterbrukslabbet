@@ -12,7 +12,7 @@ interface GetPostDataFromDbProps {
   userId?: string;
 }
 
-export default async function GetPostDataFromDb({
+export default async function getPostDataFromDb({
   type,
   category,
   currentPage,
