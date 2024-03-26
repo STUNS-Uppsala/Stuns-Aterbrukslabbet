@@ -1,5 +1,5 @@
+import { BookUser, LockKeyhole } from "lucide-react";
 import Link from "next/link";
-import { LockKeyhole, ScrollText } from "lucide-react";
 
 import { checkRole } from "@/utils/check-role";
 import { cn } from "@/lib/utils";
@@ -38,7 +38,7 @@ export default function Navbar() {
               </Link>
             )}
             <Link href={`/profile/${userId}`}>
-              <ScrollText className="md:hidden block" />
+              <BookUser className="md:hidden block" />
               <p
                 className={cn(
                   "text-xl font-medium md:block hidden",
