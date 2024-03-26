@@ -45,8 +45,7 @@ export default async function ProfilePage({
   });
 
   return (
-    <div className="md:mt-5 mt-3 mx-auto md:max-w-screen-md max-w-[360px] md:px-5 px-2">
-      <div className="flex flex-col">
+    <div className="flex flex-col md:mt-5 mt-3 mx-auto md:max-w-screen-md max-w-[360px] md:px-5 px-2">
         <ProfilePageModerationActions
           PageUserId={params.userId}
           email={email}
@@ -56,7 +55,6 @@ export default async function ProfilePage({
           <p className="flex md:text-xl text-base">{headerText}</p>
           <p className="flex md:text-xl text-base">{queriedPostsCount} aktiva annonser</p>
         </div>
-      </div>
       <PostContainer posts={postsList} />
       <Pagination itemCount={queriedPostsCount} itemsPerPage={postsPerPage} />
     </div>
