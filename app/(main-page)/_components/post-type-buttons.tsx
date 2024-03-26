@@ -16,7 +16,7 @@ export default function PostTypeButtons() {
     params.get("page") && params.delete("page");
     postType ? params.set("type", postType) : params.delete("type");
 
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
   return (

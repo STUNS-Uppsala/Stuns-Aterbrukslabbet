@@ -18,7 +18,7 @@ export default function PostCategoryButtons() {
       ? params.set("category", postCategory)
       : params.delete("category");
 
-    replace(`${pathname}?${params.toString()}`);
+    replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
   return (
