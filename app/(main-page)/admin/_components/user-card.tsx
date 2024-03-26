@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import getUserEmail from "@/utils/get-user-email";
 import { User } from "@clerk/nextjs/server";
 
@@ -15,7 +17,9 @@ export default function UserCard({ user }: UserCardProps) {
     >
       <div className="flex flex-col gap-y-2">
         <div className="line-clamp-1">
-          {user.firstName} {user.lastName}
+          <Link href={`/profile/${user.id}`} className="hover:opacity-70">
+            {user.firstName} {user.lastName}
+          </Link>
         </div>
         <div className="break-all line-clamp-1">{getUserEmail({ user })}</div>
       </div>

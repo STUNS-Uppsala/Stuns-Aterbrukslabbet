@@ -31,11 +31,13 @@ export default async function MainPage({ searchParams }: MainPageProps) {
   return (
     <div>
       {!searchParams.page && <Intro />}
-      <FilterContainer
-        totalPostCount={totalPostCount}
-        postCount={queriedPostsCount}
-      />
-      <PostContainer posts={postsList} />
+      <div className="mx-auto md:px-5 px-2 md:max-w-screen-md max-w-[360px]">
+        <FilterContainer
+          totalPostCount={totalPostCount}
+          postCount={queriedPostsCount}
+        />
+        <PostContainer posts={postsList} />
+      </div>
       <Pagination itemCount={queriedPostsCount} itemsPerPage={postsPerPage} />
     </div>
   );

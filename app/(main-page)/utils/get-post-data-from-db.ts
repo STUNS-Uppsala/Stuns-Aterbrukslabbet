@@ -9,21 +9,24 @@ interface GetPostDataFromDbProps {
   searchParams?: string;
   postsPerPage: number;
   sort: SortOrder;
+  userId?: string;
 }
 
-export default async function GetPostDataFromDb({
+export default async function getPostDataFromDb({
   type,
   category,
   currentPage,
   searchParams,
   postsPerPage,
   sort,
+  userId,
 }: GetPostDataFromDbProps) {
   const query = {
     skip: currentPage ? (currentPage - 1) * postsPerPage : 0,
     take: postsPerPage,
     where: {
       postType: type,
+      userId: userId,
       title: {
         contains: searchParams,
         mode: "insensitive",
