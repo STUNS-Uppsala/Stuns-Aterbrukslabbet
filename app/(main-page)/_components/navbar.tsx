@@ -5,9 +5,8 @@ import { checkRole } from "@/utils/check-role";
 import { cn } from "@/lib/utils";
 import { getUserId } from "@/utils/get-user-id";
 import Logo from "@/components/logo";
-import { source_sans_3 } from "@/app/fonts";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-
+import { source_sans_3 } from "@/app/fonts";
 
 export default function Navbar() {
   const userId = getUserId();
