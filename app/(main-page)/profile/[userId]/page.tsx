@@ -27,13 +27,8 @@ export default async function ProfilePage({
     userId: params.userId,
   });
 
-  let headerText;
-
-  if (currentUserId === params.userId) {
-    headerText = "Mina inlägg";
-  } else {
-    headerText = name + "'s Inlägg";
-  }
+  const headerText =
+    currentUserId === params.userId ? "Mina inlägg" : `${name}'s Inlägg`;
 
   const { postsList, queriedPostsCount } = await getPostDataFromDb({
     type: undefined,
@@ -46,15 +41,17 @@ export default async function ProfilePage({
 
   return (
     <div className="flex flex-col md:mt-5 mt-3 md:px-5 px-2 mx-auto md:max-w-screen-md max-w-[360px]">
-        <ProfilePageModerationActions
-          pageUserId={params.userId}
-          email={email}
-          pageUserRole={pageUserRole}
-        />
-        <div className="flex justify-between">
-          <p className="flex md:text-xl text-base">{headerText}</p>
-          <p className="flex md:text-xl text-base">{queriedPostsCount} aktiva annonser</p>
-        </div>
+      <ProfilePageModerationActions
+        pageUserId={params.userId}
+        email={email}
+        pageUserRole={pageUserRole}
+      />
+      <div className="flex justify-between">
+        <p className="flex md:text-xl text-base">{headerText}</p>
+        <p className="flex md:text-xl text-base">
+          {queriedPostsCount} aktiva annonser
+        </p>
+      </div>
       <PostContainer posts={postsList} />
       <Pagination itemCount={queriedPostsCount} itemsPerPage={postsPerPage} />
     </div>

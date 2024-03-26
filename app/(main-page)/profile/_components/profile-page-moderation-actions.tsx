@@ -3,14 +3,14 @@ import DeleteUserButton from "@/components/delete-user-button";
 
 interface ProfilePageModerationActionsProps {
   pageUserId: string;
-  email: string;
   pageUserRole: string;
+  email: string;
 }
 
 export default function ProfilePageModerationActions({
   pageUserId,
-  email,
   pageUserRole,
+  email,
 }: ProfilePageModerationActionsProps) {
   if (checkRole("admin") || checkRole("moderator")) {
     if (pageUserRole === "admin" || pageUserRole === "moderator") {
@@ -23,13 +23,15 @@ export default function ProfilePageModerationActions({
         </div>
       );
     } else {
-      let unknownRoleText;
-      if (pageUserRole !== "medlem") {
-        unknownRoleText = "Okänd roll: ";
-      }
+      const roleText =
+        pageUserRole !== "medlem"
+          ? `Okänd roll: ${
+              pageUserRole.charAt(0).toUpperCase() + pageUserRole.slice(1)
+            }`
+          : `${pageUserRole.charAt(0).toUpperCase() + pageUserRole.slice(1)}`;
       return (
         <div className="flex md:text-base text-sm pt-1 gap-x-3">
-          <p className="font-semibold">{unknownRoleText}<span className="capitalize">{pageUserRole}</span></p>
+          <p className="font-semibold">{roleText}</p>
           <DeleteUserButton id={pageUserId} email={email} redirectPath="/" />
         </div>
       );
