@@ -2,13 +2,13 @@
 
 import { clerkClient } from "@clerk/nextjs/server";
 
-interface checkIfRoleIsCorrectProps {
+interface CheckIfRoleIsCorrectProps {
   id: string;
 }
 
 export default async function checkIfRoleIsCorrect({
   id,
-}: checkIfRoleIsCorrectProps) {
+}: CheckIfRoleIsCorrectProps) {
   try {
     const user = await clerkClient.users.getUser(id);
     if (
