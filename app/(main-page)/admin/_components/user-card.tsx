@@ -1,8 +1,9 @@
+import Link from "next/link";
+
 import getUserEmail from "@/utils/get-user-email";
 import { User } from "@clerk/nextjs/server";
 
 import UserCardActions from "./user-card-actions";
-import Link from "next/link";
 
 interface UserCardProps {
   user: User;

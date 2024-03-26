@@ -11,7 +11,6 @@ import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
 import getUserRoleFromUserId from "../../utils/get-user-role-from-user-id";
 import PostModerationActions from "./post-moderation-actions";
 
-
 interface PostProps {
   post: Post;
 }

@@ -3,10 +3,11 @@ import { LockKeyhole, ScrollText } from "lucide-react";
 
 import { checkRole } from "@/utils/check-role";
 import { cn } from "@/lib/utils";
+import { getUserId } from "@/utils/get-user-id";
 import Logo from "@/components/logo";
 import { source_sans_3 } from "@/app/fonts";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { getUserId } from "@/utils/get-user-id";
+
 
 export default function Navbar() {
   const userId = getUserId();
@@ -37,10 +38,7 @@ export default function Navbar() {
                 </p>
               </Link>
             )}
-            <Link
-              className={cn("font-medium text-xl", source_sans_3.className)}
-              href={`/profile/${userId}`}
-            >
+            <Link href={`/profile/${userId}`}>
               <ScrollText className="md:hidden block" />
               <p
                 className={cn(
