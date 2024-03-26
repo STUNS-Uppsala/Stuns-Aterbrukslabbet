@@ -1,4 +1,5 @@
 import { Clock, MapPin, User } from "lucide-react";
+import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import { Post } from "@prisma/client";
@@ -8,7 +9,7 @@ import ContactMeDialog from "./contact-me-dialog";
 import getNameAndEmailFromUserId from "../../utils/get-name-and-email-from-user-id";
 import getPostTypeSpecificData from "../../utils/get-post-type-specific-data";
 import getUserRoleFromUserId from "../../utils/get-user-role-from-user-id";
-import ModerationActions from "./moderation-actions";
+import PostModerationActions from "./post-moderation-actions";
 
 interface PostProps {
   post: Post;
@@ -62,11 +63,11 @@ export default async function Post({ post }: PostProps) {
         <p className="w-full md:text-base text-xs md:pt-2 break-words">
           {post.description}
         </p>
-        <section className="flex items-center mt-4">
+        <Link href={`/profile/${post.userId}`} className="flex w-fit items-center mt-4 hover:opacity-70">
           <User className="md:block hidden" size={18} />
           <User className="md:hidden block" size={12} />
           <p className="md:text-xl text-sm pl-1">{name}</p>
-        </section>
+        </Link>
         <div className="flex justify-between items-center">
           <ContactMeDialog
             name={name}
@@ -74,11 +75,9 @@ export default async function Post({ post }: PostProps) {
             disclaimerText={disclaimerText}
           />
         </div>
-        <ModerationActions
-          postUserId={post.userId}
+        <PostModerationActions
           postId={post.id}
           postTitle={post.title}
-          email={email}
           postUserRole={postUserRole}
         />
       </div>

@@ -22,7 +22,7 @@ export default function Logo() {
         width={40}
         height={40}
       />
-      <div className={cn("text-2xl", prompt.className)}>Återbrukslabbet</div>
+      <div className={cn("md:block hidden text-2xl", prompt.className)}>Återbrukslabbet</div>
     </Link>
   );
 }
