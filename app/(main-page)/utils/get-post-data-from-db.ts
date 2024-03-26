@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { PostCategory, PostType } from "@/types/globals";
+import { PostCategory, PostType, SortOrder } from "@/types/globals";
 import { Prisma } from "@prisma/client";
 
 interface GetPostDataFromDbProps {
@@ -8,7 +8,7 @@ interface GetPostDataFromDbProps {
   currentPage?: number;
   searchParams?: string;
   postsPerPage: number;
-  sort: "asc" | "desc";
+  sort: SortOrder;
 }
 
 export default async function GetPostDataFromDb({
@@ -33,7 +33,7 @@ export default async function GetPostDataFromDb({
       },
     },
     orderBy: {
-      createdAt: sort,
+      createdAt: sort ? sort : "desc",
     },
   } satisfies Prisma.PostFindManyArgs;
 
