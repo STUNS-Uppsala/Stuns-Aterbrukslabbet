@@ -64,7 +64,7 @@ export default async function Post({ post }: PostProps) {
         <p className="w-full md:text-base text-xs md:pt-2 break-words">
           {post.description}
         </p>
-        <Link href={`/profile/${post.userId}`} className="flex items-center mt-4 hover:opacity-70">
+        <Link href={`/profile/${post.userId}`} className="flex w-fit items-center mt-4 hover:opacity-70">
           <User className="md:block hidden" size={18} />
           <User className="md:hidden block" size={12} />
           <p className="md:text-xl text-sm pl-1">{name}</p>

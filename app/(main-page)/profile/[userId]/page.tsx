@@ -43,16 +43,19 @@ export default async function ProfilePage({
     sort: "desc",
     userId: params.userId,
   });
-  
+
   return (
-    <div className="md:mt-5 mt-3 mx-auto md:max-w-screen-md max-w-[360px]">
+    <div className="md:mt-5 mt-3 mx-auto md:max-w-screen-md max-w-[360px] md:px-5 px-2">
       <div className="flex flex-col">
         <ProfilePageModerationActions
           PageUserId={params.userId}
           email={email}
           pageUserRole={pageUserRole}
         />
-        <p className="flex md:text-xl text-base">{headerText}</p>
+        <div className="flex justify-between">
+          <p className="flex md:text-xl text-base">{headerText}</p>
+          <p className="flex md:text-xl text-base">{queriedPostsCount} aktiva annonser</p>
+        </div>
       </div>
       <PostContainer posts={postsList} />
       <Pagination itemCount={queriedPostsCount} itemsPerPage={postsPerPage} />
