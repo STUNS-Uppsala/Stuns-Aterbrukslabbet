@@ -35,7 +35,7 @@ export default function PostSortSelect() {
       <SelectTrigger className="w-[180px]">
         <SelectValue />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent align="end">
         <SelectItem value="desc">Senast</SelectItem>
         <SelectItem value="asc">Äldst</SelectItem>
       </SelectContent>
