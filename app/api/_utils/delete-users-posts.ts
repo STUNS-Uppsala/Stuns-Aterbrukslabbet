@@ -2,13 +2,13 @@
 
 import { db } from "@/lib/db";
 
-interface DeleteUsersPostProps {
+interface DeleteUsersPostsProps {
   deletedUsersId: string;
 }
 
-export default async function deleteUserPosts({
+export default async function deleteUsersPosts({
   deletedUsersId,
-}: DeleteUsersPostProps) {
+}: DeleteUsersPostsProps) {
   try {
     await db.post.deleteMany({
       where: {
