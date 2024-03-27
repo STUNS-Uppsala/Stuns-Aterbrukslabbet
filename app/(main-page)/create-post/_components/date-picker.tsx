@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { format } from "date-fns";
+import { type Dispatch, type SetStateAction } from "react";
 import { Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -13,9 +12,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-export default function DatePicker() {
-  const [date, setDate] = useState<Date>();
+interface DatePickerProps {
+  date: string;
+  setDate: Dispatch<SetStateAction<Date | undefined>>;
+}
 
+export default function DatePicker({ date, setDate }: DatePickerProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -26,7 +28,7 @@ export default function DatePicker() {
           )}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Välj ett datum</span>}
+          {date ? date.toLocaleDateString("sv-se") : <span>Välj datum</span>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0">

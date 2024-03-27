@@ -32,7 +32,7 @@ export default function MunicipalityPicker({
           role="combobox"
           aria-expanded={open}
           className={cn(
-            "w-[400px] justify-between capitalize",
+            "w-[300px] justify-between capitalize",
             value === "" && "text-muted-foreground normal-case"
           )}
         >
@@ -42,7 +42,7 @@ export default function MunicipalityPicker({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[400px] p-0">
+      <PopoverContent className="w-[300px] p-0">
         <Command>
           <CommandList>
             {list.map((listItem) => (
