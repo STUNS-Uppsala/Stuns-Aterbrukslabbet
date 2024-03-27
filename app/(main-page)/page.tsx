@@ -1,5 +1,5 @@
 import Pagination from "@/components/pagination";
-import { PostType, PostCategory } from "@/types/globals";
+import { PostType, PostCategory, SortOrder } from "@/types/globals";
 
 import FilterContainer from "./_components/filter-container";
 import getPostDataFromDb from "./utils/get-post-data-from-db";
@@ -12,11 +12,13 @@ interface MainPageProps {
     category?: PostCategory;
     page?: string;
     search?: string;
+    sort?: SortOrder;
   };
 }
 
 export default async function MainPage({ searchParams }: MainPageProps) {
   const postsPerPage = 10;
+
   const { postsList, queriedPostsCount, totalPostCount } =
     await getPostDataFromDb({
       type: searchParams.type,
@@ -24,7 +26,7 @@ export default async function MainPage({ searchParams }: MainPageProps) {
       currentPage: Number(searchParams.page),
       searchParams: searchParams.search,
       postsPerPage: postsPerPage,
-      sort: "desc",
+      sort: searchParams.sort,
     });
   return (
     <div>
