@@ -53,8 +53,8 @@ export default function Navbar() {
               appearance={{
                 elements: {
                   avatarBox: {
-                    height: 35,
-                    width: 35,
+                    height: 30,
+                    width: 30,
                   },
                 },
               }}
