@@ -7,6 +7,7 @@ export type PostCategory =
   | "Förbrukningsvara"
   | "Instrument/Maskin"
   | "Inventarie";
+export type SortOrder = undefined | "asc" | "desc";
 
 declare global {
   interface CustomJwtSessionClaims {
