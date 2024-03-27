@@ -2,7 +2,7 @@
 
 import { checkRole } from "@/utils/check-role";
 import { db } from "@/lib/db";
-import DeletePostEmail from "@/emails/deleted-post-email copy";
+import DeletePostEmail from "@/emails/deleted-post-email";
 
 import sendMail from "./send-mail";
 
