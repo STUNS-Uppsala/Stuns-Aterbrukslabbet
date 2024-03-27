@@ -20,7 +20,7 @@ export default function DeletePostEmail({
       main={
         <>
           <Text>
-            Detta kan bero på att inlägget var olämpligt för sidan och/eller
+            Detta kan bero på att inlägget var olämpligt för sidan och/eller mot
             brutit våra regler. Om du tror att det har skett ett fel och inte
             känner igen detta kan du höra av dig till oss.
           </Text>
