@@ -83,6 +83,7 @@ export default async function Post({ post }: PostProps) {
           </div>
           <PostModerationActions
             postId={post.id}
+            postEmail={email}
             postTitle={post.title}
             postUserRole={postUserRole}
           />
