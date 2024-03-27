@@ -111,7 +111,7 @@ This application uses webhooks to assign the member role on account creation.
 
 - The endpoint URL should be your url + /api/webhooks for example https://stuns.ntig.dev/api/webhooks.
 
-- On filter events, user.created and session.created should be picked.
+- On filter events, user.created, user.deleted and session.created should be picked.
 
 ### Set up .env file
 
