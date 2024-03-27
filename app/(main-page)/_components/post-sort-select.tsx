@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { type SortOrder } from "@/types/globals";
+import handleSearchParamsChange from "@/utils/handle-search-params-change";
 
 export default function PostSortSelect() {
   const pathname = usePathname();
@@ -17,15 +18,15 @@ export default function PostSortSelect() {
   const { replace } = useRouter();
 
   function handleSortingChange(value: string) {
-    const sortOrder: SortOrder = value as SortOrder;
-    const params = new URLSearchParams(searchParams);
-
-    params.get("page") && params.delete("page");
-    sortOrder && value !== "desc"
-      ? params.set("sort", sortOrder)
-      : params.delete("sort");
-
-    replace(`${pathname}?${params.toString()}`);
+    let sortOrder: SortOrder = value as SortOrder;
+    sortOrder = sortOrder === "desc" ? undefined : sortOrder;
+    handleSearchParamsChange(
+      "sort",
+      sortOrder,
+      pathname,
+      searchParams,
+      replace
+    );
   }
 
   const currentSort = searchParams.get("sort") || "desc";

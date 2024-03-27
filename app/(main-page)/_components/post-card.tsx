@@ -47,10 +47,10 @@ export default function PostCard({
           </section>
           <section className="flex flex-col col-span-5 md:pl-4 pl-2">
             <div className="grow">
-              <h3 className="md:text-2xl text-sm line-clamp-1 pb-1 break-all">
+              <h3 className="md:text-2xl text-sm line-clamp-1 break-all">
                 {title}
               </h3>
-              <p className="md:text-base text-[10px] md:line-clamp-3 line-clamp-2 break-words">
+              <p className="md:text-base text-[10px] md:line-clamp-3 line-clamp-2 mt-1 break-words">
                 {description}
               </p>
             </div>

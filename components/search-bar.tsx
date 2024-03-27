@@ -2,6 +2,8 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import handleSearchParamsChange from "@/utils/handle-search-params-change";
+
 interface SearchBarProps {
   labelText: string;
   itemsFoundCount?: number;
@@ -17,15 +19,7 @@ export default function SearchBar({
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     const search = e.target.value;
-    const params = new URLSearchParams(searchParams);
-
-    if (search) {
-      params.get("page") && params.delete("page");
-      params.set("search", search);
-    } else {
-      params.delete("search");
-    }
-    replace(`${pathname}?${params.toString()}`);
+    handleSearchParamsChange("search", search, pathname, searchParams, replace);
   }
 
   return (

@@ -3,6 +3,7 @@
 import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import handleSearchParamsChange from "@/utils/handle-search-params-change";
 import { PostCategory } from "@/types/globals";
 
 export default function PostCategoryButtons() {
@@ -11,14 +12,13 @@ export default function PostCategoryButtons() {
   const { replace } = useRouter();
 
   function handlePostCategoryChange(postCategory: PostCategory) {
-    const params = new URLSearchParams(searchParams);
-
-    params.get("page") && params.delete("page");
-    postCategory
-      ? params.set("category", postCategory)
-      : params.delete("category");
-
-    replace(`${pathname}?${params.toString()}`);
+    handleSearchParamsChange(
+      "category",
+      postCategory,
+      pathname,
+      searchParams,
+      replace
+    );
   }
 
   return (
