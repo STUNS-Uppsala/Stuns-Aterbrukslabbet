@@ -12,11 +12,13 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 interface PaginationProps {
   itemCount?: number;
   itemsPerPage: number;
+  hashLinkId?: string;
 }
 
 export default function Pagination({
   itemCount,
   itemsPerPage,
+  hashLinkId,
 }: PaginationProps) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -34,7 +36,9 @@ export default function Pagination({
     } else {
       params.delete("page");
     }
-    replace(`${pathname}?${params.toString()}`);
+    hashLinkId
+      ? replace(`${pathname}?${params.toString()}#${hashLinkId}`)
+      : replace(`${pathname}?${params.toString()}`);
   }
 
   const pageButtons: Array<ReactElement> = [];

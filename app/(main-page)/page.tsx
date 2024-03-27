@@ -28,7 +28,8 @@ export default async function MainPage({ searchParams }: MainPageProps) {
     });
   return (
     <div>
-      {!searchParams.page && <Intro />}
+      <Intro />
+      <div id="filters"></div>
       <div className="mx-auto md:px-5 px-2 md:max-w-screen-md max-w-[360px]">
         <FilterContainer
           totalPostCount={totalPostCount}
@@ -36,7 +37,11 @@ export default async function MainPage({ searchParams }: MainPageProps) {
         />
         <PostContainer posts={postsList} />
       </div>
-      <Pagination itemCount={queriedPostsCount} itemsPerPage={postsPerPage} />
+      <Pagination
+        itemCount={queriedPostsCount}
+        itemsPerPage={postsPerPage}
+        hashLinkId="filters"
+      />
     </div>
   );
 }
