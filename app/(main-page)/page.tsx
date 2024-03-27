@@ -31,8 +31,10 @@ export default async function MainPage({ searchParams }: MainPageProps) {
   return (
     <div>
       <Intro />
-      <div id="filters"></div>
-      <div className="mx-auto md:px-5 px-2 md:max-w-screen-md max-w-[360px]">
+      <div
+        className="mx-auto md:px-5 px-2 md:max-w-screen-md max-w-[360px]"
+        id="filters"
+      >
         <FilterContainer
           totalPostCount={totalPostCount}
           postCount={queriedPostsCount}
