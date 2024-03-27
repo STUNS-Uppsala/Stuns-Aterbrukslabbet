@@ -23,7 +23,7 @@ export default function PostCategoryButtons() {
 
   return (
     <div className="flex gap-x-3 rounded-md">
-      <div className="flex items-center h-fit bg-primary bg-opacity-40 rounded-md md:text-base text-[9px]">
+      <div className="flex items-center bg-primary bg-opacity-40 rounded-md md:text-base text-[9px]">
         <button
           onClick={() => handlePostCategoryChange(undefined)}
           className={clsx(
