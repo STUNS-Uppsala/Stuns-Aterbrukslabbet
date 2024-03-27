@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { type SortOrder } from "@/types/globals";
-import handleSearchparamsChange from "@/utils/handle-searchparams-change";
+import handleSearchParamsChange from "@/utils/handle-search-params-change";
 
 export default function PostSortSelect() {
   const pathname = usePathname();
@@ -20,7 +20,7 @@ export default function PostSortSelect() {
   function handleSortingChange(value: string) {
     let sortOrder: SortOrder = value as SortOrder;
     sortOrder = sortOrder === "desc" ? undefined : sortOrder;
-    handleSearchparamsChange(
+    handleSearchParamsChange(
       "sort",
       sortOrder,
       pathname,

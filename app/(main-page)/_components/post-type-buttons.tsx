@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import handleSearchparamsChange from "@/utils/handle-searchparams-change";
+import handleSearchParamsChange from "@/utils/handle-search-params-change";
 import { PostType } from "@/types/globals";
 
 export default function PostTypeButtons() {
@@ -12,7 +12,7 @@ export default function PostTypeButtons() {
   const { replace } = useRouter();
 
   function handlePostTypeChange(postType: PostType) {
-    handleSearchparamsChange("type", postType, pathname, searchParams, replace);
+    handleSearchParamsChange("type", postType, pathname, searchParams, replace);
   }
 
   return (

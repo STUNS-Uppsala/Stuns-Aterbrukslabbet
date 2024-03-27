@@ -1,6 +1,6 @@
 "use client";
 
-export default function handleSearchparamsChange(
+export default function handleSearchParamsChange(
   param: string,
   query: string | undefined,
   pathname: string,

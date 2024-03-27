@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import handleSearchparamsChange from "@/utils/handle-searchparams-change";
+import handleSearchParamsChange from "@/utils/handle-search-params-change";
 
 interface SearchBarProps {
   labelText: string;
@@ -19,7 +19,7 @@ export default function SearchBar({
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     const search = e.target.value;
-    handleSearchparamsChange("search", search, pathname, searchParams, replace);
+    handleSearchParamsChange("search", search, pathname, searchParams, replace);
   }
 
   return (
