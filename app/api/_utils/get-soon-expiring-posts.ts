@@ -1,5 +1,16 @@
 import { db } from "@/lib/db";
 
+import {
+  PostExpiredCustomMail,
+  PostExpiredMail,
+  PostExpiresInAWeekCustomMail,
+  PostExpiresInAWeekMail,
+  PostExpiresTommorowCustomMail,
+  PostExpiresTommorowMail,
+} from "@/emails/expiring-posts-emails";
+
+import { sendMailToExpiringPosts } from "./send-mail-to-expiring-posts";
+
 export default async function getSoonExpiringPosts() {
   const now = new Date();
   const today = new Date(now.setHours(0, 0, 0, 0));
@@ -29,6 +40,83 @@ export default async function getSoonExpiringPosts() {
   const postsExperingToday = posts.filter((post) => {
     return dateToEpoch(post.expiresAt) === dateToEpoch(today);
   });
+  postsExperingInOneWeek.forEach((post) => {
+    if (post.hasCustomExpirationDate) {
+      sendMailToExpiringPosts({
+        post,
+        subject: "Ditt inlägg går ut om en vecka",
+        mailTemplate: PostExpiresInAWeekCustomMail({
+          postId: post.id,
+          postTitle: post.title,
+        }),
+      });
+    } else {
+      sendMailToExpiringPosts({
+        post,
+        subject: "Ditt inlägg går ut om en vecka",
+        mailTemplate: PostExpiresInAWeekMail({
+          postId: post.id,
+          postTitle: post.title,
+        }),
+      });
+    }
+  });
+
+  postsExperingTommorow.forEach((post) => {
+    if (post.hasCustomExpirationDate) {
+      sendMailToExpiringPosts({
+        post,
+        subject: "Ditt inlägg går ut imorgon",
+        mailTemplate: PostExpiresTommorowCustomMail({
+          postId: post.id,
+          postTitle: post.title,
+        }),
+      });
+    } else {
+      sendMailToExpiringPosts({
+        post,
+        subject: "Ditt inlägg går ut imorgon",
+        mailTemplate: PostExpiresTommorowMail({
+          postId: post.id,
+          postTitle: post.title,
+        }),
+      });
+    }
+  });
+
+  const postsToDelete: number[] = [];
+
+  postsExperingToday.forEach((post) => {
+    if (post.hasCustomExpirationDate) {
+      sendMailToExpiringPosts({
+        post,
+        subject: "Ditt inlägg har tagits bort",
+        mailTemplate: PostExpiredCustomMail({
+          postId: post.id,
+          postTitle: post.title,
+        }),
+      });
+    } else {
+      sendMailToExpiringPosts({
+        post,
+        subject: "Ditt inlägg har tagits bort",
+        mailTemplate: PostExpiredMail({
+          postId: post.id,
+          postTitle: post.title,
+        }),
+      });
+    }
+    postsToDelete.push(post.id);
+  });
+
+  await db.post.deleteMany({
+    where: {
+      id: {
+        in: postsToDelete,
+      },
+    },
+  });
+
   return {
     postsExperingInOneWeek,
     postsExperingTommorow,
