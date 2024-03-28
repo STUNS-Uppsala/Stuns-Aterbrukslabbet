@@ -1,9 +1,8 @@
 import { cn } from "@/lib/utils";
-import { type Dispatch, type SetStateAction } from "react";
 
 interface PostTypeRadioButtonProps {
   postType: string;
-  setPostType: Dispatch<SetStateAction<string>>;
+  setPostType: (...event: any[]) => void;
 }
 
 export default function PostTypeRadioButton({

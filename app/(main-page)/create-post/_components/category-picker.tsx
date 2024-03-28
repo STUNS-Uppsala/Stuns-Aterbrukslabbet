@@ -1,6 +1,6 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -12,17 +12,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
-interface ComboboxProps {
-  value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+interface CategoryPickerProps {
+  category: string;
+  setCategory: (...event: any[]) => void;
   list: string[];
 }
 
-export default function MunicipalityPicker({
-  value,
-  setValue,
+export default function CategoryPicker({
+  category,
+  setCategory,
   list,
-}: ComboboxProps) {
+}: CategoryPickerProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -33,11 +33,11 @@ export default function MunicipalityPicker({
           aria-expanded={open}
           className={cn(
             "w-[300px] justify-between capitalize",
-            value === "" && "text-muted-foreground normal-case"
+            !category && "text-muted-foreground normal-case"
           )}
         >
-          {value
-            ? list.find((listItem) => listItem === value)
+          {category
+            ? list.find((listItem) => listItem === category)
             : "Välj kategori"}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -51,14 +51,14 @@ export default function MunicipalityPicker({
                 value={listItem}
                 className="capitalize"
                 onSelect={(currentValue) => {
-                  setValue(currentValue === value ? "" : currentValue);
+                  setCategory(currentValue === category ? "" : currentValue);
                   setOpen(false);
                 }}
               >
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    value === listItem ? "opacity-100" : "opacity-0"
+                    category === listItem ? "opacity-100" : "opacity-0"
                   )}
                 />
                 {listItem}

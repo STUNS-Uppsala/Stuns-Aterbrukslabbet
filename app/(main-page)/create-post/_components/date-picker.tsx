@@ -1,6 +1,5 @@
 "use client";
 
-import { type Dispatch, type SetStateAction } from "react";
 import { Calendar as CalendarIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -13,8 +12,8 @@ import {
 } from "@/components/ui/popover";
 
 interface DatePickerProps {
-  date: string;
-  setDate: Dispatch<SetStateAction<Date | undefined>>;
+  date: Date;
+  setDate: (...event: any[]) => void;
 }
 
 export default function DatePicker({ date, setDate }: DatePickerProps) {
