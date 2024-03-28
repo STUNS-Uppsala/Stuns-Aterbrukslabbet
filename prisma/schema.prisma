@@ -25,3 +25,9 @@ model Post {
   expiresAt           DateTime   @default(dbgenerated("NOW() + interval '6 months'"))
   hasCustomExpirationDate  Boolean @default(false)
 }
+
+model SoonExpiringPosts {
+  id                  Int        @id @default(autoincrement())
+  postId              Int
+  postLink            String
+}

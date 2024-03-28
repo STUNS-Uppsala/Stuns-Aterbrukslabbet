@@ -8,6 +8,8 @@ export default authMiddleware({
     "/",
     "/api/webhooks(.*)",
     "/api/send-mail-to-expiring-posts(.*)",
+    "/delete(.*)",
+    "/extend(.*)",
   ],
   afterAuth(auth, req) {
     if (!auth.userId && !auth.isPublicRoute) {
