@@ -6,6 +6,7 @@ import { WebhookEvent } from "@clerk/nextjs/server";
 
 import changeRoleToMember from "../_utils/change-role-to-member";
 import checkIfRoleIsCorrect from "../_utils/check-if-role-is-correct";
+import deleteUsersPosts from "../_utils/delete-users-posts";
 
 export async function POST(req: NextRequest) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
@@ -54,6 +55,15 @@ export async function POST(req: NextRequest) {
         await changeRoleToMember({ id: payload.data.id });
       } catch (error) {
         return new NextResponse("Failed to change role: " + error, {
+          status: 400,
+        });
+      }
+
+    case "user.deleted":
+      try {
+        await deleteUsersPosts({ deletedUsersId: payload.data.id });
+      } catch (error) {
+        return new NextResponse("Failed to delete user's posts: " + error, {
           status: 400,
         });
       }
