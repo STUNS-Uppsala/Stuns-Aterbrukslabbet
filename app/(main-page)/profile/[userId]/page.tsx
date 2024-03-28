@@ -48,7 +48,7 @@ export default async function ProfilePage({
       />
       <div className="flex justify-between">
         <p className="flex md:text-xl text-base">{headerText}</p>
-        <p className="flex md:text-xl text-base">
+        <p className="flex md:text-xl text-base text-end">
           {queriedPostsCount} aktiva annonser
         </p>
       </div>
