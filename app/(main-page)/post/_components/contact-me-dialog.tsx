@@ -8,13 +8,13 @@ import {
 } from "@/components/ui/dialog";
 
 interface ContactMeDialogProps {
-  name: string;
+  fullName: string;
   email: string;
   disclaimerText: string;
 }
 
 export default function ContactMeDialog({
-  name,
+  fullName,
   email,
   disclaimerText,
 }: ContactMeDialogProps) {
@@ -27,7 +27,7 @@ export default function ContactMeDialog({
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <p className="flex justify-center text-base">{name}</p>
+          <p className="flex justify-center text-base">{fullName}</p>
           <a
             className="flex justify-center hover:underline text-blue-600"
             href={`mailto:${email}`}

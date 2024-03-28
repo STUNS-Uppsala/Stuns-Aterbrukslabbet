@@ -21,7 +21,11 @@ export default async function Post({ post }: PostProps) {
     getPostTypeSpecificData({
       postType: post.postType,
     });
-  const { name, email } = await getNameAndEmailFromUserId({ userId: post.userId });
+  const { firstName, lastName, email } = await getNameAndEmailFromUserId({
+    userId: post.userId,
+  });
+  const fullName = firstName + " " + lastName;
+
   const postUserRole = await getUserRoleFromUserId({ userId: post.userId });
   return (
     <article className="mt-5 md:pt-10 pt-3 md:px-16 px-6 md:pb-6 pb-4 md:max-w-screen-md max-w-[360px] bg-secondary rounded-2xl mx-auto">
@@ -63,14 +67,17 @@ export default async function Post({ post }: PostProps) {
         <p className="w-full md:text-base text-xs md:pt-2 break-words">
           {post.description}
         </p>
-        <Link href={`/profile/${post.userId}`} className="flex w-fit items-center mt-4 hover:opacity-70">
+        <Link
+          href={`/profile/${post.userId}`}
+          className="flex w-fit items-center mt-4 hover:opacity-70"
+        >
           <User className="md:block hidden" size={18} />
           <User className="md:hidden block" size={12} />
-          <p className="md:text-xl text-sm pl-1">{name}</p>
+          <p className="md:text-xl text-sm pl-1">{fullName}</p>
         </Link>
         <div className="flex justify-between items-center">
           <ContactMeDialog
-            name={name}
+            fullName={fullName}
             email={email}
             disclaimerText={disclaimerText}
           />

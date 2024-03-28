@@ -23,12 +23,14 @@ export default async function ProfilePage({
   const postsPerPage = 10;
   const currentUserId = getUserId();
   const pageUserRole = await getUserRoleFromUserId({ userId: params.userId });
-  const { name, email } = await getNameAndEmailFromUserId({
+  const { firstName, lastName, email } = await getNameAndEmailFromUserId({
     userId: params.userId,
   });
 
   const headerText =
-    currentUserId === params.userId ? "Mina inlägg" : `${name}'s Inlägg`;
+    currentUserId === params.userId
+      ? "Mina inlägg"
+      : `${firstName} ${firstName}'s Inlägg`;
 
   const { postsList, queriedPostsCount } = await getPostDataFromDb({
     type: undefined,
