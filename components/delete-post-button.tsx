@@ -2,6 +2,7 @@
 
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 import {
   AlertDialog,
@@ -20,17 +21,21 @@ interface DeletePostButtonProps {
   postId: number;
   postTitle: string;
   redirectPath?: string;
+  postEmail: string;
 }
 
 export default function DeletePostButton({
   postId,
   postTitle,
   redirectPath,
+  postEmail,
 }: DeletePostButtonProps) {
   const router = useRouter();
+  const [comment, setComment] = useState("");
 
   const onDelete = async () => {
-    const result = await deletePost({ postId });
+    const result = await deletePost({ postId, postEmail, postTitle, comment });
+    setComment("");
     if (result && result.error) {
       toast.error(result.error);
     } else if (result && result.data) {
@@ -56,10 +61,26 @@ export default function DeletePostButton({
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
+          <input
+            className="rounded-md p-2 w-full hidden sm:block"
+            type="text"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            onSubmit={(e) => e.preventDefault()}
+            placeholder="Kommentar (frivilligt)"
+          />
           <AlertDialogCancel>Avbryt</AlertDialogCancel>
           <AlertDialogAction variant="destructive" onClick={onDelete}>
             Ta bort
           </AlertDialogAction>
+          <input
+            className="rounded-md p-2 w-full block sm:hidden mb-2"
+            type="text"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            onSubmit={(e) => e.preventDefault()}
+            placeholder="Kommentar (frivilligt)"
+          />
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
